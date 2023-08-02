@@ -13,20 +13,36 @@ import img3 from "../../img/hero/3.png";
 import img4 from "../../img/hero/4.png";
 
 export const Hero = () => {
+  const heroContent = [
+    {
+      imgsrc: img1,
+      buttonTitle: "Buy Now",
+      heading: "State of the Art Grand Piano"
+    },
+    {
+      imgsrc: img2,
+      buttonTitle: "Buy Now",
+      heading: "Guitar "
+    },
+    {
+      imgsrc: img3,
+      buttonTitle: "View Microphones",
+      heading: "Guitar "
+    },
+    {
+      imgsrc: img4,
+      buttonTitle: "Buy Now",
+      heading: "Guitar "
+    }
+  ];
   return (
-    <div style={{ background: "#FEFCF9", height: "800px", padding: "0px 100px" }}>
+    <div style={{ background: "#FEFCF9", height: "400px", padding: "0px 100px" }}>
       <Swiper
+        style={{ height: "400px" }}
         effect={"creative"}
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
-        // coverflowEffect={{
-        //   rotate: 50,
-        //   stretch: 0,
-        //   depth: 100,
-        //   modifier: 1,
-        //   slideShadows: true
-        // }}
         creativeEffect={{
           prev: {
             shadow: true,
@@ -42,24 +58,21 @@ export const Hero = () => {
         navigation={true}
         modules={[EffectCreative, EffectCoverflow, EffectCards, Autoplay, Pagination, Navigation]}
         autoplay={{
-          delay: 3500,
+          delay: 4500,
           disableOnInteraction: false
         }}
       >
-        <SwiperSlide style={{ height: "400px" }}>
-          <img src={img1} alt="1" style={{ width: "50%", objectFit: "contain" }} />
-          <div>Buy</div>
-        </SwiperSlide>
-        <SwiperSlide style={{ height: "400px" }}>
-          <img src={img2} alt="1" style={{ width: "50%", objectFit: "contain" }} />
-        </SwiperSlide>
-        <SwiperSlide style={{ height: "400px" }}>
-          <img src={img3} alt="1" style={{ width: "50%", objectFit: "contain" }} />
-        </SwiperSlide>
-        <SwiperSlide style={{ height: "400px" }}>
-          <img src={img4} alt="1" style={{ width: "50%", objectFit: "contain" }} />
-        </SwiperSlide>
-        ...
+        {heroContent.map(hero => {
+          return (
+            <SwiperSlide className="SlideWrap" style={{ height: "400px", display: "flex", alignItems: "center" }}>
+              <img src={hero.imgsrc} alt="1" style={{ height: "200px", objectFit: "contain" }} />
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <h1>{hero.heading}</h1>
+                <button style={{ height: "30px", width: "180px" }}>{hero.buttonTitle}</button>
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

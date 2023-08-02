@@ -56,9 +56,9 @@ export const Navbar = () => {
   return (
     <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "30px 100px" }}>
       <div className="navbar_left" style={{ display: "flex", gap: "40px" }}>
-        <div className="navbar_left_logo">
+        <NavLink to="/" className="navbar_left_logo">
           <img src={logopng} alt="Logo" style={{ height: "24px" }} />
-        </div>
+        </NavLink>
         <NavLink to="/products" className="navbar_left_page" style={{ display: "flex" }}>
           {/* <PianoKeys size={32} /> */}
           {currScrn === "/products" ? (
