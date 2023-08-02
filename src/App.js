@@ -19,7 +19,7 @@ import { ForgotPassword } from "./elements/screen/account/forgotPassword";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ background: "#F8F5F2" }}>
       {/* Hello World */}
       <Navbar />
       <Routes>
