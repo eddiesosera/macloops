@@ -20,6 +20,18 @@ const UserSchema = mongoose.Schema({
     role: {
     type: String,
     required: true
+  },
+  cart_items: {
+    type: String,
+    required: false
+  },
+  bought_items: {
+    type: String,
+    required: true
+  },
+  liked_items: {
+    type: String,
+    required: true
   }
 });
 

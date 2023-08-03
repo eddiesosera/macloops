@@ -10,7 +10,7 @@ router.get("/api/products/", async (req, res) => {
   res.json(findProduct);
 });
 
-//Get Single car
+//Get Single Product
 router.get("/api/product/:id", async (req, res) => {
   const findProduct = await ProductSchema.findById(req.params.id);
   res.json(findProduct);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../img/LOGO.svg";
 import logopng from "../../img/LOGO.png";
 import { ReactSVG } from "react-svg";
@@ -8,9 +8,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import { useEffect } from "react";
 import { Search } from "../components/search";
+import { LoginContext } from "../../App";
 // import { PianoKeys } from "@phosphor-icons/react";
 
 export const Navbar = () => {
+  const loggedIn = useContext(LoginContext)
   const [currScrn, setCurrScrn] = useState(useLocation().pathname);
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
@@ -45,6 +47,7 @@ export const Navbar = () => {
     () => {
       setCurrScrn(scrn);
       console.log(currScrn);
+      loggedIn[0] === "true" ? setUsername("MyNameIs") : setUsername("Login")
     },
     [currScrn, scrn]
   );
@@ -76,7 +79,7 @@ export const Navbar = () => {
       <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
         {screens.map(scrn => {
           return (
-            <NavLink to={scrn.screenPath} style={{ display: "flex" }}>
+            <NavLink to={scrn.screenPath} style={{ display: "flex" }} onClick={e => { console.log(loggedIn[0]) }}>
               {scrn.screenPath === currScrn ? (
                 <i className={scrn.iconActive} style={ActiveIcon} />
               ) : (
