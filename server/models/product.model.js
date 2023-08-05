@@ -8,7 +8,7 @@ const InstrumentSchema = mongoose.Schema({
     images: [
         {
             type: String,
-            default: false
+            default: ""
         }
     ],
     slogan: {
@@ -32,11 +32,19 @@ const InstrumentSchema = mongoose.Schema({
         dimensions: {
             width: {
                 type: String,
-                default: false
+                default: ""
             },
             height: {
                 type: String,
-                default: false
+                default: ""
+            },
+            depth: {
+                type: String,
+                default: ""
+            },
+            weight: {
+                type: String,
+                default: ""
             }
         }
     },
@@ -47,7 +55,15 @@ const InstrumentSchema = mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    dateAdded: {
+        type: Date,
+        default: Date.now
     }
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 module.exports = mongoose.model("Instrument", InstrumentSchema);

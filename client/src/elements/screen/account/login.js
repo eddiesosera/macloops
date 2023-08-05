@@ -15,11 +15,19 @@ export const Login = ({ allUsers }) => {
       { headers: { "Content-Type": "application/json" } })
       .then((loginRes => {
         console.log(loginRes)
+        console.log(loginRes.data)
         setLoginMsg(loginRes.data)
         loginRes && setLoginStatus(true)
         sessionStorage.setItem('isLoggedIn', 'true')
         setLoggedIn(sessionStorage.getItem("isLoggedIn", "true"))
-        navigate('/')
+        // navigate('/')
+        let usr = loginRes.data
+        let usObjr = {
+          id: usr.id,
+          username: usr.username,
+          email: usr.email
+        }
+        sessionStorage.setItem("user", JSON.stringify(usObjr))
       }))
   }
 

@@ -12,6 +12,7 @@ export const Account = (allUsers, allPosts) => {
     <button onClick={e => {
       sessionStorage.setItem('isLoggedIn', 'false')
       setLoggedIn(sessionStorage.getItem('isLoggedIn'))
+      sessionStorage.removeItem("user")
     }}>Logout</button>
   </div>;
 };

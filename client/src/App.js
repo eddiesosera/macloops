@@ -74,7 +74,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product-page" element={<ProductPage />} />
           <Route path="/account" element={<PrivateRoute><Account /></PrivateRoute>} />
-          <Route path="/account-register" element={<PublicRoute><Register allUsers={users} /></PublicRoute>} />
+          <Route path="/account-register" element={<Register allUsers={users} />} />
           <Route path="/account-login" element={<Login allUsers={users} />} />
           <Route path="/account-forgotPassword" element={<ForgotPassword />} />
           <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
