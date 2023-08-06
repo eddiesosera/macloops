@@ -50,7 +50,7 @@ export const Register = ({ allUsers }) => {
         <FileUploader multiple={true} fileType=".jpeg, .jpg, .png" onDone={e => {
           console.log(e[0]);
           setImg(e[0].base64);
-          setFormData({ ...formData, profile_image: img })
+          setFormData({ ...formData, profile_image: e[0].base64 })
         }} />
 
         {/* <input type="file" accept="image/*" onChange={e => console.log(e.target.getAttribute)} /> */}

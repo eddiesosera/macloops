@@ -16,7 +16,16 @@ router.post("/api/loginUser", async (req, res) => {
     if (findUsername != null || findUser != null) {
         if (findUsername?.password == req.body.password || findUser?.password == req.body.password) {
             // res.send("User logged in!");
-            const usr = [findUsername?.id, findUsername?.fullname, findUsername?.role, findUsername?.username, findUsername?.email, findUsername?.profile_image]
+            const usr = [findUsername?.id,
+            findUsername?.fullname,
+            findUsername?.role,
+            findUsername?.username,
+            findUsername?.email,
+            findUsername?.profile_image,
+            findUsername?.cart_items,
+            findUsername?.bought_items,
+            findUsername?.liked_items,
+            ]
             res.send(usr)
         } else {
             res.send("Email and password does not match!");

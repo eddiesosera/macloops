@@ -8,26 +8,38 @@ export const Login = ({ allUsers }) => {
   const [formData, setFormData] = useState({})
   const [loginStatus, setLoginStatus] = useState(false)
   const [loginMsg, setLoginMsg] = useState('')
+  const [usrObj, setUsrObj] = useState({})
   const navigate = useNavigate()
 
   const loginAction = async () => {
     await axios.post('http://localhost:5000/api/loginUser', formData,
       { headers: { "Content-Type": "application/json" } })
       .then((loginRes => {
+        // const userValidate = JSON.stringify(sessionStorage.getItem('user'))
+        const userStr = JSON.parse(sessionStorage.getItem('user'));
+        const usr = loginRes?.data
+        setUsrObj({
+          id: usr[0],
+          fullname: usr[1],
+          role: usr[2],
+          username: usr[3],
+          email: usr[4],
+          profile_image: usr[5],
+          cart_items: usr[6],
+          bought_items: usr[7],
+          liked_items: usr[8]
+        });
+        sessionStorage.setItem("user", JSON.stringify({ usrObj }))
+
+        console.log(userStr.usrObj)
         console.log(loginRes)
         console.log(loginRes.data)
         setLoginMsg(loginRes.data)
         loginRes && setLoginStatus(true)
         sessionStorage.setItem('isLoggedIn', 'true')
         setLoggedIn(sessionStorage.getItem("isLoggedIn", "true"))
-        // navigate('/')
-        let usr = loginRes.data
-        let usObjr = {
-          id: usr.id,
-          username: usr.username,
-          email: usr.email
-        }
-        sessionStorage.setItem("user", JSON.stringify(usObjr))
+        navigate('/')
+
       }))
   }
 
