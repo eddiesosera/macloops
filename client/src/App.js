@@ -27,10 +27,11 @@ export const LoginContext = createContext()
 
 function App() {
   // Declaring all variables
+  const userObj = JSON.parse(sessionStorage.getItem('user'))
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [users, setUsers] = useState([])
+  // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [products, setProducts] = useState([])
-  const userStr = JSON.parse(sessionStorage.getItem('user'))
   const [currentScreen, setCurrentScreen] = useState(useLocation())
 
 
@@ -71,7 +72,7 @@ function App() {
     }, 10000)
     return () => clearInterval(interval)
 
-  }, [loggedIn, userStr])
+  }, [loggedIn, userObj])
 
 
   // Routes Array
@@ -131,15 +132,11 @@ function App() {
   initSession()
 
 
-  // User currently logged in
-  // code here
-
-
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
       <div className="App" style={{ background: "#F8F5F2" }}>
         {loggedIn}
-        <Navbar />
+        <Navbar userObj={userObj} />
         <Routes>
           {
             routes

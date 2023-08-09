@@ -1,29 +1,24 @@
-import React, { useContext } from "react";
-import logo from "../../img/LOGO.svg";
-import logopng from "../../img/LOGO.png";
-import { ReactSVG } from "react-svg";
-import "./style/navbar.css";
-import { useState } from "react";
+import React, { useContext, useState, useLayoutEffect, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { useLayoutEffect } from "react";
-import { useEffect } from "react";
+import "./style/navbar.css";
+import svgLogo from "../../img/LOGO.svg";
+import logopng from "../../img/LOGO.png";
 import { Search } from "../components/search";
 import { LoginContext } from "../../App";
+
 // import { PianoKeys } from "@phosphor-icons/react";
 
-export const Navbar = ({ }) => {
+export const Navbar = ({ userObj }) => {
   // Declaring all variables
   const loggedIn = useContext(LoginContext)
   const scrn = useLocation().pathname;
   const [currScrn, setCurrScrn] = useState(useLocation().pathname);
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
-  const userStr = JSON.parse(sessionStorage.getItem('user'))
-  const userLogged = userStr
-  const [isLogged, setIsLogged] = useState(sessionStorage.getItem('isLoggedIn'))
+  const [userLogged, setUserLogged] = useState(userObj)
 
 
-  // Screens: Account & Cart
+  // Screens Array: Account & Cart
   const screens = [
     {
       screenTitle: username,
@@ -72,9 +67,9 @@ export const Navbar = ({ }) => {
         loggedIn[0] === "true" ? setUsername(userLogged.fullname) : setUsername("Log in")
         imgUpdt()
       }
-      console.log(isLogged, loggedIn[0])
+      console.log(loggedIn[0])
     },
-    [currScrn, scrn, userLogged?.profile_image, userLogged, isLogged, loggedIn[0]]
+    [currScrn, scrn, userLogged?.profile_image, userLogged, loggedIn[0]]
   );
 
 
