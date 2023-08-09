@@ -27,7 +27,8 @@ export const LoginContext = createContext()
 
 function App() {
   // Declaring all variables
-  const userObj = JSON.parse(sessionStorage.getItem('user'))
+  const userStateSession = sessionStorage.getItem('isLoggedIn')
+  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')))
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [users, setUsers] = useState([])
   // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
@@ -36,43 +37,50 @@ function App() {
 
 
   // Get All Users Request
-  const getUsers = async () => {
-    try {
-      const userRes = await axios.get("http://localhost:5000/api/getUsers/");
-      setUsers(userRes.data)
-      // console.log("Testing User data",userRes.data)
-    } catch (err) { console.error(err) }
-  }
+  // const getUsers = async () => {
+  //   try {
+  //     const userRes = await axios.get("http://localhost:5000/api/getUsers/");
+  //     setUsers(userRes.data)
+  //     // console.log("Testing User data",userRes.data)
+  //   } catch (err) { console.error(err) }
+  // }
 
   // Get All Products
-  const getProducts = async () => {
-    try {
-      const userRes = await axios.get("http://localhost:5000/api/products/");
-      setProducts(userRes.data)
-      // console.log("Testing Products data",userRes.data)
-    } catch (err) { console.error(err) }
-  }
+  // const getProducts = async () => {
+  //   try {
+  //     const userRes = await axios.get("http://localhost:5000/api/products/");
+  //     setProducts(userRes.data)
+  //   } catch (err) { console.error(err) }
+  // }
 
 
   // Main Use Effect
   useEffect(() => {
 
     // Get All users
-    getUsers()
+    // getUsers()
     // Get All products
-    getProducts()
+    // getProducts()
 
     // Update Logged in status
-    sessionStorage.getItem('isLoggedIn') === "true" ? setLoggedIn("true") : setLoggedIn("false")
+    setLoggedIn(sessionStorage.getItem('isLoggedIn'))
+    console.log('user is logged: ' + loggedIn)
+
+    // Update Logged in user details
+    setUserObj(JSON.parse(sessionStorage.getItem('user')))
 
     // Refresh data
-    const interval = setInterval(async () => {
-      await getUsers()
-      await getProducts()
-    }, 10000)
-    return () => clearInterval(interval)
+    // const interval = setInterval(async () => {
+    //   // await getUsers()
+    //   // await getProducts()
+    // }, 10000)
+    // return () => clearInterval(interval)
 
-  }, [loggedIn, userObj])
+  }, [
+    loggedIn,
+    userStateSession,
+    currentScreen
+  ])
 
 
   // Routes Array
@@ -115,7 +123,7 @@ function App() {
     }
   ]
   // Map Routes 
-  const routes = path_and_elements.map(pae => { return <Route path={pae?.path} element={pae?.element} /> })
+  const routes = path_and_elements.map((pae, i) => { return <Route path={pae?.path} element={pae?.element} /> })
   // Refresh Routes
   const refreshRoutes = () => {
     path_and_elements.map(pae => {

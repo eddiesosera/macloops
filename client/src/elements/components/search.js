@@ -22,7 +22,7 @@ export const Search = ({ query }) => {
 
   return (
     <div className="search_wrap" style={{ border: "1px solid black", display: "flex" }}>
-      <i class="ph-bold ph-magnifying-glass" />
+      <i className="ph-bold ph-magnifying-glass" />
       <input
         ref={searchDOM}
         className="navbar_search"
@@ -45,7 +45,7 @@ export const Search = ({ query }) => {
         }}
       />
       <i
-        class="ph-bold ph-x"
+        className="ph-bold ph-x"
         onClick={e => {
           setSearchVal("");
           query("");

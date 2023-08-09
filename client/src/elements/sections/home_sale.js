@@ -31,10 +31,10 @@ export const Sale = () => {
   ];
 
   return (
-    <div style={{ display: "flex" }}>
+    <ul style={{ display: "flex" }}>
       {sale_content.map(sale => {
-        return <Card img={sale.imgsrc} title={sale.heading} />;
+        return <li key={sale.imgsrc}><Card img={sale.imgsrc} title={sale.heading} /></li>;
       })}
-    </div>
+    </ul>
   );
 };

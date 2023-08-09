@@ -4,6 +4,7 @@ import "./style/navbar.css";
 import svgLogo from "../../img/LOGO.svg";
 import logopng from "../../img/LOGO.png";
 import { Search } from "../components/search";
+
 import { LoginContext } from "../../App";
 
 // import { PianoKeys } from "@phosphor-icons/react";
@@ -15,7 +16,6 @@ export const Navbar = ({ userObj }) => {
   const [currScrn, setCurrScrn] = useState(useLocation().pathname);
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
-  const [userLogged, setUserLogged] = useState(userObj)
 
 
   // Screens Array: Account & Cart
@@ -46,7 +46,7 @@ export const Navbar = ({ userObj }) => {
   const imgUpdt = () => {
     if (loggedIn[0] !== null) {
       if (loggedIn[0] === "true") {
-        return <img style={{ height: '30px', width: '30px', borderRadius: '25px' }} src={userLogged?.profile_image !== "" ? userLogged?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
+        return <img style={{ height: '30px', width: '30px', borderRadius: '25px' }} src={userObj?.profile_image !== "" ? userObj?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
       } else {
         if (screens[0].screenPath === currScrn) {
           return <i className={screens[0].iconActive} style={ActiveIcon} />
@@ -64,12 +64,12 @@ export const Navbar = ({ userObj }) => {
       setCurrScrn(scrn);
       console.log(currScrn);
       if (loggedIn[0] !== null) {
-        loggedIn[0] === "true" ? setUsername(userLogged.fullname) : setUsername("Log in")
+        loggedIn[0] === "true" ? setUsername(userObj?.fullname) : setUsername("Log in")
         imgUpdt()
       }
       console.log(loggedIn[0])
     },
-    [currScrn, scrn, userLogged?.profile_image, userLogged, loggedIn[0]]
+    [currScrn, scrn, userObj?.username, loggedIn[0]]
   );
 
 
