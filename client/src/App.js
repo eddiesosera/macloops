@@ -26,13 +26,13 @@ import PrivateRoute from "./utilities/privateRoute";
 export const LoginContext = createContext()
 
 function App() {
-
   // Declaring all variables
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [users, setUsers] = useState([])
   const [products, setProducts] = useState([])
   const userStr = JSON.parse(sessionStorage.getItem('user'))
   const [currentScreen, setCurrentScreen] = useState(useLocation())
+
 
   // Get All Users Request
   const getUsers = async () => {
@@ -52,7 +52,10 @@ function App() {
     } catch (err) { console.error(err) }
   }
 
+
+  // Main Use Effect
   useEffect(() => {
+
     // Get All users
     getUsers()
     // Get All products
@@ -67,7 +70,9 @@ function App() {
       await getProducts()
     }, 10000)
     return () => clearInterval(interval)
+
   }, [loggedIn, userStr])
+
 
   // Routes Array
   const path_and_elements = [
@@ -117,12 +122,18 @@ function App() {
     })
   }
 
+
   // Initialize Session with default Logged status being: False
   const initSession = () => {
     loggedIn === null && sessionStorage.setItem('isLoggedIn', 'false')
   }
   // Call initialize function
   initSession()
+
+
+  // User currently logged in
+  // code here
+
 
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>

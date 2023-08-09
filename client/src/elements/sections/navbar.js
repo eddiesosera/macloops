@@ -11,8 +11,10 @@ import { Search } from "../components/search";
 import { LoginContext } from "../../App";
 // import { PianoKeys } from "@phosphor-icons/react";
 
-export const Navbar = () => {
+export const Navbar = ({ }) => {
+  // Declaring all variables
   const loggedIn = useContext(LoginContext)
+  const scrn = useLocation().pathname;
   const [currScrn, setCurrScrn] = useState(useLocation().pathname);
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
@@ -20,15 +22,8 @@ export const Navbar = () => {
   const userLogged = userStr
   const [isLogged, setIsLogged] = useState(sessionStorage.getItem('isLoggedIn'))
 
-  //   Styling
-  const ActiveIcon = {
-    fontSize: "24px"
-  };
 
-  const InactiveIcon = {
-    fontSize: "24px"
-  };
-
+  // Screens: Account & Cart
   const screens = [
     {
       screenTitle: username,
@@ -45,12 +40,14 @@ export const Navbar = () => {
     }
   ];
 
-  const scrn = useLocation().pathname;
 
+  // Updating search input value
   const getQuery = q => {
     setQueryVal(q);
   };
 
+
+  // Updating user profile with either User profile, Account Icon or Login icon.
   const imgUpdt = () => {
     if (loggedIn[0] !== null) {
       if (loggedIn[0] === "true") {
@@ -65,6 +62,8 @@ export const Navbar = () => {
     }
   }
 
+
+  // Main Use Layout Effect for re-rendering elements
   useLayoutEffect(
     () => {
       setCurrScrn(scrn);
@@ -77,6 +76,16 @@ export const Navbar = () => {
     },
     [currScrn, scrn, userLogged?.profile_image, userLogged, isLogged, loggedIn[0]]
   );
+
+
+  //   Styling Active and Inactive states of elements and icons
+  const ActiveIcon = {
+    fontSize: "24px"
+  };
+  const InactiveIcon = {
+    fontSize: "24px"
+  };
+
 
   return (
     <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "30px 100px" }}>
