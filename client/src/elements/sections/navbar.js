@@ -17,7 +17,8 @@ export const Navbar = () => {
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
   const userStr = JSON.parse(sessionStorage.getItem('user'))
-  const userLogged = userStr?.usrObj
+  const userLogged = userStr
+  const [isLogged, setIsLogged] = useState(sessionStorage.getItem('isLoggedIn'))
 
   //   Styling
   const ActiveIcon = {
@@ -46,30 +47,36 @@ export const Navbar = () => {
 
   const scrn = useLocation().pathname;
 
-  useEffect(
-    () => {
-      setCurrScrn(scrn);
-      console.log(currScrn);
-      loggedIn[0] === "true" ? setUsername(userLogged.fullname) : setUsername("Log in")
-    },
-    [currScrn, scrn, userLogged?.profile_image]
-  );
-
   const getQuery = q => {
     setQueryVal(q);
   };
 
   const imgUpdt = () => {
-    if (loggedIn[0] === "true") {
-      return <img style={{ height: '50px', width: '50px', borderRadius: '25px' }} src={userLogged?.profile_image !== "" ? userLogged.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
-    } else {
-      if (screens[0].screenPath === currScrn) {
-        return <i className={screens[0].iconActive} style={ActiveIcon} />
+    if (loggedIn[0] !== null) {
+      if (loggedIn[0] === "true") {
+        return <img style={{ height: '30px', width: '30px', borderRadius: '25px' }} src={userLogged?.profile_image !== "" ? userLogged?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
       } else {
-        return <i className={screens[0].iconDeActive} style={InactiveIcon} />
+        if (screens[0].screenPath === currScrn) {
+          return <i className={screens[0].iconActive} style={ActiveIcon} />
+        } else {
+          return <i className={screens[0].iconDeActive} style={InactiveIcon} />
+        }
       }
     }
   }
+
+  useLayoutEffect(
+    () => {
+      setCurrScrn(scrn);
+      console.log(currScrn);
+      if (loggedIn[0] !== null) {
+        loggedIn[0] === "true" ? setUsername(userLogged.fullname) : setUsername("Log in")
+        imgUpdt()
+      }
+      console.log(isLogged, loggedIn[0])
+    },
+    [currScrn, scrn, userLogged?.profile_image, userLogged, isLogged, loggedIn[0]]
+  );
 
   return (
     <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "30px 100px" }}>
@@ -80,9 +87,9 @@ export const Navbar = () => {
         <NavLink to="/products" className="navbar_left_page" style={{ display: "flex" }}>
           {/* <PianoKeys size={32} /> */}
           {currScrn === "/products" ? (
-            <i class="ph-fill ph-piano-keys" style={ActiveIcon} />
+            <i className="ph-fill ph-piano-keys" style={ActiveIcon} />
           ) : (
-            <i class="ph ph-piano-keys" style={InactiveIcon} />
+            <i className="ph ph-piano-keys" style={InactiveIcon} />
           )}
           <div>Instruments</div>
         </NavLink>
@@ -94,12 +101,7 @@ export const Navbar = () => {
       <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
         <NavLink to="/account" style={{ display: "flex" }} >
           {
-            // loggedIn[0] === "true" ? <img style={{ height: '50px', width: '50px', borderRadius: '25px' }} src={userLogged.profile_image !== "" ? userLogged.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
-            //   :
-            //   screens[0].screenPath === currScrn ? <i className={scrn.iconActive} style={ActiveIcon} /> :
-            //     <i className={scrn.iconDeActive} style={InactiveIcon} />
             imgUpdt()
-
           }
           <div>{username}</div>
         </NavLink>

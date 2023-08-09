@@ -18,7 +18,7 @@ export const Login = ({ allUsers }) => {
         // const userValidate = JSON.stringify(sessionStorage.getItem('user'))
         const userStr = JSON.parse(sessionStorage.getItem('user'));
         const usr = loginRes?.data
-        setUsrObj({
+        sessionStorage.setItem("user", JSON.stringify({
           id: usr[0],
           fullname: usr[1],
           role: usr[2],
@@ -28,23 +28,23 @@ export const Login = ({ allUsers }) => {
           cart_items: usr[6],
           bought_items: usr[7],
           liked_items: usr[8]
-        });
-        sessionStorage.setItem("user", JSON.stringify({ usrObj }))
+        }));
+        // sessionStorage.setItem("user", JSON.stringify({ usrObj }))
 
-        console.log(userStr.usrObj)
+        console.log(userStr)
         console.log(loginRes)
         console.log(loginRes.data)
         setLoginMsg(loginRes.data)
         loginRes && setLoginStatus(true)
         sessionStorage.setItem('isLoggedIn', 'true')
-        setLoggedIn(sessionStorage.getItem("isLoggedIn", "true"))
+        // setLoggedIn(sessionStorage.setItem("isLoggedIn", "true"))
         navigate('/')
 
       }))
   }
 
   useEffect(() => {
-    console.log(formData)
+    // console.log(formData, loggedIn[0])
   }, [formData, loginMsg, loginStatus])
 
   return <div>
