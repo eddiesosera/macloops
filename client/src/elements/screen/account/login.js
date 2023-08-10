@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../App";
 
 export const Login = ({ allUsers }) => {
+  const scrn = useLocation().pathname;
   const [loggedIn, setLoggedIn] = useContext(LoginContext)
   const [formData, setFormData] = useState({})
   const [loginStatus, setLoginStatus] = useState(false)
@@ -29,7 +30,6 @@ export const Login = ({ allUsers }) => {
           bought_items: usr[7],
           liked_items: usr[8]
         }));
-        // sessionStorage.setItem("user", JSON.stringify({ usrObj }))
 
         console.log(userStr)
         console.log(loginRes)
@@ -44,8 +44,9 @@ export const Login = ({ allUsers }) => {
   }
 
   useEffect(() => {
-    // console.log(formData, loggedIn[0])
-  }, [formData, loginMsg, loginStatus])
+    // console.log("login is = " + loggedIn)
+    loggedIn === "true" && navigate('/account')
+  }, [formData, loginMsg, loginStatus, scrn])
 
   return <div>
     <div className="login_heading">Login  is {loggedIn}</div>

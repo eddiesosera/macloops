@@ -37,13 +37,13 @@ function App() {
 
 
   // Get All Users Request
-  // const getUsers = async () => {
-  //   try {
-  //     const userRes = await axios.get("http://localhost:5000/api/getUsers/");
-  //     setUsers(userRes.data)
-  //     // console.log("Testing User data",userRes.data)
-  //   } catch (err) { console.error(err) }
-  // }
+  const getUsers = async () => {
+    try {
+      const userRes = await axios.get("http://localhost:5000/api/getUsers/");
+      setUsers(userRes.data)
+      console.log("Testing User data", userRes.data)
+    } catch (err) { console.error(err) }
+  }
 
   // Get All Products
   // const getProducts = async () => {
@@ -58,13 +58,12 @@ function App() {
   useEffect(() => {
 
     // Get All users
-    // getUsers()
+    getUsers()
     // Get All products
     // getProducts()
 
     // Update Logged in status
     setLoggedIn(sessionStorage.getItem('isLoggedIn'))
-    console.log('user is logged: ' + loggedIn)
 
     // Update Logged in user details
     setUserObj(JSON.parse(sessionStorage.getItem('user')))
