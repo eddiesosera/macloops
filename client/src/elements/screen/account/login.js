@@ -46,6 +46,7 @@ export const Login = ({ allUsers }) => {
   useEffect(() => {
     // console.log("login is = " + loggedIn)
     loggedIn === "true" && navigate('/account')
+
   }, [formData, loginMsg, loginStatus, scrn])
 
   return <div>

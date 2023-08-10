@@ -27,7 +27,6 @@ const InstrumentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
     specifications: {
         dimensions: {
             width: {
@@ -48,13 +47,19 @@ const InstrumentSchema = mongoose.Schema({
             }
         }
     },
-    year: {
-        type: Number,
-        required: true
-    },
+    year: [
+        {
+            type: Number,
+            default: 0
+        }
+    ],
     price: {
         type: Number,
         required: true
+    },
+    rating: {
+        type: String,
+        default: 0
     },
     dateAdded: {
         type: Date,
