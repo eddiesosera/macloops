@@ -28,7 +28,7 @@ export const Search = ({ query }) => {
         className="navbar_search"
         type="search"
         placeholder="Search instruments..."
-        style={{ outline: "none", border: "none", background: 'none', color: '#0F1213', fontFamily: 'Montserrat', fontWeight: '500', width: '300px' }}
+        style={{ outline: "none", border: "none", background: 'none', color: '#0F1213', fontFamily: 'Montserrat', fontWeight: '500', width: '400px' }}
         value={searchVal}
         onBlur={e => {
           searchVal === "" && setCancelTgl(false);

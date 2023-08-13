@@ -21,6 +21,7 @@ import img3 from "./img/hero/3.png";
 import img4 from "./img/hero/4.png";
 import img5 from "./img/hero/5.png";
 import { Footer } from "./elements/sections/footer";
+import { EditAccount } from "./elements/screen/account/crud/edit_account";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHouse, faFutbol, faCodeCompare, faCircleHalfStroke, faChartLine } from "@fortawesome/free-solid-svg-icons";
@@ -228,6 +229,10 @@ function App() {
       element: <PrivateRoute><Account allProducts={product_demo} /></PrivateRoute>
     },
     {
+      path: '/edit-account',
+      element: <PrivateRoute><EditAccount allProducts={product_demo} /></PrivateRoute>
+    },
+    {
       path: '/account-register',
       element: <Register allUsers={users} />
     },
@@ -268,7 +273,7 @@ function App() {
 
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
-      <div className="App" style={{ background: "#F8F5F2" }}>
+      <div className="App" style={{ background: "#F8F5F2", }}>
         {/* {loggedIn} */}
         <Navbar userObj={userObj} />
         <Routes>

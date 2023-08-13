@@ -105,9 +105,9 @@ export const Navbar = ({ userObj }) => {
         </div>
       </div>
       <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
-        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px' }}>
+        <NavLink to="/cart" className="navbar_left_page" style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
           <div style={{ display: 'flex' }}>
-            {currScrn === "/products" ? (
+            {currScrn === "/cart" ? (
               <i className="ph-fill ph-shopping-cart-simple" style={ActiveIcon} />
             ) : (
               <i className="ph-bold ph-shopping-cart-simple" style={InactiveIcon} />
@@ -116,13 +116,13 @@ export const Navbar = ({ userObj }) => {
               {userObj?.cart_items.length}
             </div>
           </div>
-          <div>Cart</div>
+          <div style={{ fontFamily: 'Montserrat', fontWeight: '500' }}>Cart</div>
         </NavLink>
-        <NavLink to="/account" style={{ display: "flex", gap: '10px' }} >
+        <NavLink to="/account" style={{ display: "flex", gap: '10px', alignItems: 'center' }} >
           {
             imgUpdt()
           }
-          <div>{username}</div>
+          <div style={{ fontFamily: 'Montserrat', fontWeight: '500' }}>{username}</div>
         </NavLink>
       </div>
     </div>

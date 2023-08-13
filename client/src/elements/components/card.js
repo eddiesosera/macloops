@@ -21,22 +21,33 @@ export const Card = ({ product }) => {
 
 
   // Like
-  const likedActive = () => {
-    if (cardTgl) {
-      return "flex"
-    } else if (likedTgl) {
-      return "flex"
-    } else {
-      return "none"
+  const likedActive = (display, opacity) => {
+    if (display) {
+      if (cardTgl) {
+        return "flex"
+      } else if (likedTgl) {
+        return "flex"
+      } else {
+        return "none"
+      }
+    } else if (opacity) {
+      if (cardTgl) {
+        return 1
+      } else if (likedTgl) {
+        return 1
+      } else {
+        return 0
+      }
     }
+
   }
 
 
   return (
-    <div style={{ background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
+    <div style={{ background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-        <img onClick={e => navigate('product-page?id=' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ height: "240px", width: "240px", objectFit: 'contain', cursor: 'pointer' }} />
-        <div className="card_top_btn" onClick={e => likeProduct()} style={{ height: '36px', width: '36px', background: '#F7E9EA', borderRadius: '36px', display: likedActive(), justifyContent: 'center', alignItems: 'center', color: '#E50E21', border: '1px solid #FFFBF6', cursor: 'pointer', position: 'absolute', marginRight: '20px', marginTop: '20px' }}>
+        <img onClick={e => navigate('product-page?id=' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
+        <div className="card_top_btn" onClick={e => likeProduct()} style={{ height: '36px', width: '36px', background: '#F7E9EA', borderRadius: '36px', display: 'flex', opacity: likedActive(false, true), justifyContent: 'center', alignItems: 'center', color: '#E50E21', border: '1px solid #FFFBF6', cursor: 'pointer', position: 'absolute', marginRight: '20px', marginTop: '20px', transition: 'opacity 0.58s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
           <i className={likedTgl ? 'ph-fill ph-heart' : 'ph-bold ph-heart'} style={{ fontSize: '20px' }} />
         </div>
       </div>

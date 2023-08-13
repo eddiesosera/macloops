@@ -17,7 +17,11 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+
+const maxRequestBodySize = '5mb';
+app.use(express.json({ limit: maxRequestBodySize }));
+app.use(express.urlencoded({ limit: maxRequestBodySize }));
 
 app.use(productRoute);
 app.use(userRoute);
