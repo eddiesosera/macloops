@@ -1,13 +1,15 @@
 import React, { useContext, useState, useLayoutEffect, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./style/navbar.css";
-import svgLogo from "../../img/LOGO.svg";
+// import svgLogo from "../../img/LOGO.svg";
 import logopng from "../../img/LOGO.png";
 import { Search } from "../components/search";
 
 import { LoginContext } from "../../App";
 
+
 // import { PianoKeys } from "@phosphor-icons/react";
+
 
 export const Navbar = ({ userObj }) => {
   // Declaring all variables
@@ -46,7 +48,7 @@ export const Navbar = ({ userObj }) => {
   const imgUpdt = () => {
     if (loggedIn[0] !== null) {
       if (loggedIn[0] === "true") {
-        return <img style={{ height: '30px', width: '30px', borderRadius: '25px' }} src={userObj?.profile_image !== "" ? userObj?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
+        return <img style={{ height: '24px', width: '24px', borderRadius: '25px', border: '#ccc solid 0.5px' }} src={userObj?.profile_image !== "" ? userObj?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
       } else {
         if (screens[0].screenPath === currScrn) {
           return <i className={screens[0].iconActive} style={ActiveIcon} />
@@ -75,52 +77,53 @@ export const Navbar = ({ userObj }) => {
 
   //   Styling Active and Inactive states of elements and icons
   const ActiveIcon = {
-    fontSize: "24px"
+    fontSize: "24px", color: '0F1213', fontWeight: "500", fontFamily: 'Montserrat'
   };
   const InactiveIcon = {
-    fontSize: "24px"
+    fontSize: "24px", color: '#36484E', fontWeight: "500", fontFamily: 'Montserrat'
   };
 
 
   return (
-    <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "30px 100px" }}>
-      <div className="navbar_left" style={{ display: "flex", gap: "40px" }}>
+    <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', position: 'sticky', top: '0', alignItems: 'center' }}>
+      <div className="navbar_left" style={{ display: "flex", gap: "40px", alignItems: 'center' }}>
         <NavLink to="/" className="navbar_left_logo">
           <img src={logopng} alt="Logo" style={{ height: "24px" }} />
         </NavLink>
-        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex" }}>
+        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px', color: 'inherit !important' }}>
           {/* <PianoKeys size={32} /> */}
           {currScrn === "/products" ? (
             <i className="ph-fill ph-piano-keys" style={ActiveIcon} />
           ) : (
             <i className="ph ph-piano-keys" style={InactiveIcon} />
           )}
-          <div>Instruments</div>
+          <div style={{ fontFamily: 'Montserrat', fontWeight: '500', color: currScrn === "/products" ? '0F1213' : '#36484E' }}>Instruments</div>
         </NavLink>
         <div className="navbar_middle-search_wrap">
           <Search query={getQuery} />
-          {queryVal}
+          {queryVal !== "" && 'Searching for: "' + queryVal + '"'}
         </div>
       </div>
       <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
-        <NavLink to="/account" style={{ display: "flex" }} >
+        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px' }}>
+          <div style={{ display: 'flex' }}>
+            {currScrn === "/products" ? (
+              <i className="ph-fill ph-shopping-cart-simple" style={ActiveIcon} />
+            ) : (
+              <i className="ph-bold ph-shopping-cart-simple" style={InactiveIcon} />
+            )}
+            <div className="cart_itms_no" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
+              {userObj?.cart_items.length}
+            </div>
+          </div>
+          <div>Cart</div>
+        </NavLink>
+        <NavLink to="/account" style={{ display: "flex", gap: '10px' }} >
           {
             imgUpdt()
           }
           <div>{username}</div>
         </NavLink>
-        {/* {screens.map(scrn => {
-          return (
-            <NavLink to={scrn.screenPath} style={{ display: "flex" }} onClick={e => { console.log(loggedIn[0]) }}>
-              {scrn.screenPath === currScrn ? (
-                <i className={scrn.iconActive} style={ActiveIcon} />
-              ) : (
-                <i className={scrn.iconDeActive} style={InactiveIcon} />
-              )}
-              <div>{scrn.screenTitle}</div>
-            </NavLink>
-          );
-        })} */}
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export const Home = ({ allPosts, allUsers }) => {
   return (
     <div style={{ padding: "0px 0px" }}>
       <Hero />
-      <Sale />
+      <Sale sale_products={allPosts} />
     </div>
   );
 };

@@ -1,6 +1,13 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 export const ProductPage = () => {
+  // Declaring all variables
+  const navigate = useLocation()
+
+
+  console.log(navigate.pathname)
+
   // Get the full URL
   var url = "http://localhost:3000/page?param1=value1&param2=value2";
 

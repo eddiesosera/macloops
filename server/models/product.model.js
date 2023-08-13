@@ -5,6 +5,11 @@ const InstrumentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image_cover:
+    {
+        type: String,
+        default: ""
+    },
     images: [
         {
             type: String,
@@ -19,6 +24,11 @@ const InstrumentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true,
+        default: ""
+    },
     description: {
         type: String,
         required: true
@@ -29,30 +39,36 @@ const InstrumentSchema = mongoose.Schema({
     },
     specifications: {
         dimensions: {
-            width: {
+            dimensions_unit: {
                 type: String,
-                default: ""
+                default: "cm"
+            },
+            weight_unit: {
+                type: String,
+                default: "kg"
+            },
+            width: {
+                type: Number,
+                default: 0
             },
             height: {
-                type: String,
-                default: ""
+                type: Number,
+                default: 0
             },
             depth: {
-                type: String,
-                default: ""
+                type: Number,
+                default: 0
             },
             weight: {
-                type: String,
-                default: ""
+                type: Number,
+                default: 0
             }
         }
     },
-    year: [
-        {
-            type: Number,
-            default: 0
-        }
-    ],
+    year: {
+        type: Number,
+        default: 0
+    },
     price: {
         type: Number,
         required: true
