@@ -53,19 +53,19 @@ export const Account = ({ allUsers, allProducts }) => {
   // 3 account pages
   const account_nav = [
     {
-      icon: 'ph-bold ph-shopping-cart-simple',
+      icon: 'ph-fill ph-shopping-cart-simple',
       title: 'Cart',
       info: 'View items in Cart',
       url: '/cart'
     },
     {
-      icon: 'ph-bold ph-heart',
+      icon: 'ph-fill ph-heart',
       title: 'Saved',
       info: 'View items you like',
       url: '/account/likes'
     },
     {
-      icon: 'ph-bold ph-clock-counter-clockwise',
+      icon: 'ph-fill ph-clock-counter-clockwise',
       title: 'Purchased Items',
       info: 'View items you\'ve\ bought ',
       url: '/account/purchase-hisory'
@@ -117,9 +117,9 @@ export const Account = ({ allUsers, allProducts }) => {
             return (
               <li style={{ display: 'flex', border: 'solid 1px #E9E6E1', width: accNavHov === acc_nav.title ? '30%' : '20%', height: '140px', boxShadow: accNavHov === acc_nav.title ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov(acc_nav.title)} onMouseLeave={e => setAccNavHov('')}>
                 <NavLink to={acc_nav?.url} style={{ padding: '20px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#FFFBF6' }}>
-                  <div className="acc_nav_top wrap" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#13120F' }}>
+                  <div className="acc_nav_top wrap" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#3b3119' }}>
                     <i className={acc_nav?.icon} style={{ fontSize: '28px' }} />
-                    <div className="acc_nav_top_title" style={{ fontSize: '20px', fontWeight: '600', fontFamily: 'MOntserrat', }}>{acc_nav?.title}</div>
+                    <div className="acc_nav_top_title" style={{ fontSize: '18px', fontWeight: '600', fontFamily: 'Montserrat', }}>{acc_nav?.title}</div>
                   </div>
                   <hr style={{ width: '100%', border: "0", height: '0.5px', background: '#E9E6E1' }} />
                   <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', fontFamily: 'Nunito Sans', color: '#2293B6', fontWeight: '600' }}>

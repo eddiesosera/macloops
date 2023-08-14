@@ -143,7 +143,7 @@ function App() {
       id: "64cda741ada6611bf071e13a2",
       image_cover: img3,
       images: [img3, img3, img3, img3],
-      name: 'F310 Acoustic Guitar',
+      name: 'Roland Midi Keyboard',
       slogan: 'Fuel your Creative Fire!',
       category: 'Guitars',
       type: 'Acoustic Guitar',
@@ -229,7 +229,7 @@ function App() {
     },
     {
       path: '/product-page/:id',
-      element: <ProductPage product={product_demo} />
+      element: <ProductPage products={product_demo} />
     },
     {
       path: '/account',
