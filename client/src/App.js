@@ -22,6 +22,7 @@ import img4 from "./img/hero/4.png";
 import img5 from "./img/hero/5.png";
 import { Footer } from "./elements/sections/footer";
 import { EditAccount } from "./elements/screen/account/crud/edit_account";
+import { Error404 } from "./elements/screen/404";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHouse, faFutbol, faCodeCompare, faCircleHalfStroke, faChartLine } from "@fortawesome/free-solid-svg-icons";
@@ -116,7 +117,7 @@ function App() {
       }
     },
     {
-      id: "64cda741ada6611bf071e13a",
+      id: "64cda741ada6611bf071e13a1",
       image_cover: img2,
       images: [img2, img2, img2, img2],
       name: 'Yamaha H67 Monitord',
@@ -139,7 +140,7 @@ function App() {
       }
     },
     {
-      id: "64cda741ada6611bf071e13a",
+      id: "64cda741ada6611bf071e13a2",
       image_cover: img3,
       images: [img3, img3, img3, img3],
       name: 'F310 Acoustic Guitar',
@@ -148,7 +149,7 @@ function App() {
       type: 'Acoustic Guitar',
       decription: 'The F310 is the starting range of Yamahas basic high-end models, with amazing build quality and supreme sound and tone quality.',
       manufacturer: 'Yamaha',
-      price: 7850,
+      price: 2750,
       rating: 0.0,
       specifications: {
         dimensions: {
@@ -162,7 +163,7 @@ function App() {
       }
     },
     {
-      id: "64cda741ada6611bf071e13a",
+      id: "64cda741ada6611bf071e13a3",
       image_cover: img4,
       images: [img4, img4, img4, img4],
       name: 'NT1 5th Generation',
@@ -170,7 +171,7 @@ function App() {
       category: 'Microphones',
       type: 'Studio Microphone',
       decription: 'The NT1 5th Generation is a revolutionary studio condenser microphone that fuses the classic sound signature of the iconic NT1 with cutting-edge, next-generation technology. It features RØDE’s groundbreaking (patent-pending) Dual Connect output, offering both XLR and USB connectivity for incredible versatility, a world-first “unclippable” 32-bit float digital output, advanced digital signal processing, and more, all while delivering the same warm, silky character, extremely low noise, and high SPL handling that the NT1 is renowned for.',
-      manufacturer: 'Rode',
+      manufacturer: 'RODE',
       price: 3500,
       rating: 0.0,
       specifications: {
@@ -185,7 +186,7 @@ function App() {
       }
     },
     {
-      id: "64cda741ada6611bf071e13a",
+      id: "64cda741ada6611bf071e13a4",
       image_cover: img5,
       images: [img5, img5, img5, img5],
       name: 'Guitar GBFX1',
@@ -211,18 +212,24 @@ function App() {
 
 
   // Routes Array
+  // Nesting product children routes
+  const products_child = [
+    {
+
+    }
+  ]
   const path_and_elements = [
     {
       path: '/',
-      element: <Home allPosts={product_demo} />
+      element: <Home allProducts={product_demo} />
     },
     {
       path: '/products',
       element: <Products />
     },
     {
-      path: '/product-page',
-      element: <ProductPage />
+      path: '/product-page/:id',
+      element: <ProductPage product={product_demo} />
     },
     {
       path: '/account',
@@ -251,6 +258,10 @@ function App() {
     {
       path: '/checkout',
       element: <PrivateRoute><Checkout /></PrivateRoute>
+    },
+    {
+      path: '*',
+      element: <Error404 />
     }
   ]
   // Map Routes 

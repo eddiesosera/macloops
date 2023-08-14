@@ -41,7 +41,7 @@ export const Footer = () => {
 
 
     return (
-        <div style={{ background: '#ffcf86', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ background: '#ffcf86', color: '#4e4836', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex' }}>
                 LOGO
                 <div>© 2023. Rights Reserved. </div>
@@ -51,7 +51,7 @@ export const Footer = () => {
                 {
                     footer_links_abt.map(link_abt => {
                         return (
-                            <li key={link_abt.name} style={{ listStyle: 'none', fontFamily: 'Nunito Sans' }}>
+                            <li key={link_abt.name} style={{ listStyle: 'none', fontFamily: 'Nunito Sans', color: '#4e4836' }}>
                                 <NavLink className='' to={link_abt.url} style={{ display: 'flex', gap: '15px' }}>
                                     <div>{link_abt.name}</div>
                                     <div style={{ display: link_abt.border ? 'flex' : 'none' }}>|</div>
