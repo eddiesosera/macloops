@@ -44,7 +44,7 @@ export const ProductPage = ({ products }) => {
             {/* </div> */}
           </div>
         </div>
-        <div className="pp_right_wrap"><PPSpecs /></div>
+        <div className="pp_right_wrap"><PPSpecs specs={product} /></div>
       </div>
 
       <hr style={{ padding: 0, width: '100%', border: "0", height: '0.5px', background: '#E9E6E1', marginTop: 0, marginBottom: '120px' }} />

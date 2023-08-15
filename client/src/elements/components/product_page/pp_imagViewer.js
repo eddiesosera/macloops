@@ -14,7 +14,7 @@ export const PPImageViewer = ({ productImages }) => {
     }, [productImages, url])
     return (
         <div className='imageViewer_wrap' style={{ display: 'flex', gap: '20px' }}>
-            <img className='selectedImage' src={selectedImg} alt='Slected Image' style={{ border: '1px solid #666', width: '520px', height: '520px', objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
+            <img className='selectedImage' src={selectedImg} alt='Slected Image' style={{ border: '1px solid #666', width: '540px', height: '540px', objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
             <div className='images_wrap' style={{ padding: 0, gap: '10px', display: 'flex', flexDirection: 'column' }}>
                 {
                     productImagesArr.map((img, index) => {
