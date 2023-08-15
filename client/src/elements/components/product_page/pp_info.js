@@ -22,9 +22,11 @@ export const PPInfo = ({ productInfo }) => {
                 <div className='like_btn_wrap'><i className='ph-fill ph-heart' /></div>
             </div>
             <div className='info_group_4_admin' style={{ display: 'flex', gap: '20px' }}>
-                <button>
+                <button style={{ display: 'flex' }}>
                     <i className='ph ph-pencil-simple' />
                     <div>Edit Product</div>
+                </button>
+                <button style={{ display: 'flex' }}>
                     <i className='ph ph-trash' />
                     <div>Delete Product</div>
                 </button>
