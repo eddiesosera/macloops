@@ -6,7 +6,7 @@ export const SimilarPicks = ({ similar_picks }) => {
     // Items in algorithm = category, type, price, rating
     // Algorithm logic = filter category, if array < 2, filter type, sort by rating then price
     return (
-        <div>
+        <div style={{ background: '#FAF6F2' }}>
             <div style={{ fontSize: '36px', fontWeight: '600', marginBottom: '60px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ fontFamily: 'montserrat' }}>Similar Picks</div>

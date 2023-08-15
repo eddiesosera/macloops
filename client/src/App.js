@@ -96,7 +96,7 @@ function App() {
     {
       id: "64cda741ada6611bf071e13a",
       image_cover: img1,
-      images: [img1, img1, img1, img1],
+      images: [img1, img2, img3, img4],
       name: 'Grand Piano GBFX1',
       slogan: 'Grand piano designed with your home in mind.',
       category: 'Piano',
@@ -119,8 +119,8 @@ function App() {
     {
       id: "64cda741ada6611bf071e13a1",
       image_cover: img2,
-      images: [img2, img2, img2, img2],
-      name: 'Yamaha H67 Monitord',
+      images: [img1, img2, img3, img4],
+      name: 'Yamaha H67 Monitor',
       slogan: 'Power and Perfomance. Intergreted.',
       category: 'Monitors',
       type: 'Stereo',
@@ -142,7 +142,7 @@ function App() {
     {
       id: "64cda741ada6611bf071e13a2",
       image_cover: img3,
-      images: [img3, img3, img3, img3],
+      images: [img1, img2, img3, img4],
       name: 'Roland Midi Keyboard',
       slogan: 'Fuel your Creative Fire!',
       category: 'Guitars',
@@ -165,7 +165,7 @@ function App() {
     {
       id: "64cda741ada6611bf071e13a3",
       image_cover: img4,
-      images: [img4, img4, img4, img4],
+      images: [img1, img2, img3, img4],
       name: 'NT1 5th Generation',
       slogan: 'Fuel your Creative Fire!',
       category: 'Microphones',
@@ -284,7 +284,7 @@ function App() {
 
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
-      <div className="App" style={{ background: "#F8F5F2", }}>
+      <div className="App" style={{ background: "#FAF6F2", }}>
         {/* {loggedIn} */}
         <Navbar userObj={userObj} />
         <Routes>

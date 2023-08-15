@@ -85,7 +85,7 @@ export const Navbar = ({ userObj }) => {
 
 
   return (
-    <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', position: 'sticky', top: '0', alignItems: 'center' }}>
+    <div className="navbar_wrap" style={{ zIndex: 3, display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', position: 'sticky', top: '0', alignItems: 'center' }}>
       <div className="navbar_left" style={{ display: "flex", gap: "40px", alignItems: 'center' }}>
         <NavLink to="/" className="navbar_left_logo">
           <img src={logopng} alt="Logo" style={{ height: "24px" }} />
