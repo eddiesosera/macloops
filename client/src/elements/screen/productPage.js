@@ -35,7 +35,7 @@ export const ProductPage = ({ products }) => {
         <div className="pp_left_wrap" onClick={e => navigateTo(-1)} style={{ display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', padding: '12px', cursor: 'pointer' }}>
           <i class="ri-arrow-left-line" />
         </div>
-        <div className="pp_mid_wrap" style={{ display: 'flex', gap: '20px' }}><PPInfo /><PPImageViewer /></div>
+        <div className="pp_mid_wrap" style={{ display: 'flex', gap: '20px' }}><PPInfo productInfo={product} /><PPImageViewer productImages={product} /></div>
         <div className="pp_right_wrap"><PPSpecs /></div>
       </div>
 
