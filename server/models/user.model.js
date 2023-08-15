@@ -29,8 +29,14 @@ const UserSchema = mongoose.Schema({
     },
     cart_items: [
         {
-            type: String,
-            default: ""
+            product_id: {
+                type: String,
+                default: ""
+            },
+            quantity: {
+                type: Number,
+                default: 1
+            }
         }
     ],
     bought_items: [

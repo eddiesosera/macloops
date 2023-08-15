@@ -73,10 +73,10 @@ const InstrumentSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    rating: {
-        type: String,
+    rating: [{
+        type: Number,
         default: 0
-    },
+    }],
     dateAdded: {
         type: Date,
         default: Date.now
