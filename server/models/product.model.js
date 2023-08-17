@@ -63,6 +63,9 @@ const InstrumentSchema = mongoose.Schema({
                 type: Number,
                 default: 0
             }
+        },
+        color: {
+            type: String
         }
     },
     year: {

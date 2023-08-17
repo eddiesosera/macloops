@@ -14,7 +14,8 @@ export const Login = ({ allUsers }) => {
   const [inputSelectedTgl, setInputSelectedTgl] = useState(false)
 
 
-  const loginAction = async () => {
+  const loginAction = async (e) => {
+    e.preventDefault()
     await axios.post('http://localhost:5000/api/loginUser', formData,
       { headers: { "Content-Type": "application/json" } })
       .then((loginRes => {
@@ -95,7 +96,7 @@ export const Login = ({ allUsers }) => {
     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', width: 'calc(100vw - 17px)', height: '100vh', overflow: 'clip' }}>
       {/* <div className="login_heading">Login  is {loggedIn}</div> */}
       <div className="left_login_container" style={{ width: '100%', overflow: 'hidden' }}>
-        <div className="pp_left_wrap" onClick={e => navigate(-1)} style={{ position: 'absolute', marginLeft: '20px', marginTop: '20px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
+        <div className="pp_left_wrap" onClick={e => navigate('/')} style={{ position: 'absolute', marginLeft: '20px', marginTop: '20px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
           <i class="ph-bold ph-house" style={{ fontSize: '20px', color: '' }} />
         </div>
         <img src="https://ucarecdn.com/7d4871b0-217b-4949-a3d6-daa438d6f6f2/" alt="Login" style={{ width: '100%', height: '100vh ', objectFit: 'cover' }} />
@@ -105,7 +106,7 @@ export const Login = ({ allUsers }) => {
 
         <form className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '30px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
           <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', fontSize: '48px' }}>Login</div>
-          <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center' }}>
+          <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
             {
               inputFields.map(input => {
                 return (
@@ -114,7 +115,7 @@ export const Login = ({ allUsers }) => {
               })
             }
 
-            <button type="submit" style={buttonStyle} onClick={e => { loginAction() }}>
+            <button type="submit" style={buttonStyle} onClick={e => { loginAction(e) }}>
               Login
             </button>
           </div>
