@@ -18,7 +18,7 @@ export const ProductQuantity = () => {
 
     return (
         <div className='productQuantity_wrap' style={{ border: "0.75px solid #BCA98C", display: 'flex', width: 'fit-content', transition: 'all 0.8s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
-            <div className='productQuantity_label' style={{ padding: '6px 9px', display: 'flex', color: '#4A4438', fontFamily: 'Nunito Sans', fontWeight: '500', fontSize: '14px', alignItems: 'center' }}>QTY:</div>
+            <div className='productQuantity_label' style={{ padding: '6px 9px', display: 'flex', color: '#4A4438', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '12px', alignItems: 'center' }}>QTY:</div>
             <div className='p_qty_divider' style={{ borderRight: '0.75px solid #BCA98C' }} />
             <div className='productQuantity_interact_wrap' style={{ display: 'flex', gap: '0px', }}>
                 <div className='product_qty_decrease'

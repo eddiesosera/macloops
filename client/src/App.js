@@ -114,7 +114,8 @@ function App() {
           height: 99,
           depth: 151,
           weight: 261
-        }
+        },
+        color: 'black, white, grey, brown'
       }
     },
     {
@@ -137,7 +138,8 @@ function App() {
           height: 587,
           depth: 600,
           weight: 40
-        }
+        },
+        color: 'black, white, grey, brown'
       }
     },
     {
@@ -160,7 +162,8 @@ function App() {
           height: 505,
           depth: 634,
           weight: 96
-        }
+        },
+        color: 'black, white, grey, brown'
       }
     },
     {
@@ -183,7 +186,8 @@ function App() {
           height: 190,
           depth: 50,
           weight: 326
-        }
+        },
+        color: 'black, white, grey, brown'
       }
     },
     {
@@ -206,7 +210,8 @@ function App() {
           height: 99,
           depth: 151,
           weight: 261
-        }
+        },
+        color: 'black, white, grey, brown'
       }
     }
   ];

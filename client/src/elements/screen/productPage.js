@@ -32,7 +32,7 @@ export const ProductPage = ({ products }) => {
 
   return (
     <div className="productPage_wrap" style={{ background: '#FFFBF6 !important', paddingBottom: '40px' }}>
-      <div className="productPage_comp" style={{ display: 'flex', flexDirection: 'column', gap: '40px', padding: '60px 60px 90px 60px', background: '#FFFBF6' }}>
+      <div className="productPage_comp" style={{ display: 'flex', flexDirection: 'column', gap: '120px', padding: '30px 60px 120px 60px', background: '#FFFBF6', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: '40px', paddingBottom: '30px' }}>
           <div className="pp_left_wrap" onClick={e => navigateTo(-1)} style={{ display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
             <i class="ri-arrow-left-line" />
@@ -48,7 +48,7 @@ export const ProductPage = ({ products }) => {
         <div className="pp_right_wrap"><PPSpecs specs={product} /></div>
       </div>
 
-      <hr style={{ padding: 0, width: '100%', border: "0", height: '0.5px', background: '#E9E6E1', marginTop: 0, marginBottom: '120px' }} />
+      <hr style={{ padding: 0, width: '100%', border: "0", height: '0.5px', background: '#E9E6E1', marginTop: 0, marginBottom: '90px' }} />
 
       {/*Similar Picks Section */}
       <div style={{ background: '#FAF6F2', padding: '30px 60px', display: 'flex', flexDirection: 'column', gap: '60px' }}>
