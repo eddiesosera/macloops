@@ -43,6 +43,7 @@ function App() {
   // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [products, setProducts] = useState([])
   const [currentScreen, setCurrentScreen] = useState(useLocation())
+  const location = useLocation()
 
 
   // Get All Users Request
@@ -281,19 +282,18 @@ function App() {
   // Call initialize function
   initSession()
 
-
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
-      <div className="App" style={{ background: "#FAF6F2", }}>
+      <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
         {/* {loggedIn} */}
-        <Navbar userObj={userObj} />
+        {location.pathname === '/account-login' ? '' : <Navbar userObj={userObj} />}
         <Routes>
           {
             routes
           }
         </Routes>
       </div>
-      <Footer />
+      {location.pathname === '/account-login' ? '' : <Footer />}
     </LoginContext.Provider>
   );
 }

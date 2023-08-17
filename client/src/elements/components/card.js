@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import './style/card.css'
+import './style/card.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Card = ({ product }) => {
   const navigate = useNavigate()
   const [cardTgl, setCardTgl] = useState(false)
   const [likedTgl, setHeartTgl] = useState(false);
   const [addToCartTgl, setAddToCartTgl] = useState(false);
+
+  const addToCartNotify = () => toast(
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', paddingBottom: '10px' }}>
+      <img src={product?.image_cover} style={{ height: '40px', width: '40px', objectFit: 'contain', border: '0.75px solid #BFBBB5' }} />
+      <div className="product_deets_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div className="notify_message" style={{ fontFamily: 'Nunito Sans' }}>
+          You've {addToCartTgl ? 'removed' : 'added'} <b>{product?.name}</b>  {addToCartTgl ? 'from' : 'to'} your cart!
+        </div>
+        {
+          addToCartTgl ? '' : (<button onClick={e => navigate('/checkout')} className='add_btn' style={{ display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: 'fit content', maxWidth: '150px', height: '40px', background: '#EAF6F9', color: '#2293B6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+            <i className='ph-fill ph-shopping-cart-simple' style={{ fontSize: '20px' }} />
+            <div style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#2293B6' }}>Checkout</div>
+          </button>)
+        }
+      </div>
+    </div>
+  );
 
 
   // Functions
@@ -17,7 +37,8 @@ export const Card = ({ product }) => {
 
   // On add to cart
   const addToCart = () => {
-    setAddToCartTgl(!addToCartTgl)
+    setAddToCartTgl(!addToCartTgl);
+    addToCartNotify()
   }
 
 
@@ -47,6 +68,7 @@ export const Card = ({ product }) => {
   return (
     <div style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
       <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={'/product-page/' + product?.id}></NavLink>
+      <ToastContainer hideProgressBar={true} />
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <img onClick={e => navigate('/product-page/' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ zIndex: cardTgl ? 1 : 0, height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
         <div className="card_top_btn" onClick={e => likeProduct()} style={{ zIndex: '1', height: '36px', width: '36px', background: '#F7E9EA', borderRadius: '36px', display: 'flex', opacity: likedActive(false, true), justifyContent: 'center', alignItems: 'center', color: '#E50E21', border: '1px solid #FFFBF6', cursor: 'pointer', position: 'absolute', marginRight: '20px', marginBottom: '20px', transition: 'opacity 0.58s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
@@ -58,7 +80,7 @@ export const Card = ({ product }) => {
         <div style={{ color: '#6F6D6A', fontFamily: 'Nunito Sans', fontSize: '14px' }}>{product?.manufacturer}</div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '14px' }}>{'R ' + product?.price}</div>
-          <div onClick={e => addToCart()} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#EAF6F9', color: addToCartTgl ? '#EAF6F9' : '#2293B6', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
+          <div onClick={e => { addToCart(); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#EAF6F9', color: addToCartTgl ? '#EAF6F9' : '#2293B6', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
             <i className={addToCartTgl ? 'ph-fill ph-shopping-cart-simple' : 'ph-bold ph-plus'} />
           </div>
         </div>
