@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/fileUpload.css'
+import './style/fileUpload.css';
 
 export default class FileUploader extends React.Component {
 
@@ -55,14 +55,21 @@ export default class FileUploader extends React.Component {
 
     }
 
+
     render() {
         return (
-            <input
-                type="file"
-                accept={this.props.fileType}
-                onChange={this.handleChange.bind(this)}
-                multiple={this.props.multiple}
-            />
+            <>
+                <input
+                    className='fileInput'
+                    name="file"
+                    id="file"
+                    type="file"
+                    accept={this.props.fileType}
+                    onChange={this.handleChange.bind(this)}
+                    multiple={this.props.multiple}
+                />
+                {/* <label for="file">Choose a file</label> */}
+            </>
         );
     }
 }
