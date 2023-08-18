@@ -287,18 +287,35 @@ function App() {
   // Call initialize function
   initSession()
 
+
+  const returnNavbar = () => {
+    if (location.pathname === '/account-login' || location.pathname === '/account-register') {
+      return null
+    } else {
+      return <Navbar userObj={userObj} />
+    }
+  }
+
+  const returnFooter = () => {
+    if (location.pathname === '/account-login' || location.pathname === '/account-register') {
+      return null
+    } else {
+      return <Footer />
+    }
+  }
+
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
       <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
         {/* {loggedIn} */}
-        {location.pathname === '/account-login' ? '' : <Navbar userObj={userObj} />}
+        {returnNavbar()}
         <Routes>
           {
             routes
           }
         </Routes>
       </div>
-      {location.pathname === '/account-login' ? '' : <Footer />}
+      {returnFooter()}
     </LoginContext.Provider>
   );
 }

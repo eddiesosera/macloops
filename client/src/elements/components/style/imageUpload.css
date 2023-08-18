@@ -6,7 +6,8 @@
   }
   .image-item {
     display: flex;
-    margin: 10px 0;
+    cursor: pointer;
+    /* margin: 10px 0; */
   }
   .image-item__btn-wrapper {
     display: flex;
