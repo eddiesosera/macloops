@@ -3,19 +3,20 @@ import ImageUploading from "react-images-uploading";
 
 import "./style/imageUpload.css";
 
-export const ImageUpload = () => {
+export const ImageUpload = ({ listOfIimages }) => {
     const [images, setImages] = React.useState([]);
     const maxNumber = 69;
     const onChange = (imageList, addUpdateIndex) => {
         // data for submit
         console.log(imageList, addUpdateIndex);
         setImages(imageList);
+        listOfIimages(imageList)
     };
 
 
     return (
         <div className="imageUpload_wrap">
-            <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url" acceptType={["jpg"]}>
+            <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url" acceptType={["jpg", "png", "gif"]}>
                 {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
                     // write your building UI
                     <div className="upload__image-wrapper">
