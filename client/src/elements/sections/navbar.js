@@ -6,6 +6,7 @@ import logopng from "../../img/LOGO.png";
 import { Search } from "../components/search";
 
 import { LoginContext } from "../../App";
+import { MacloopsLogo } from "../components/svgs";
 
 
 // import { PianoKeys } from "@phosphor-icons/react";
@@ -77,18 +78,19 @@ export const Navbar = ({ userObj }) => {
 
   //   Styling Active and Inactive states of elements and icons
   const ActiveIcon = {
-    fontSize: "24px", color: '0F1213', fontWeight: "500", fontFamily: 'Montserrat'
+    fontSize: "24px", color: '#13120f', fontWeight: "500", fontFamily: 'Montserrat'
   };
   const InactiveIcon = {
-    fontSize: "24px", color: '#36484E', fontWeight: "500", fontFamily: 'Montserrat'
+    fontSize: "24px", color: '#13120f', fontWeight: "500", fontFamily: 'Montserrat'
   };
 
 
   return (
-    <div className="navbar_wrap" style={{ zIndex: 3, display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', position: 'sticky', top: '0', alignItems: 'center' }}>
+    <div className="navbar_wrap" style={{ zIndex: 3, display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', position: 'sticky', top: '0', alignItems: 'center', borderBottom: '1px solid #e2b774' }}>
       <div className="navbar_left" style={{ display: "flex", gap: "40px", alignItems: 'center' }}>
         <NavLink to="/" className="navbar_left_logo">
-          <img src={logopng} alt="Logo" style={{ height: "24px" }} />
+          {/* <img src={logopng} alt="Logo" style={{ height: "24px" }} /> */}
+          <MacloopsLogo height={24} width={123} color={'red'} />
         </NavLink>
         <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px', color: 'inherit !important' }}>
           {/* <PianoKeys size={32} /> */}
@@ -97,7 +99,7 @@ export const Navbar = ({ userObj }) => {
           ) : (
             <i className="ph ph-piano-keys" style={InactiveIcon} />
           )}
-          <div style={{ fontFamily: 'Montserrat', fontWeight: '500', color: currScrn === "/products" ? '0F1213' : '#36484E' }}>Instruments</div>
+          <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '800' : '500', color: '#13120f' }}>Instruments</div>
         </NavLink>
         <div className="navbar_middle-search_wrap">
           <Search query={getQuery} />
@@ -112,17 +114,17 @@ export const Navbar = ({ userObj }) => {
             ) : (
               <i className="ph-bold ph-shopping-cart-simple" style={InactiveIcon} />
             )}
-            <div className="cart_itms_no" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
+            <div className="cart_itms_no" style={{ display: userObj?.cart_items.length !== 0 ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
               {userObj?.cart_items.length}
             </div>
           </div>
-          <div style={{ fontFamily: 'Montserrat', fontWeight: '500' }}>Cart</div>
+          <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/cart" ? '800' : '500', color: '#13120f' }}>Cart</div>
         </NavLink>
         <NavLink to="/account" style={{ display: "flex", gap: '10px', alignItems: 'center' }} >
           {
             imgUpdt()
           }
-          <div style={{ fontFamily: 'Montserrat', fontWeight: '500' }}>{username}</div>
+          <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/account" ? '800' : '500', color: '#13120f' }}>{username}</div>
         </NavLink>
       </div>
     </div>

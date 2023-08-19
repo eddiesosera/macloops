@@ -21,7 +21,7 @@ export const Search = ({ query }) => {
   );
 
   return (
-    <div className="search_wrap" style={{ border: "1px solid #9BA2A4", display: "flex", padding: '10px', gap: '5px', background: '#FFE5BE' }}>
+    <div className="search_wrap" style={{ border: "1px solid #13120f", display: "flex", padding: '10px', gap: '5px', background: 'none' }}>
       <i className="ph-bold ph-magnifying-glass" style={{ color: '#13120F' }} />
       <input
         ref={searchDOM}
@@ -53,7 +53,7 @@ export const Search = ({ query }) => {
             searchDOM.current.focus();
           }, 10);
         }}
-        style={{ display: cancelTgl ? "block" : "none", cursor: 'pointer', color: '#2293b6' }}
+        style={{ display: cancelTgl ? "block" : "none", cursor: 'pointer', color: '#13120f' }}
       />
     </div>
   );
