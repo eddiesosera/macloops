@@ -12,9 +12,18 @@
   .image-item__btn-wrapper {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    position: absolute;
+    gap: 25px;
   }
   button {
     height: 40px;
+  }
+
+  .imageUpload_btn1{
+    height: 100px;
+     width: 100px; 
+    border-radius: 100px;
+    background: none;
+    border:1px solid #e2ddd6
   }
   

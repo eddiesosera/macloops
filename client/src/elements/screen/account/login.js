@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../App";
+import { Form } from "../../components/form";
 
 export const Login = ({ allUsers }) => {
   const scrn = useLocation().pathname;
@@ -14,8 +15,7 @@ export const Login = ({ allUsers }) => {
   const [inputSelectedTgl, setInputSelectedTgl] = useState(false)
 
 
-  const loginAction = async (e) => {
-    e.preventDefault()
+  const loginAction = async () => {
     await axios.post('http://localhost:5000/api/loginUser', formData,
       { headers: { "Content-Type": "application/json" } })
       .then((loginRes => {
@@ -47,7 +47,7 @@ export const Login = ({ allUsers }) => {
   };
 
   useEffect(() => {
-    // console.log("login is = " + loggedIn)
+    // console.log(formData)
     loggedIn === "true" && navigate('/account')
 
   }, [formData, loginMsg, loginStatus, scrn]);
@@ -66,31 +66,27 @@ export const Login = ({ allUsers }) => {
 
   const sec_btn = {
     background: 'none', border: 'solid 1px #2293B6', color: '#2293B6', fontFamily: 'Nunito Sans', fontWeight: '500', padding: '12px 20px',
-    fontSize: '15px'
+    fontSize: '15px', display: 'flex', alignItems: 'center'
   };
 
-
-  const formDataChange = (e, input_label) => {
-
-  }
 
   // Array of Input Fields object
   const inputFields = [
     {
-      id: 'username',
+      name: 'username',
       type: 'text',
       placeholder: 'Username or Email',
-      style: inputStyle,
-      input: (e) => { setFormData({ ...formData, username: e.target.value }) }
     },
     {
-      id: 'password',
+      name: 'password',
       type: 'password',
       placeholder: 'Enter your password',
-      style: inputStyle,
-      input: (e) => { setFormData({ ...formData, password: e.target.value }) }
     }
   ];
+
+  const getFormObj = obj => {
+    setFormData(obj)
+  }
 
   return (
     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', width: 'calc(100vw - 17px)', height: '100vh', overflow: 'clip' }}>
@@ -104,7 +100,7 @@ export const Login = ({ allUsers }) => {
 
       <div className="right_login_container" style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center' }}>
 
-        <form className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '30px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
+        {/* <form className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '30px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
           <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', fontSize: '48px' }}>Login</div>
           <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
             {
@@ -119,7 +115,10 @@ export const Login = ({ allUsers }) => {
               Login
             </button>
           </div>
-        </form>
+        </form> */}
+
+        <Form formFields={inputFields} heading={'Register'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
+
 
         <div className="login_o-cta" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
           <NavLink to="/account-register"><button style={sec_btn}>Join Macloops</button></NavLink>
@@ -129,6 +128,6 @@ export const Login = ({ allUsers }) => {
         </div>
       </div>
 
-    </div>
+    </div >
   )
 };

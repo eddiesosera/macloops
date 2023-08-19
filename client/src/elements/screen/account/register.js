@@ -59,7 +59,22 @@ export const Register = ({ allUsers }) => {
       name: 'role',
       type: 'dropdown',
       placeholder: 'Role of user',
-      options: ['Admin', 'User'],
+      list: [
+        {
+          option_element: <i className='ph-bold ph-user' style={{ color: '#3A7C91' }} />,
+          option_text: 'Customer',
+          option_value: 'customer',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: <i className='ph-bold ph-user-circle' style={{ color: '#3A7C91' }} />,
+          option_text: 'Admin',
+          option_value: 'admin',
+          option_state: false,
+          option_valueTooltipText: 'You need to be an admin to create an Admin account.'
+        }
+      ],
     },
     {
       name: 'password',
@@ -77,7 +92,7 @@ export const Register = ({ allUsers }) => {
   // STYLE
   const sec_btn = {
     background: 'none', border: 'solid 1px #2293B6', color: '#2293B6', fontFamily: 'Nunito Sans', fontWeight: '500', padding: '12px 20px',
-    fontSize: '15px'
+    fontSize: '15px', display: 'flex', alignItems: 'center'
   };
 
 
@@ -91,7 +106,7 @@ export const Register = ({ allUsers }) => {
         <img src="https://ucarecdn.com/7d4871b0-217b-4949-a3d6-daa438d6f6f2/" alt="Login" style={{ width: '100%', height: '100vh ', objectFit: 'cover' }} />
       </div>
 
-      <div className="right_login_container" style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center' }}>
+      <div className="right_login_container" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
         <Form formFields={inputFields} heading={'Register'} btnAction={registerAction} btnTitle={'Register'} formObj={getFormObj} />
 
         <div className="login_o-cta" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>

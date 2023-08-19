@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { ImageUpload } from './imageUpload';
 import { DropDown } from './dropDown';
+import './style/form.css'
 
-export const Form = ({ formObj, formFields, btnAction, heading, btnTitle, imgs }) => {
+export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
     const [formObjContainer, setFormObjContainer] = useState({})
 
     useEffect(() => {
@@ -15,9 +16,9 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle, imgs }
     };
 
     const buttonStyle = {
-        display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: '320px', height: '40px',
-        background: '#EAF6F9', color: '#2293B6', alignItems: 'center', justifyContent: 'center', gap: '10px',
-        marginTop: '20px', marginBottom: '10px', fontSize: '15px'
+        display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: '100%', height: '40px',
+        background: '#171819', color: '#C4E4EE', alignItems: 'center', justifyContent: 'center', gap: '10px',
+        marginTop: '20px', marginBottom: '10px', fontSize: '15px',
     };
 
 
@@ -27,15 +28,12 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle, imgs }
     }
 
 
-    const getImgs = (img) => {
-        imgs(img);
-
-    }
+    // const getDropdownOpt = (opt) => { setFormObjContainer({ ...formObjContainer, [field?.name]: opt }) }
 
 
     return (
         <div>
-            <div className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '30px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
+            <div className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '20px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
                 <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', fontSize: '36px' }}>{heading}</div>
                 <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
                     {
@@ -58,7 +56,9 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle, imgs }
                                 )
                             } else if (field?.type === "dropdown") {
                                 return (
-                                    <DropDown placeholder={'Role'} />
+                                    <div >
+                                        <DropDown placeholder={field?.placeholder} options={field?.list} selectedValue={(opt) => { setFormObjContainer({ ...formObjContainer, [field?.name]: opt }) }} />
+                                    </div>
                                 )
                             } else if (field?.type === "password") {
                                 return (
@@ -73,7 +73,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle, imgs }
                         })
                         // returnField()
                     }
-                    <button type="submit" style={buttonStyle} onClick={e => { onClickAction(e) }}>
+                    <button className='form_submit_btn' type="submit" style={buttonStyle} onClick={e => { onClickAction(e) }}>
                         {btnTitle}
                     </button>
                 </div>
