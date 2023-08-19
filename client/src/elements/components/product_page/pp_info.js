@@ -1,8 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PRating } from './pp_rating'
 import { ProductQuantity } from './productQuantity'
+import { DropDown } from '../dropDown'
 
 export const PPInfo = ({ productInfo }) => {
+    const [infoForm, setInfoForm] = useState({});
+
+    const colors = {
+        name: 'role',
+        type: 'dropdown',
+        placeholder: 'Select Color',
+        list: [
+            {
+                option_element: <i className='ph-fill ph-circle' style={{ color: 'black' }} />,
+                option_text: 'Black',
+                option_value: 'black',
+                option_state: true,
+                option_valueTooltipText: ''
+            }, {
+                option_element: <i className='ph-fill ph-circle' style={{ color: 'white' }} />,
+                option_text: 'White',
+                option_value: 'white',
+                option_state: true,
+                option_valueTooltipText: ''
+            },
+            {
+                option_element: <i className='ph-fill ph-circle' style={{ color: 'brown' }} />,
+                option_text: 'Wooden Brown',
+                option_value: 'wooden_brown',
+                option_state: true,
+                option_valueTooltipText: ''
+            },
+            {
+                option_element: <i className='ph-fill ph-circle' style={{ color: 'red' }} />,
+                option_text: 'Red',
+                option_value: 'red',
+                option_state: false,
+                option_valueTooltipText: 'Out of Stock'
+            }
+        ],
+    }
+
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
             <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -21,10 +60,7 @@ export const PPInfo = ({ productInfo }) => {
                 <PRating p_rating={productInfo?.rating} />
             </div>
             <div className='info_group_5'>
-                <button className='add_btn' style={{ display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: 'fit content', height: '40px', background: 'none', color: '#2293B6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                    <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600', color: '#2293B6' }}>Select Color</div>
-                    <i className='ph-bold ph-caret-down' style={{ fontSize: '20px', }} />
-                </button>
+                <DropDown placeholder={colors?.placeholder} options={colors?.list} selectedValue={(opt) => { setInfoForm({ ...infoForm, color: opt }) }} />
             </div>
             <div className='info_group_6'>
                 <ProductQuantity />
