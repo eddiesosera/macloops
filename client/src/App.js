@@ -66,7 +66,7 @@ function App() {
 
   // Main Use Effect
   useEffect(() => {
-
+    window.scrollTo(0, 0);
     // Get All users
     getUsers()
     // Get All products

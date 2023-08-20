@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { PRating } from './pp_rating'
 import { ProductQuantity } from './productQuantity'
-import { DropDown } from '../dropDown'
+import { DropDown } from '../dropDown';
+import { Fade } from "react-awesome-reveal";
 
 export const PPInfo = ({ productInfo }) => {
     const [infoForm, setInfoForm] = useState({});
@@ -44,21 +45,23 @@ export const PPInfo = ({ productInfo }) => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
-            <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ fontSize: '72px', fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', textTransform: 'uppercase' }}>{productInfo?.name}</div>
-                <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#6F6D6A', textTransform: 'uppercase' }}>{productInfo?.slogan}</div>
-            </div>
-            <div className='info_group_2' >
-                <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>By {productInfo?.manufacturer}</div>
-                {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
-            </div>
-            <div className='info_group_3'>
-                <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#13120F' }}>R {productInfo?.price}</div>
-                {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
-            </div>
-            <div className='info_group_4'>
-                <PRating p_rating={productInfo?.rating} />
-            </div>
+            <Fade cascade damping={0.3}>
+                <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div style={{ fontSize: '72px', fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', textTransform: 'uppercase' }}>{productInfo?.name}</div>
+                    <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#6F6D6A', textTransform: 'uppercase' }}>{productInfo?.slogan}</div>
+                </div>
+                <div className='info_group_2' >
+                    <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>By {productInfo?.manufacturer}</div>
+                    {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
+                </div>
+                <div className='info_group_3'>
+                    <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#13120F' }}>R {productInfo?.price}</div>
+                    {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
+                </div>
+                <div className='info_group_4'>
+                    <PRating p_rating={productInfo?.rating} />
+                </div>
+            </Fade>
             <div className='info_group_5'>
                 <DropDown placeholder={colors?.placeholder} options={colors?.list} selectedValue={(opt) => { setInfoForm({ ...infoForm, color: opt }) }} />
             </div>

@@ -5,6 +5,7 @@ import { PPImageViewer } from "../components/product_page/pp_imagViewer";
 import { PPSpecs } from "../components/product_page/pp_specs";
 import { SimilarPicks } from "../sections/similarPicks";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
+import { Fade, JackInTheBox } from "react-awesome-reveal";
 
 export const ProductPage = ({ products }) => {
   // Declaring all variables
@@ -50,8 +51,10 @@ export const ProductPage = ({ products }) => {
 
       <hr style={{ padding: 0, width: '100%', border: "0", height: '0.5px', background: '#E9E6E1', marginTop: 0, marginBottom: '90px' }} />
 
+
       {/*Similar Picks Section */}
       <div style={{ background: '#FAF6F2', padding: '30px 60px', display: 'flex', flexDirection: 'column', gap: '60px' }}>
+
         <SimilarPicks similar_picks={products} />
 
         {/* More by Manufacturer Section */}
@@ -62,10 +65,12 @@ export const ProductPage = ({ products }) => {
               <button style={{ background: 'none', border: 'solid 1px #2293B6', color: '#2293B6', fontFamily: 'Montserrat', fontWeight: '600', padding: '0 20px' }}>View More</button>
             </div>
           </div>
+
           <YouMayAlsoLike may_like_products={products} />
         </div>
 
       </div>
+
 
 
     </div>

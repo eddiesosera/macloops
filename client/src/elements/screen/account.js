@@ -3,6 +3,7 @@ import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 import { LoginContext } from "../../App";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
+import { JackInTheBox, Slide } from "react-awesome-reveal";
 
 export const Account = ({ allUsers, allProducts }) => {
   // Declaring all variables
@@ -84,6 +85,7 @@ export const Account = ({ allUsers, allProducts }) => {
     <div style={{ padding: '20px 60px', transition: 'all 1s cubic-bezier(0.11, 0, 0.5, 0) 0s' }} >
 
       <ul style={{ display: 'flex', gap: '20px', justifyContent: 'space-between', padding: '0', paddingBottom: '30px', flexDirection: 'column' }}>
+
         <li className="" style={{ display: 'flex', border: 'solid 1px #E9E6E1', background: '#FFFBF6', padding: '20px', gap: '20px', alignItems: 'flex-start', boxShadow: accNavHov === "account" ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov('account')} onMouseLeave={e => setAccNavHov('')}>
           {
             imgUpdt()
@@ -131,6 +133,7 @@ export const Account = ({ allUsers, allProducts }) => {
             )
           })
         }
+
       </ul>
 
       <hr style={{ width: '100%', border: "0", height: '0.5px', background: '#E9E6E1', marginBottom: '120px' }} />

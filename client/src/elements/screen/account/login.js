@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../App";
 import { Form } from "../../components/form";
+import { Fade, Hinge, JackInTheBox } from "react-awesome-reveal";
 
 export const Login = ({ allUsers }) => {
   const scrn = useLocation().pathname;
@@ -91,12 +92,14 @@ export const Login = ({ allUsers }) => {
   return (
     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', width: 'calc(100vw - 17px)', height: '100vh', overflow: 'clip' }}>
       {/* <div className="login_heading">Login  is {loggedIn}</div> */}
-      <div className="left_login_container" style={{ width: '100%', overflow: 'hidden' }}>
-        <div className="pp_left_wrap" onClick={e => navigate('/')} style={{ position: 'absolute', marginLeft: '20px', marginTop: '20px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
-          <i class="ph-bold ph-house" style={{ fontSize: '20px', color: '' }} />
+      <JackInTheBox cascade damping={0.1}>
+        <div className="left_login_container" style={{ width: '100%', overflow: 'hidden' }}>
+          <div className="pp_left_wrap" onClick={e => navigate('/')} style={{ position: 'absolute', marginLeft: '20px', marginTop: '20px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
+            <i class="ph-bold ph-house" style={{ fontSize: '20px', color: '' }} />
+          </div>
+          <img src="https://ucarecdn.com/7d4871b0-217b-4949-a3d6-daa438d6f6f2/" alt="Login" style={{ width: '100%', height: '100vh ', objectFit: 'cover' }} />
         </div>
-        <img src="https://ucarecdn.com/7d4871b0-217b-4949-a3d6-daa438d6f6f2/" alt="Login" style={{ width: '100%', height: '100vh ', objectFit: 'cover' }} />
-      </div>
+      </JackInTheBox>
 
       <div className="right_login_container" style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center' }}>
 
@@ -116,9 +119,9 @@ export const Login = ({ allUsers }) => {
             </button>
           </div>
         </form> */}
-
-        <Form formFields={inputFields} heading={'Register'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
-
+        <Fade cascade damping={0.1}>
+          <Form formFields={inputFields} heading={'Register'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
+        </Fade>
 
         <div className="login_o-cta" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
           <NavLink to="/account-register"><button style={sec_btn}>Join Macloops</button></NavLink>
@@ -129,5 +132,6 @@ export const Login = ({ allUsers }) => {
       </div>
 
     </div >
+
   )
 };

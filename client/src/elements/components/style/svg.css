@@ -1,0 +1,15 @@
+.logo_letter{
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 10s linear alternate infinite;
+}
+
+@keyframes dash {
+    from {
+      stroke-dashoffset: 822;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+    
+  }

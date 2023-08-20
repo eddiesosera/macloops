@@ -6,7 +6,7 @@ import logopng from "../../img/LOGO.png";
 import { Search } from "../components/search";
 
 import { LoginContext } from "../../App";
-import { MacloopsLogo } from "../components/svgs";
+import { MacloopsLogo, MacloopsLogoAnimated } from "../components/svgs";
 
 
 // import { PianoKeys } from "@phosphor-icons/react";
@@ -90,7 +90,8 @@ export const Navbar = ({ userObj }) => {
       <div className="navbar_left" style={{ display: "flex", gap: "40px", alignItems: 'center' }}>
         <NavLink to="/" className="navbar_left_logo">
           {/* <img src={logopng} alt="Logo" style={{ height: "24px" }} /> */}
-          <MacloopsLogo height={24} width={123} color={'red'} />
+          <MacloopsLogo height={24} width={'123px'} color={'#13120f'} />
+          {/* <MacloopsLogoAnimated height={24} width={'123px'} color={'#13120f'} /> */}
         </NavLink>
         <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px', color: 'inherit !important' }}>
           {/* <PianoKeys size={32} /> */}
