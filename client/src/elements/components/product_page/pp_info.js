@@ -47,7 +47,7 @@ export const PPInfo = ({ productInfo }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
             <Fade cascade damping={0.3}>
                 <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <div style={{ fontSize: '72px', fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', textTransform: 'uppercase' }}>{productInfo?.name}</div>
+                    <div style={{ fontSize: '72px', fontFamily: 'Montserrat', fontWeight: '700', color: '#2f2e2d', textTransform: 'uppercase' }}>{productInfo?.name}</div>
                     <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#6F6D6A', textTransform: 'uppercase' }}>{productInfo?.slogan}</div>
                 </div>
                 <div className='info_group_2' >

@@ -35,7 +35,7 @@ export const ProductPage = ({ products }) => {
     <div className="productPage_wrap" style={{ background: '#FFFBF6 !important', paddingBottom: '40px' }}>
       <div className="productPage_comp" style={{ display: 'flex', flexDirection: 'column', gap: '120px', padding: '30px 60px 120px 60px', background: '#FFFBF6', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: '40px', paddingBottom: '30px' }}>
-          <div className="pp_left_wrap" onClick={e => navigateTo(-1)} style={{ display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
+          <div className="pp_left_wrap" onClick={e => navigateTo(-1)} style={{ display: 'flex', border: '1px solid #2d2e2f', color: '#2d2e2f', borderRadius: '50px', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
             <i class="ri-arrow-left-line" />
           </div>
           <div className="pp_mid_wrap" style={{ display: 'flex', gap: '40px', width: '100%' }}>
