@@ -5,7 +5,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import Tooltip from 'rc-tooltip'
 import 'rc-tooltip/assets/bootstrap_white.css';
 
-export const DropDown = ({ options, placeholder, selectedValue }) => {
+export const DropDown = ({ options, placeholder, selectedValue, selectedOptionLabel, index }) => {
     const [selectedOption, setSelectedOption] = useState('');
     const [selectedOptionLbl, setSelectedOptionLbl] = useState(placeholder);
     const [dropDownTgl, setDropDownTgl] = useState(false)
@@ -50,7 +50,7 @@ export const DropDown = ({ options, placeholder, selectedValue }) => {
 
 
     return (
-        <div className='dropdown_wrap' style={{ height: '40px', zIndex: '1', position: 'relative' }}>
+        <div className='dropdown_wrap' style={{ height: '40px', zIndex: (1 + index), position: 'relative' }}>
             <div className='dropdown_hide' style={{
                 height: '100vh', width: '100vw', position: 'fixed', background: '#ffffff00',
                 zIndex: '-1', display: dropDownTgl ? 'block' : 'none', top: 0, bottom: 0, left: 0, right: 0
@@ -60,7 +60,7 @@ export const DropDown = ({ options, placeholder, selectedValue }) => {
                 height: '40px', background: 'none', color: '#2293B6', alignItems: 'center', justifyContent: 'space-between', gap: '10px',
                 zIndex: '1'
             }} onClick={e => setDropDownTgl(!dropDownTgl)}>
-                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600', color: '#2293B6', fontSize: '14px' }}>{selectedOptionLbl}</div>
+                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600', color: '#2293B6', fontSize: '14px' }}>{selectedOptionLabel === undefined ? selectedOptionLbl : selectedOptionLabel}</div>
                 <i className={dropDownTgl ? 'ph-bold ph-caret-up' : 'ph-bold ph-caret-down'} style={{ fontSize: '14px', }} />
             </button>
             <div className='options_wrap' style={{
@@ -85,7 +85,7 @@ export const DropDown = ({ options, placeholder, selectedValue }) => {
                                     <div style={{ display: optn?.option_state === false ? 'block' : 'none' }}>
                                         {optn?.option_valueTooltipText}</div>}
                                 > */}
-                                <div className='option_itm_element' style={{ color: optn?.option_state ? '' : ('#BDC5C7') }}>{optn?.option_element}</div>
+                                <div className='option_itm_element' style={{ color: optn?.option_state ? '' : ('#BDC5C7'), display: optn?.option_element === "" ? 'none' : 'block' }}>{optn?.option_element}</div>
                                 <div className='option_itm_text' style={{
                                     fontFamily: 'Nunito Sans',
                                     fontWeight: selectedOption === optn?.option_value ? '800' : '500', fontSize: '13px',

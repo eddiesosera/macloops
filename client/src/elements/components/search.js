@@ -21,7 +21,7 @@ export const Search = ({ query }) => {
   );
 
   return (
-    <div className="search_wrap" style={{ border: "1px solid #13120f", display: "flex", padding: '10px', gap: '5px', background: 'none' }}>
+    <div className="search_wrap" style={{ border: "1px solid #13120f", display: "flex", alignItems: 'center', padding: '10px', gap: '5px', background: 'none', width: 'fit-content', height: '20px' }}>
       <i className="ph-bold ph-magnifying-glass" style={{ color: '#13120F' }} />
       <input
         ref={searchDOM}

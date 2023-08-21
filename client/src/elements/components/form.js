@@ -18,7 +18,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
     const buttonStyle = {
         display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: '100%', height: '40px',
         background: '#171819', color: '#C4E4EE', alignItems: 'center', justifyContent: 'center', gap: '10px',
-        marginTop: '20px', marginBottom: '10px', fontSize: '15px',
+        marginTop: '20px', marginBottom: '10px', fontSize: '15px', transition: 'all 0.8s cubic-bezier(0.25,0.75,0.5,1) 0s'
     };
 
 

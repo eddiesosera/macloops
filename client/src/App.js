@@ -231,7 +231,7 @@ function App() {
     },
     {
       path: '/products',
-      element: <Products />
+      element: <Products products={product_demo} />
     },
     {
       path: '/product-page/:id',
