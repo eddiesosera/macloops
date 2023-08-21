@@ -217,7 +217,7 @@ function App() {
     },
     {
       id: "64cda741ada6611bf071e13a4bbb",
-      image_cover: img5,
+      image_cover: img1,
       images: [img1, img2, img4, img5],
       name: 'Guitar GBFX1',
       slogan: 'Grand piano designed with your home in mind.',

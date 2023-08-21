@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { MacloopsLogo } from '../components/svgs'
 
 export const Footer = () => {
     const footer_links_abt = [
@@ -41,9 +42,9 @@ export const Footer = () => {
 
 
     return (
-        <div style={{ background: '#ffcf86', color: '#4e4836', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex' }}>
-                LOGO
+        <div style={{ background: '#222120', color: '#f4e6d8', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <MacloopsLogo height={24} width={'123px'} color={'#ff9932'} />
                 <div>© 2023. Rights Reserved. </div>
             </div>
 
@@ -51,7 +52,7 @@ export const Footer = () => {
                 {
                     footer_links_abt.map(link_abt => {
                         return (
-                            <li key={link_abt.name} style={{ listStyle: 'none', fontFamily: 'Nunito Sans', color: '#4e4836' }}>
+                            <li key={link_abt.name} style={{ listStyle: 'none', fontFamily: 'Nunito Sans', color: '#f4e6d8' }}>
                                 <NavLink className='' to={link_abt.url} style={{ display: 'flex', gap: '15px' }}>
                                     <div>{link_abt.name}</div>
                                     <div style={{ display: link_abt.border ? 'flex' : 'none' }}>|</div>
@@ -67,7 +68,7 @@ export const Footer = () => {
                 {
                     social_link.map(social => {
                         return (
-                            <li key={social.social_app} style={{ listStyle: 'none', fontFamily: 'Nunito Sans' }}>
+                            <li key={social.social_app} style={{ listStyle: 'none', fontFamily: 'Nunito Sans', fontSize: '20px' }}>
                                 <NavLink to={social.url}>
                                     <i className={social.social_app} />
                                 </NavLink>

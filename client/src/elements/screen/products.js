@@ -17,7 +17,7 @@ function Items({ productss }) {
   // const [productss, setProductss] = useContext(ProductsContext);
 
   return (
-    <Masonry columnsCount='6' gutter="30px" style={{ zIndex: '2' }}
+    <Masonry columnsCount={window.screen.width > 770 ? 6 : 1} gutter="30px" style={{ zIndex: '2' }}
     // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
     >
       {
@@ -228,31 +228,6 @@ export const Products = ({ products, itemsPerPage }) => {
           </div>
         </div>
         <div className="products_content_wrap" style={{ padding: '20px 60px' }}>
-          {/* <Masonry columnsCount='6' gutter="30px" style={{ zIndex: '2' }}
-          // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-          >
-            {
-              products?.map((product, index) => {
-                return (
-                  <Card product={product} />
-                )
-              })
-            }
-            {
-              products?.map((product, index) => {
-                return (
-                  <Card product={product} />
-                )
-              })
-            }
-            {
-              products?.map((product, index) => {
-                return (
-                  <Card product={product} />
-                )
-              })
-            }
-          </Masonry> */}
           <PaginatedItems itemsPerPage={24} />
         </div>
       </div>

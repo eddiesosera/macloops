@@ -93,7 +93,7 @@ export const Navbar = ({ userObj }) => {
           <MacloopsLogo height={24} width={'123px'} color={'#13120f'} />
           {/* <MacloopsLogoAnimated height={24} width={'123px'} color={'#13120f'} /> */}
         </NavLink>
-        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", gap: '10px', color: 'inherit !important' }}>
+        <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
           {/* <PianoKeys size={32} /> */}
           {currScrn === "/products" ? (
             <i className="ph-fill ph-piano-keys" style={ActiveIcon} />
@@ -101,6 +101,15 @@ export const Navbar = ({ userObj }) => {
             <i className="ph ph-piano-keys" style={InactiveIcon} />
           )}
           <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '800' : '500', color: '#13120f' }}>Instruments</div>
+        </NavLink>
+        <NavLink to="/find-store" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
+          {/* <PianoKeys size={32} /> */}
+          {currScrn === "/find-store" ? (
+            <i className="ph-fill ph-map-pin" style={ActiveIcon} />
+          ) : (
+            <i className="ph ph-map-pin" style={InactiveIcon} />
+          )}
+          <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/find-store" ? '800' : '500', color: '#13120f' }}>Find a Store</div>
         </NavLink>
         <div className="navbar_middle-search_wrap">
           <Search query={getQuery} />
