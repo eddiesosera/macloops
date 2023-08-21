@@ -8,6 +8,7 @@ import { DropDown } from "../components/dropDown";
 import ReactPaginate from 'react-paginate';
 import { ProductsContext } from "../../App";
 import './style/products.css'
+import GeoSelect99, { GeoSelect33 } from "../components/geoSelection/geoSelect";
 
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -234,6 +235,7 @@ export const Products = ({ products, itemsPerPage }) => {
 
 
       {/* <GeoSuggest /> */}
+      {/* <GeoSelect99 /> */}
     </div>
   )
 };

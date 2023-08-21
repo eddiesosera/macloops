@@ -1,9 +1,29 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import Geosuggest from '@ubilabs/react-geosuggest';
-import './style/geosuggest.css'
+import { Loader } from "@googlemaps/js-api-loader"
+import './style/geosuggest.css';
+
+
+const loader = new Loader({
+    apiKey: "YOUR_API_KEY",
+    version: "weekly",
+    ...additionalOptions,
+});
+
+loader.load().then(async () => {
+    const { Map } = await google.maps.importLibrary("maps");
+
+    map = new Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+});
 
 const GeoSuggest2 = () => {
+
+
+
     const geosuggestEl = useRef(null);
 
     const fixtures = [
