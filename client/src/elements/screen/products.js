@@ -7,6 +7,7 @@ import { Dropdown } from "react-day-picker";
 import { DropDown } from "../components/dropDown";
 import ReactPaginate from 'react-paginate';
 import { ProductsContext } from "../../App";
+import './style/products.css'
 
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -76,12 +77,17 @@ function PaginatedItems({ itemsPerPage }) {
       <Items productss={currentItems} />
       <ReactPaginate
         breakLabel="..."
-        nextLabel={<div style={{ color: 'red' }}>NEXT</div>}
+        nextLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i class="ph-bold ph-arrow-right" /></div>}
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i class="ph-bold ph-arrow-left" /></div>}
         renderOnZeroPageCount={null}
+
+        pageClassName="li_pagination"
+        containerClassName="pagiantion_container"
+        breakLinkClassName="pagination_breakLink"
+        activeClassName="pagination_active"
       />
     </>
   );
@@ -252,7 +258,7 @@ export const Products = ({ products, itemsPerPage }) => {
       </div>
 
 
-      <GeoSuggest />
+      {/* <GeoSuggest /> */}
     </div>
   )
 };

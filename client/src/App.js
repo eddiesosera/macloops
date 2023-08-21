@@ -214,6 +214,30 @@ function App() {
         },
         color: 'black, white, grey, brown'
       }
+    },
+    {
+      id: "64cda741ada6611bf071e13a4bbb",
+      image_cover: img5,
+      images: [img1, img2, img4, img5],
+      name: 'Guitar GBFX1',
+      slogan: 'Grand piano designed with your home in mind.',
+      category: 'Guitar',
+      type: 'Acoustic Guitar',
+      description: 'The beautiful French Provincial-style design adds refinement to any room, visually enhancing the pleasure to be found in performance',
+      manufacturer: 'Yamaha',
+      price: 6630,
+      rating: 0.0,
+      specifications: {
+        dimensions: {
+          dimensions_unit: "mm",
+          weight_unit: "kg",
+          width: 146,
+          height: 99,
+          depth: 151,
+          weight: 261
+        },
+        color: 'black, white, grey, brown'
+      }
     }
   ]);
 
