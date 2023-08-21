@@ -1,12 +1,94 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Search } from "../components/search";
 import Masonry from "react-responsive-masonry";
 import { Card } from "../components/card";
 import GeoSuggest from "@ubilabs/react-geosuggest";
 import { Dropdown } from "react-day-picker";
 import { DropDown } from "../components/dropDown";
+import ReactPaginate from 'react-paginate';
+import { ProductsContext } from "../../App";
 
-export const Products = ({ products }) => {
+
+const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+
+
+function Items({ productss }) {
+  // const [productss, setProductss] = useContext(ProductsContext);
+
+  return (
+    <Masonry columnsCount='6' gutter="30px" style={{ zIndex: '2' }}
+    // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+    >
+      {
+        productss?.map((product, index) => {
+          return (
+            <Card product={product} />
+          )
+        })
+      }
+
+    </Masonry>
+  );
+};
+
+
+function PaginatedItems({ itemsPerPage }) {
+  const [products, setProducts] = useContext(ProductsContext);
+
+  // Testing data by multiplying size of loop
+  let productss = products
+
+  const numIterations = 24;
+
+  for (let i = 0; i < numIterations; i++) {
+    const item = productss[i];
+    productss.push(item);
+  }
+
+  // setProductss(productss.map(prd => { productss.push(prd) }))
+  console.log(productss)
+
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+
+  // Simulate fetching items from another resources.
+  // (This could be items from props; or items loaded in a local state
+  // from an API endpoint with useEffect and useState)
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = productss.slice(itemOffset, endOffset);
+  console.log('current itms in items:', currentItems)
+  const pageCount = Math.ceil(productss.length / itemsPerPage);
+  console.log('page count: ', pageCount)
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % productss.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+  return (
+    <>
+      <Items productss={currentItems} />
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel={<div style={{ color: 'red' }}>NEXT</div>}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={2}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+    </>
+  );
+}
+
+
+export const Products = ({ products, itemsPerPage }) => {
 
   const [queryVal, setQueryVal] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -96,6 +178,10 @@ export const Products = ({ products }) => {
     }
   ];
 
+
+  // PAGINATION
+
+
   return (
     <div className="products_wrap" >
       <div >
@@ -136,7 +222,7 @@ export const Products = ({ products }) => {
           </div>
         </div>
         <div className="products_content_wrap" style={{ padding: '20px 60px' }}>
-          <Masonry columnsCount='6' gutter="30px" style={{ zIndex: '2' }}
+          {/* <Masonry columnsCount='6' gutter="30px" style={{ zIndex: '2' }}
           // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
           >
             {
@@ -160,9 +246,12 @@ export const Products = ({ products }) => {
                 )
               })
             }
-          </Masonry>
+          </Masonry> */}
+          <PaginatedItems itemsPerPage={24} />
         </div>
       </div>
+
+
       <GeoSuggest />
     </div>
   )

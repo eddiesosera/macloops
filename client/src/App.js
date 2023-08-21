@@ -32,7 +32,8 @@ import { Error404 } from "./elements/screen/404";
 // import 'swiper/css';
 
 // Login context
-export const LoginContext = createContext()
+export const LoginContext = createContext();
+export const ProductsContext = createContext()
 
 function App() {
   // Declaring all variables
@@ -93,7 +94,7 @@ function App() {
 
 
   // DEMO - Products
-  const product_demo = [
+  const [product_demo, setProductDemo] = useState([
     {
       id: "64cda741ada6611bf071e13a",
       image_cover: img1,
@@ -214,7 +215,7 @@ function App() {
         color: 'black, white, grey, brown'
       }
     }
-  ];
+  ]);
 
 
   // Routes Array
@@ -306,16 +307,18 @@ function App() {
 
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
-      <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
-        {/* {loggedIn} */}
-        {returnNavbar()}
-        <Routes>
-          {
-            routes
-          }
-        </Routes>
-      </div>
-      {returnFooter()}
+      <ProductsContext.Provider value={[product_demo, setProductDemo]}>
+        <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
+          {/* {loggedIn} */}
+          {returnNavbar()}
+          <Routes>
+            {
+              routes
+            }
+          </Routes>
+        </div>
+        {returnFooter()}
+      </ProductsContext.Provider>
     </LoginContext.Provider>
   );
 }
