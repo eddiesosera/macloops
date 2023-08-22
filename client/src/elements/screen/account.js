@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
-import { LoginContext } from "../../App";
+import { LoginContext, UserModeContext } from "../../App";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
 import { JackInTheBox, Slide } from "react-awesome-reveal";
 
@@ -11,15 +11,18 @@ export const Account = ({ allUsers, allProducts }) => {
   const [loggedIn, setLoggedIn] = useContext(LoginContext);
   const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')));
   const [accNavTgl, setAccNavTgl] = useState(false)
-  const [accNavHov, setAccNavHov] = useState('')
+  const [accNavHov, setAccNavHov] = useState('');
+  const [userMode, setUserMode] = useContext(UserModeContext);
+  const [userModeTgl, setUserModeTgl] = useState(false);
 
   // Main UserEffect
   useEffect(() => {
 
     // Update Logged in user details
-    setUserObj(JSON.parse(sessionStorage.getItem('user')))
+    setUserObj(JSON.parse(sessionStorage.getItem('user')));
+    userModeTgl ? setUserMode("admin") : setUserMode("user")
 
-  }, [userStateSession, loggedIn])
+  }, [userStateSession, loggedIn, userModeTgl, userMode])
 
 
   // Screens Array: Account & Cart
@@ -77,7 +80,7 @@ export const Account = ({ allUsers, allProducts }) => {
 
   // Style
   const buttonStyle = {
-    color: '#2293B6', background: '#eaf7fa', border: 'solid #C3E1E9 0.7px', padding: '10px 8px', fontFamily: 'Montserrat', fontWeight: '600'
+    color: '#2293B6', background: '#eaf7fa', border: 'solid #C3E1E9 0.7px', padding: '10px 10px', fontFamily: 'Montserrat', fontWeight: '600'
   }
 
 
@@ -102,7 +105,13 @@ export const Account = ({ allUsers, allProducts }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div className="btn_wrap" style={{ display: 'flex', gap: 10 }}>
                 {
-                  userObj?.role === "admin" && <button style={buttonStyle} >Manage Inventory</button>
+                  userObj?.role === "admin" && userMode === "admin" && <button style={buttonStyle} >Manage Inventory</button>
+                }
+                {
+                  userObj?.role === "admin" && <button onClick={e => {
+                    // setUserMode("admin");
+                    setUserModeTgl(!userModeTgl);
+                  }} style={buttonStyle} >{userMode === "user" ? 'View as Admin' : 'View as User'}</button>
                 }
 
                 <NavLink to='/edit-account'>

@@ -24,27 +24,24 @@ import { Footer } from "./elements/sections/footer";
 import { EditAccount } from "./elements/screen/account/crud/edit_account";
 import { Error404 } from "./elements/screen/404";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHouse, faFutbol, faCodeCompare, faCircleHalfStroke, faChartLine } from "@fortawesome/free-solid-svg-icons";
-// import anime from 'animejs/lib/anime.es.js';
-// import Swiper JS
-// import Swiper from 'swiper';
-// import 'swiper/css';
 
 // Login context
 export const LoginContext = createContext();
-export const ProductsContext = createContext()
+export const UsersContext = createContext();
+export const ProductsContext = createContext();
+export const UserModeContext = createContext();
 
 function App() {
   // Declaring all variables
-  const userStateSession = sessionStorage.getItem('isLoggedIn')
-  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')))
-  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
-  const [users, setUsers] = useState([])
+  const userStateSession = sessionStorage.getItem('isLoggedIn');
+  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')));
+  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
+  const [users, setUsers] = useState([]);
   // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
-  const [products, setProducts] = useState([])
-  const [currentScreen, setCurrentScreen] = useState(useLocation())
-  const location = useLocation()
+  const [products, setProducts] = useState([]);
+  const [currentScreen, setCurrentScreen] = useState(useLocation());
+  const location = useLocation();
+  const [userMode, setUserMode] = useState('user')
 
 
   // Get All Users Request
@@ -256,6 +253,10 @@ function App() {
     },
     {
       path: '/products',
+      element: <Products products={product_demo} userObj={userObj} />
+    },
+    {
+      path: '/products/admin/:id',
       element: <Products products={product_demo} />
     },
     {
@@ -314,7 +315,9 @@ function App() {
 
 
   const returnNavbar = () => {
-    if (location.pathname === '/account-login' || location.pathname === '/account-register') {
+    if (location.pathname === '/account-login'
+      || location.pathname === '/account-register'
+      || location.pathname === '/products/admin/new') {
       return null
     } else {
       return <Navbar userObj={userObj} />
@@ -322,7 +325,9 @@ function App() {
   }
 
   const returnFooter = () => {
-    if (location.pathname === '/account-login' || location.pathname === '/account-register') {
+    if (location.pathname === '/account-login'
+      || location.pathname === '/account-register'
+      || location.pathname === '/products/admin/new') {
       return null
     } else {
       return <Footer />
@@ -332,16 +337,18 @@ function App() {
   return (
     <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
       <ProductsContext.Provider value={[product_demo, setProductDemo]}>
-        <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
-          {/* {loggedIn} */}
-          {returnNavbar()}
-          <Routes>
-            {
-              routes
-            }
-          </Routes>
-        </div>
-        {returnFooter()}
+        <UserModeContext.Provider value={[userMode, setUserMode]}>
+          <div className="App" style={{ background: "#FAF6F2", margin: 0 }}>
+            {/* {loggedIn} */}
+            {returnNavbar()}
+            <Routes>
+              {
+                routes
+              }
+            </Routes>
+          </div>
+          {returnFooter()}
+        </UserModeContext.Provider>
       </ProductsContext.Provider>
     </LoginContext.Provider>
   );

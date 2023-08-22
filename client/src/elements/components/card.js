@@ -5,7 +5,8 @@ import './style/card.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useSpring, animated } from '@react-spring/web'
+import { useSpring, animated } from '@react-spring/web';
+import anime from 'animejs/lib/anime.es.js';
 
 export const Card = ({ product }) => {
   const navigate = useNavigate()
@@ -76,9 +77,13 @@ export const Card = ({ product }) => {
 
   }
 
+  if (state) {
+
+  }
+
 
   return (
-    <div style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
+    <div className="card" style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
       <ToastContainer hideProgressBar={true} style={{ zIndex: '5' }} />
       <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={'/product-page/' + product?.id}></NavLink>
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
@@ -120,7 +125,7 @@ export const Card = ({ product }) => {
                   output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],
                 }),
               }} >
-              <div onClick={e => { addToCart(); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#EAF6F9', color: addToCartTgl ? '#EAF6F9' : '#2293B6', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
+              <div onClick={e => { addToCart(); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#f6f0e6', color: addToCartTgl ? '#f9f4eb' : '#6e480f', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
                 <i className={addToCartTgl ? 'ph-fill ph-shopping-cart-simple' : 'ph-bold ph-plus'} />
               </div>
             </animated.div>
