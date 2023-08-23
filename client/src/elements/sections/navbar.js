@@ -45,6 +45,7 @@ export const Navbar = ({ userObj }) => {
   };
 
 
+
   // Updating user profile with either User profile, Account Icon or Login icon.
   const imgUpdt = () => {
     if (loggedIn[0] !== null) {
@@ -147,8 +148,8 @@ export const Navbar = ({ userObj }) => {
               ) : (
                 <i className="ph-bold ph-shopping-cart-simple" style={InactiveIcon} />
               )}
-              <div className="cart_itms_no" style={{ display: userObj?.cart_items.length !== 0 ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
-                {userObj?.cart_items.length}
+              <div className="cart_itms_no" style={{ display: userObj?.cart_items?.length !== 0 ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
+                {userObj?.cart_items?.length}
               </div>
             </div>
             <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/cart" ? '800' : '500', color: '#13120f' }}>Cart</div>

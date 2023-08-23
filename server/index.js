@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { log } = require("console");
 const productRoute = require("./routes/product.route");
 const userRoute = require("./routes/user.route");
+const bodyParser = require("body-parser")
 
 require("dotenv/config");
 
@@ -19,9 +20,13 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const maxRequestBodySize = '5mb';
-app.use(express.json({ limit: maxRequestBodySize }));
-app.use(express.urlencoded({ limit: maxRequestBodySize }));
+// const maxRequestBodySize = '5mb';
+// app.use(express.json({ limit: maxRequestBodySize }));
+// app.use(express.urlencoded({ limit: maxRequestBodySize }));
+// app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
+
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(productRoute);
 app.use(userRoute);

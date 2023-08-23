@@ -11,6 +11,7 @@ import './style/products.css'
 import GeoSelect99, { GeoSelect33 } from "../components/geoSelection/geoSelect";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Form } from "../components/form";
+import axios from "axios";
 
 
 
@@ -18,7 +19,7 @@ function Items({ products }) {
   // const [productss, setProductss] = useContext(ProductsContext);
 
   return (
-    <Masonry columnsCount={window.screen.width > 770 ? 6 : 1} gutter="30px" style={{ zIndex: '1' }}
+    <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}
     // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
     >
       {
@@ -211,7 +212,8 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
 
 
   const getFormNewStockObj = obj => {
-    setFormData(obj)
+    setFormData(obj);
+    console.log(obj)
   };
 
   // PAGE INSTRUMENTS
@@ -323,6 +325,11 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
       ]
     },
     {
+      name: 'price',
+      type: 'text',
+      placeholder: 'Price',
+    },
+    {
       name: 'type',
       type: 'text',
       placeholder: 'Type of ' + (formData?.category === undefined ? 'Instrument' : formData?.category),
@@ -340,7 +347,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     {
       name: 'description',
       type: 'text',
-      placeholder: 'Descruption',
+      placeholder: 'Description',
     },
     {
       name: 'dimensions_unit',
@@ -366,17 +373,15 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
   ];
 
   const newStockAction = async () => {
-    // await axios.post('http://localhost:5000/api/addUser', formData,
-    //   { headers: { "Content-Type": "application/json" } })
-    //   .then((regRes => {
-    //     console.log(regRes)
-    //     // regRes && setRegStatus(true)
-    //   }))
-    alert(formData.username)
+    await axios.post('http://localhost:5000/api/product', formData,
+      { headers: { "Content-Type": "application/json" } })
+      .then((productRes => {
+        console.log(productRes)
+        navigate('/');
+        // regRes && setRegStatus(true)
+      }))
+    // alert(formData.username)
   }
-
-
-
 
 
   return (

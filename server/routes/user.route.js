@@ -1,8 +1,9 @@
 const express = require("express");
-
+const multer = require("multer");
 const UserSchema = require("../models/user.model");
-
 const router = express();
+
+const upload = multer({ dest: "uploads/" });
 
 //Login user
 router.post("/api/loginUser", async (req, res) => {
@@ -16,16 +17,7 @@ router.post("/api/loginUser", async (req, res) => {
     if (findUsername != null || findUser != null) {
         if (findUsername?.password == req.body.password || findUser?.password == req.body.password) {
             // res.send("User logged in!");
-            const usr = [findUsername?.id,
-            findUsername?.fullname,
-            findUsername?.role,
-            findUsername?.username,
-            findUsername?.email,
-            findUsername?.profile_image,
-            findUsername?.cart_items,
-            findUsername?.bought_items,
-            findUsername?.liked_items,
-            ]
+            const usr = findUsername
             res.send(usr)
         } else {
             res.send("Email and password does not match!");

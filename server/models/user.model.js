@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const UserSchema = mongoose.Schema({
     fullname: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
-        required: true
+        required: false
     },
     email: {
         type: String,
@@ -20,11 +20,11 @@ const UserSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     role: {
         type: String,
-        required: true,
+        required: false,
         default: "customer"
     },
     cart_items: [

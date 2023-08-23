@@ -24,15 +24,7 @@ export const Login = ({ allUsers }) => {
         const userStr = JSON.parse(sessionStorage.getItem('user'));
         const usr = loginRes?.data
         sessionStorage.setItem("user", JSON.stringify({
-          id: usr[0],
-          fullname: usr[1],
-          role: usr[2],
-          username: usr[3],
-          email: usr[4],
-          profile_image: usr[5],
-          cart_items: usr[6],
-          bought_items: usr[7],
-          liked_items: usr[8]
+          usr
         }));
 
         console.log(userStr)
@@ -120,7 +112,7 @@ export const Login = ({ allUsers }) => {
           </div>
         </form> */}
         <Fade cascade damping={0.1}>
-          <Form formFields={inputFields} heading={'Register'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
+          <Form formFields={inputFields} heading={'Log in'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
         </Fade>
 
         <div className="login_o-cta" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>

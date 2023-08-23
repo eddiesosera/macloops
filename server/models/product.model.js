@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const InstrumentSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        // required: true
     },
     image_cover:
     {
@@ -18,24 +18,24 @@ const InstrumentSchema = mongoose.Schema({
     ],
     slogan: {
         type: String,
-        required: true
+        // required: true
     },
     category: {
         type: String,
-        required: true
+        // required: true
     },
     type: {
         type: String,
-        required: true,
+        // required: true,
         default: ""
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     manufacturer: {
         type: String,
-        required: true
+        // required: true
     },
     specifications: {
         dimensions: {
@@ -73,8 +73,8 @@ const InstrumentSchema = mongoose.Schema({
         default: 0
     },
     price: {
-        type: Number,
-        required: true
+        type: String,
+        // required: true
     },
     rating: [{
         type: Number,

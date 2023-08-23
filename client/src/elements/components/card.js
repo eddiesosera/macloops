@@ -85,7 +85,7 @@ export const Card = ({ product }) => {
   return (
     <div className="card" style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
       <ToastContainer hideProgressBar={true} style={{ zIndex: '5' }} />
-      <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={'/product-page/' + product?.id}></NavLink>
+      <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={'/product-page/' + product?._id}></NavLink>
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <img onClick={e => navigate('/product-page/' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ zIndex: cardTgl ? 1 : 0, height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
 

@@ -5,11 +5,11 @@ import { LoginContext, UserModeContext } from "../../App";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
 import { JackInTheBox, Slide } from "react-awesome-reveal";
 
-export const Account = ({ allUsers, allProducts }) => {
+export const Account = ({ allUsers, allProducts, userObjct }) => {
   // Declaring all variables
   const userStateSession = sessionStorage.getItem('isLoggedIn')
   const [loggedIn, setLoggedIn] = useContext(LoginContext);
-  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')));
+  const [userObj, setUserObj] = useState(userObjct);
   const [accNavTgl, setAccNavTgl] = useState(false)
   const [accNavHov, setAccNavHov] = useState('');
   const [userMode, setUserMode] = useContext(UserModeContext);
@@ -19,7 +19,7 @@ export const Account = ({ allUsers, allProducts }) => {
   useEffect(() => {
 
     // Update Logged in user details
-    setUserObj(JSON.parse(sessionStorage.getItem('user')));
+    setUserObj(userObj);
     userModeTgl ? setUserMode("admin") : setUserMode("user")
 
   }, [userStateSession, loggedIn, userModeTgl, userMode])
@@ -42,7 +42,7 @@ export const Account = ({ allUsers, allProducts }) => {
   const imgUpdt = () => {
 
     const profilImgStyle = {
-      height: '80px', width: '80px', borderRadius: '100px', border: '#ccc solid 0.5px'
+      height: '120px', width: '120px', borderRadius: '5px', border: '#ccc solid 0.5px', objectFit: 'cover'
     }
 
     if (userObj?.profile_image !== "") {
@@ -96,11 +96,11 @@ export const Account = ({ allUsers, allProducts }) => {
           <div className="account_details_wrap">
             <div className="account_details_top" style={{ marginBottom: '15px' }}>
               <div className="account_details_usernames" style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-                <div className="account_details_wrap" style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#13120F' }}>{userObj?.fullname.charAt(0).toUpperCase() + userObj?.fullname.slice(1)}</div>
+                <div className="account_details_wrap" style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#13120F' }}>{userObj?.fullname?.charAt(0).toUpperCase() + userObj?.fullname?.slice(1)}</div>
                 <div style={{ fontSize: '8px', color: '#6f6d6a' }}>●</div>
                 <div className="account_details_wrap" style={{ fontFamily: 'Nunito Sans', fontSize: '', color: '#6F6D6A' }}>{userObj?.email}</div>
               </div>
-              <div className="account_details_wrap" style={{ fontFamily: 'Nunito Sans', fontSize: '', color: '#6F6D6A', marginTop: '5px' }}>{userObj?.role.charAt(0).toUpperCase() + userObj?.role.slice(1)}</div>
+              <div className="account_details_wrap" style={{ fontFamily: 'Nunito Sans', fontSize: '', color: '#6F6D6A', marginTop: '5px' }}>{userObj?.role?.charAt(0).toUpperCase() + userObj?.role?.slice(1)}</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div className="btn_wrap" style={{ display: 'flex', gap: 10 }}>

@@ -34,7 +34,8 @@ export const UserModeContext = createContext();
 function App() {
   // Declaring all variables
   const userStateSession = sessionStorage.getItem('isLoggedIn');
-  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')));
+  const [userObjRaw, setUserObjRaw] = useState(JSON.parse(sessionStorage?.getItem('user')));
+  let userObj = userObjRaw?.usr
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
   const [users, setUsers] = useState([]);
   // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
@@ -43,7 +44,7 @@ function App() {
   const location = useLocation();
   const [userMode, setUserMode] = useState('user')
 
-
+  console.log("44", userObj)
   // Get All Users Request
   const getUsers = async () => {
     try {
@@ -53,14 +54,6 @@ function App() {
     } catch (err) { console.error(err) }
   }
 
-  // Get All Products
-  // const getProducts = async () => {
-  //   try {
-  //     const userRes = await axios.get("http://localhost:5000/api/products/");
-  //     setProducts(userRes.data)
-  //   } catch (err) { console.error(err) }
-  // }
-
 
   // Main Use Effect
   useEffect(() => {
@@ -68,13 +61,14 @@ function App() {
     // Get All users
     getUsers()
     // Get All products
-    // getProducts()
+    getProducts()
 
     // Update Logged in status
     setLoggedIn(sessionStorage.getItem('isLoggedIn'))
 
     // Update Logged in user details
-    setUserObj(JSON.parse(sessionStorage.getItem('user')))
+    setUserObjRaw(JSON.parse(sessionStorage.getItem('user')))
+    userObj = userObjRaw?.usr
 
     // Refresh data
     // const interval = setInterval(async () => {
@@ -239,6 +233,16 @@ function App() {
   ]);
 
 
+  // Get All Products
+  const getProducts = async () => {
+    try {
+      const userRes = await axios.get("http://localhost:5000/api/products/");
+      setProductDemo(userRes.data)
+    } catch (err) { console.error(err) }
+  }
+
+
+
   // Routes Array
   // Nesting product children routes
   const products_child = [
@@ -265,7 +269,7 @@ function App() {
     },
     {
       path: '/account',
-      element: <PrivateRoute><Account allProducts={product_demo} /></PrivateRoute>
+      element: <PrivateRoute><Account allProducts={product_demo} userObjct={userObj} /></PrivateRoute>
     },
     {
       path: '/edit-account',

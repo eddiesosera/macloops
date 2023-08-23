@@ -35,7 +35,7 @@ export const Register = ({ allUsers }) => {
   // Array of Input Fields object
   const inputFields = [
     {
-      name: 'profileImage',
+      name: 'profile_image',
       type: 'single_image',
       placeholder: 'Username or Email',
       // input: (e) => { setFormData({ ...formData, profile_image: profile }) }
