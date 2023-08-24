@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from '../components/card';
 import { JackInTheBox } from 'react-awesome-reveal';
+import Masonry from 'react-responsive-masonry';
 
 export const SimilarPicks = ({ similar_picks }) => {
     // Algorithm
@@ -15,11 +16,15 @@ export const SimilarPicks = ({ similar_picks }) => {
                 </div>
             </div>
 
-            <ul className='ymal_wrap' style={{ display: "flex", justifyContent: 'space-between', padding: '0' }}>
-                {similar_picks.map(sp => {
-                    return <li key={sp.imgsrc} style={{ listStyle: 'none' }}><Card product={sp} /></li>;
+            <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}
+            // className='ymal_wrap' style={{ display: "flex", justifyContent: 'space-between', padding: '0' }}
+            >
+                {similar_picks.map((sp, index) => {
+                    if (index < 5) {
+                        return <li key={sp.imgsrc} style={{ listStyle: 'none' }}><Card product={sp} /></li>;
+                    }
                 })}
-            </ul>
+            </Masonry>
 
         </div>
     )

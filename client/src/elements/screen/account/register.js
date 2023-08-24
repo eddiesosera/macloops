@@ -15,9 +15,10 @@ export const Register = ({ allUsers }) => {
   const [img, setImg] = useState('')
   const [profile, setProfile] = useState('');
   const navigate = useNavigate();
+  const PORT = process.env.LOCALHOST_IP
 
   const registerAction = async () => {
-    await axios.post('http://localhost:5000/api/addUser', formData,
+    await axios.post('http://' + PORT + ':5000/api/addUser', formData,
       { headers: { "Content-Type": "application/json" } })
       .then((regRes => {
         console.log(regRes)

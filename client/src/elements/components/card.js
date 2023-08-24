@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import './style/card.css';
 
@@ -9,12 +9,13 @@ import { useSpring, animated } from '@react-spring/web';
 import anime from 'animejs/lib/anime.es.js';
 
 export const Card = ({ product }) => {
-  const navigate = useNavigate()
-  const [cardTgl, setCardTgl] = useState(false)
+  const navigate = useNavigate();
+  const [cardTgl, setCardTgl] = useState(false);
   const [likedTgl, setHeartTgl] = useState(false);
   const [addToCartTgl, setAddToCartTgl] = useState(false);
+  const [productId, setProductId] = useState(product?._id)
 
-
+  // console.log("PRDCT", product)
   // ANIMATION
   const [state, toggle] = useState(true)
   const { x } = useSpring({
@@ -22,6 +23,10 @@ export const Card = ({ product }) => {
     x: state ? 1 : 0,
     config: { duration: 1000 },
   })
+
+  useEffect(() => {
+    setProductId(product?._id)
+  }, [product])
 
 
   const addToCartNotify = () => toast(
@@ -77,15 +82,20 @@ export const Card = ({ product }) => {
 
   }
 
-  if (state) {
+  // if (state) {
 
-  }
+  // }
 
 
   return (
-    <div className="card" style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}>
+    <div className="card" style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}
+      onClick={e => {
+        localStorage.setItem('last_prod_viewed', JSON.stringify(product));
+        localStorage.getItem('last_prod_id') === "" && localStorage.setItem('last_prod_id', product?._id);
+      }}>
       <ToastContainer hideProgressBar={true} style={{ zIndex: '5' }} />
-      <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={'/product-page/' + product?._id}></NavLink>
+      <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={('/product-page/' + productId)}
+      ></NavLink>
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
         <img onClick={e => navigate('/product-page/' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ zIndex: cardTgl ? 1 : 0, height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
 

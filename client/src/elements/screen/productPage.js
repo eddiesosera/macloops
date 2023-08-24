@@ -19,14 +19,22 @@ export const ProductPage = ({ products }) => {
   )
 
 
+
+
   console.log(navigate.pathname)
 
 
   useEffect(() => {
     navigate.pathname?.split("/")[2] !== productId && setProductId(navigate.pathname?.split("/")[2])
     products.map(prdct => {
-      return (prdct.id === productId && setProduct(prdct))
+      JSON.parse(localStorage.getItem('last_prod_viewed')) === "" && JSON.parse(localStorage.setItem('last_prod_viewed', prdct))
+      return (
+        prdct?.id === productId && setProduct(prdct)
+
+      );
+
     })
+
     localStorage.setItem('last_prod_viewed', JSON.stringify(product))
     console.log(product)
   }, [productId, url])

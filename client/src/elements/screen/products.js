@@ -19,9 +19,8 @@ function Items({ products }) {
   // const [productss, setProductss] = useContext(ProductsContext);
 
   return (
-    <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}
-    // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-    >
+    <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}>
+      {/* // columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }} */}
       {
         products?.map((product, index) => {
           return (
