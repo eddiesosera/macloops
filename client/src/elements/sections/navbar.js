@@ -7,6 +7,7 @@ import { Search } from "../components/search";
 
 import { LoginContext, UserModeContext } from "../../App";
 import { MacloopsLogo, MacloopsLogoAnimated } from "../components/svgs";
+import { ReactComponent as LogoAnime } from "../../img/LOGO_outline_animated.svg"
 
 
 // import { PianoKeys } from "@phosphor-icons/react";
@@ -18,7 +19,8 @@ export const Navbar = ({ userObj }) => {
   const [currScrn, setCurrScrn] = useState(useLocation().pathname);
   const [username, setUsername] = useState("Login");
   const [queryVal, setQueryVal] = useState("");
-  const [userMode, setUserMode] = useContext(UserModeContext)
+  const [userMode, setUserMode] = useContext(UserModeContext);
+  const logoSVG = require("../../img/LOGO_outline_animated.svg")
 
   console.log(userMode)
   // Screens Array: Account & Cart
@@ -104,6 +106,24 @@ export const Navbar = ({ userObj }) => {
     }
   }
 
+  const [animeLogoTgl, setAnimeLogoTgl] = useState(false);
+  const [nrmlLogoTgl, setNrmlLogoTgl] = useState(true);
+
+  const logoTgl = () => {
+
+    setAnimeLogoTgl(true);
+    setNrmlLogoTgl(false);
+    // alert(nrmlLogoTgl)
+
+    const animeTime = 4900;
+    setTimeout(() => {
+      setAnimeLogoTgl(false);
+      setNrmlLogoTgl(true);
+      // alert(animeLogoTgl)
+    }, animeTime);
+
+  }
+
 
   return (
     <div style={{ position: 'sticky', top: '0', zIndex: 5, }}>
@@ -112,9 +132,12 @@ export const Navbar = ({ userObj }) => {
       }
       <div className="navbar_wrap" style={{ display: "flex", justifyContent: "space-between", padding: "20px 60px", background: '#FFCF86', alignItems: 'center', borderBottom: '1px solid #e2b774' }}>
         <div className="navbar_left" style={{ display: "flex", gap: "40px", alignItems: 'center' }}>
-          <NavLink to="/" className="navbar_left_logo">
+          <NavLink to="/" className="navbar_left_logo" onClick={e => logoTgl()}>
             {/* <img src={logopng} alt="Logo" style={{ height: "24px" }} /> */}
-            <MacloopsLogo height={24} width={'123px'} color={'#13120f'} />
+            <div style={{ display: nrmlLogoTgl ? "flex" : "none", alignItems: 'center' }}>
+              <MacloopsLogo height={24} width={'123px'} color={'#13120f'} />
+            </div>
+            <LogoAnime height="24px" style={{ display: animeLogoTgl ? "block" : "none" }} />
             {/* <MacloopsLogoAnimated height={24} width={'123px'} color={'#13120f'} /> */}
           </NavLink>
           <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>

@@ -1,0 +1,16 @@
+.primarybtn{
+    display: flex;
+     border:  0.75px solid #C3E1E9; 
+     padding: 0 18px; 
+     width: fit-content; 
+     height: 40px;
+    background: #171819; 
+    color: #C4E4EE; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+        margin-top: 20px; 
+        margin-bottom: 10px; 
+        font-size: 15px; 
+        transition: all 0.8s cubic-bezier(0.25,0.75,0.5,1) 0s
+}
