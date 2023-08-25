@@ -45,10 +45,10 @@ export const Footer = () => {
         <div style={{ background: '#222120', color: '#f4e6d8', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <MacloopsLogo height={24} width={'123px'} color={'#ff9932'} />
-                <div>© 2023. Rights Reserved. </div>
+                <div style={{ fontSize: '14px' }}>© 2023. Rights Reserved. </div>
             </div>
 
-            <ul className='footer_mid_wrap' style={{ display: 'flex', padding: '0', gap: '15px', fontFamily: '' }}>
+            <ul className='footer_mid_wrap' style={{ display: 'flex', padding: '0', gap: '15px', fontFamily: '', fontSize: '14px' }}>
                 {
                     footer_links_abt.map(link_abt => {
                         return (

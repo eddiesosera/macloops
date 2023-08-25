@@ -14,7 +14,6 @@ import { Form } from "../components/form";
 import axios from "axios";
 
 
-
 function Items({ products }) {
   // const [productss, setProductss] = useContext(ProductsContext);
 
@@ -40,15 +39,14 @@ function PaginatedItems({ itemsPerPage }) {
   // Testing data by multiplying size of loop
   let products = productss
 
-  const numIterations = 24;
+  // const numIterations = 24;
 
-  for (let i = 0; i < numIterations; i++) {
-    const item = products[i];
-    products.push(item);
-  }
+  // for (let i = 0; i < numIterations; i++) {
+  //   const item = products[i];
+  //   products.push(item);
+  // }
 
   // setProductss(productss.map(prd => { productss.push(prd) }))
-  console.log(products)
 
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -226,8 +224,8 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
               {
                 userObj?.role === "admin" && userMode === "admin" &&
                 <button style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center', color: "#875E0C", background: '#F9F4EA',
-                  border: '0.75px solid #E9DCC3', width: 'fit-content', height: "40px", padding: '0 20px', gap: "10px"
+                  display: 'flex', justifyContent: 'center', alignItems: 'center', color: "#2293B6", background: '#EAF6F9',
+                  border: '0.75px solid #C3E1E9', width: 'fit-content', height: "40px", padding: '0 20px', gap: "10px"
                 }}
                   onClick={e => { navigate('/products/admin/new'); setPageState("new") }}>
                   <i className='ph-bold ph-plus' style={{ fontSize: '20px' }} />
@@ -252,7 +250,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
                     return (
                       <li className="product_category" key={index} onClick={e => setSelectedCategory(category?.category_name)}
                         style={{
-                          listStyle: 'none', padding: '12px', cursor: 'pointer', fontFamily: 'Nunito Sans',
+                          listStyle: 'none', padding: '12px', cursor: 'pointer', fontFamily: 'Nunito Sans', fontSize: '16px',
                           fontWeight: selectedCategory === category?.category_name ? "700" : '500', color: selectedCategory === category?.category_name ? '#111' : '#999'
                         }}
                       >{category?.category_name}</li>
@@ -269,7 +267,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
           </div>
         </div>
         <div className="products_content_wrap" style={{ padding: '20px 60px' }}>
-          <PaginatedItems itemsPerPage={24} />
+          <PaginatedItems itemsPerPage={10} />
         </div>
       </div>
     )
@@ -279,6 +277,9 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
   const returnNewStock = () => {
     return (
       <div style={{ width: '-webkit-fill-available', padding: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="pp_left_wrap" onClick={e => { navigate('/products'); setPageState("instruments") }} style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '0', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
+          <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
+        </div>
         <Form formFields={inputFields} heading={'New Instrument'} btnAction={newStockAction} btnTitle={'Add Instrument'} formObj={getFormNewStockObj} />
       </div>
     )
@@ -318,6 +319,48 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
           option_element: '',
           option_text: 'Guitar',
           option_value: 'guitar',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Drums',
+          option_value: 'drums',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Orchestral',
+          option_value: 'orchestral',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Keyboard',
+          option_value: 'keyboard',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Microphone',
+          option_value: 'microphone',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Speaker',
+          option_value: 'speaker',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'Synthesizer',
+          option_value: 'synthesizer',
           option_state: true,
           option_valueTooltipText: ''
         }
@@ -372,13 +415,18 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
   ];
 
   const newStockAction = async () => {
-    await axios.post('http://localhost:5000/api/product', formData,
-      { headers: { "Content-Type": "application/json" } })
-      .then((productRes => {
-        console.log(productRes)
-        navigate('/');
-        // regRes && setRegStatus(true)
-      }))
+    if (formData?.image_cover !== undefined) {
+      await axios.post('http://localhost:5000/api/product', formData,
+        { headers: { "Content-Type": "application/json" } })
+        .then((productRes => {
+          console.log(productRes)
+          navigate('/');
+          // regRes && setRegStatus(true)
+        }))
+    } else {
+      alert("Image upload error due to size")
+    }
+
     // alert(formData.username)
   }
 

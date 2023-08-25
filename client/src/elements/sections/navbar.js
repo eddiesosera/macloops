@@ -94,7 +94,7 @@ export const Navbar = ({ userObj }) => {
           background: '#EAF6F9', borderBottom: '0.5px solid #74c8e2', padding: '10px 60px', fontFamily: 'Nunito Sans', fontWeight: '600',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center'
         }}>
-          <div className="user_mode_text" style={{ color: '#2293B6' }}>You are now in Admin mode. You can edit stock details!</div>
+          <div className="user_mode_text" style={{ color: '#2293B6', fontSize: '14px' }}>You are now in Admin mode. You can edit stock details!</div>
           <div className="user_mode_close" style={{ color: '#2293B6', cursor: 'pointer' }} onClick={e => setUserMode("user")}>
             <i class="ph-bold ph-x-circle" style={{ fontSize: '21px' }} />
           </div>
@@ -141,6 +141,15 @@ export const Navbar = ({ userObj }) => {
           </div>
         </div>
         <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
+          <NavLink to="/orders" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
+            {/* <PianoKeys size={32} /> */}
+            {currScrn === "/orders" ? (
+              <i className="ph-fill ph-book-open" style={ActiveIcon} />
+            ) : (
+              <i className="ph-bold ph-book" style={InactiveIcon} />
+            )}
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '800' : '500', color: '#13120f' }}>Orders</div>
+          </NavLink>
           <NavLink to="/cart" className="navbar_left_page" style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
             <div style={{ display: 'flex' }}>
               {currScrn === "/cart" ? (

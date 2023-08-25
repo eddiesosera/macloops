@@ -46,8 +46,8 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                 const ctx = canvas.getContext("2d");
 
                 // Calculate the new width and height for compression (50% reduction)
-                const newWidth = Math.floor(img.width * 0.5); // Adjust as needed
-                const newHeight = Math.floor(img.height * 0.5); // Adjust as needed
+                const newWidth = Math.floor(img.width * 0.25); // Adjust as needed
+                const newHeight = Math.floor(img.height * 0.25); // Adjust as needed
 
                 // Set the canvas dimensions
                 canvas.width = newWidth;
@@ -57,7 +57,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                 ctx.drawImage(img, 0, 0, newWidth, newHeight);
 
                 // Convert the canvas content to base64 JPEG with extremely low quality
-                const compressedBase64 = canvas.toDataURL("image/jpeg", 0.001); // 0.001 indicates 0.1% quality
+                const compressedBase64 = canvas.toDataURL("image/png", 0.25); // 0.001 indicates 0.1% quality
 
                 // Convert base64 data URL to ArrayBuffer and calculate size
                 const binaryString = atob(compressedBase64.split(',')[1]);
@@ -80,22 +80,6 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
             };
         });
     }
-
-    // reject(new Error("Image couldn't be compressed to 100 KB or less. Image size is: " + sizeInKB));
-
-    // Example usage
-    // const inputBase64Image = formObjContainer?.profile_image; // Replace with your base64 image data
-
-    // compressImageTo100KB(inputBase64Image)
-    //     .then(compressedImage => {
-    //         console.log("Compressed image:", compressedImage);
-    //     })
-    //     .catch(error => {
-    //         console.error("Error:", error.message);
-    //     });
-
-
-    // const getDropdownOpt = (opt) => { setFormObjContainer({ ...formObjContainer, [field?.name]: opt }) }
 
 
     return (

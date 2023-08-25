@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PPInfo } from "../components/product_page/pp_info";
 import { PPImageViewer } from "../components/product_page/pp_imagViewer";
@@ -6,8 +6,9 @@ import { PPSpecs } from "../components/product_page/pp_specs";
 import { SimilarPicks } from "../sections/similarPicks";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
 import { Fade, JackInTheBox } from "react-awesome-reveal";
+import { UserModeContext } from "../../App";
 
-export const ProductPage = ({ products }) => {
+export const ProductPage = ({ products, userObj }) => {
   // Declaring all variables
   const navigate = useLocation()
   const navigateTo = useNavigate()
@@ -16,9 +17,8 @@ export const ProductPage = ({ products }) => {
   const [productId, setProductId] = useState(queryProductId[2])
   const [product, setProduct] = useState(
     JSON.parse(localStorage.getItem('last_prod_viewed'))
-  )
-
-
+  );
+  const [userMode, setUserMode] = useContext(UserModeContext);
 
 
   console.log(navigate.pathname)
@@ -50,7 +50,7 @@ export const ProductPage = ({ products }) => {
             <PPImageViewer productImages={product} />
             {/* <div> */}
             {/* <div className='p_comp_divider' style={{ borderRight: '1px solid #EDEAE6' }}></div> */}
-            <PPInfo productInfo={product} />
+            <PPInfo productInfo={product} userMode={userMode} userObj={userObj} />
             {/* </div> */}
           </div>
         </div>

@@ -97,7 +97,7 @@ export const Account = ({ allUsers, allProducts, userObjct }) => {
             <div className="account_details_top" style={{ marginBottom: '15px' }}>
               <div className="account_details_usernames" style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
                 <div className="account_details_wrap" style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#13120F' }}>{userObj?.fullname?.charAt(0).toUpperCase() + userObj?.fullname?.slice(1)}</div>
-                <div style={{ fontSize: '8px', color: '#6f6d6a' }}>●</div>
+                <div style={{ fontSize: '4px', color: '#6f6d6a', fontWeight: '300' }}>●</div>
                 <div className="account_details_wrap" style={{ fontFamily: 'Nunito Sans', fontSize: '', color: '#6F6D6A' }}>{userObj?.email}</div>
               </div>
               <div className="account_details_wrap" style={{ fontFamily: 'Nunito Sans', fontSize: '', color: '#6F6D6A', marginTop: '5px' }}>{userObj?.role?.charAt(0).toUpperCase() + userObj?.role?.slice(1)}</div>

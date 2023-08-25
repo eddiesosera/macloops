@@ -97,7 +97,7 @@ export const Card = ({ product }) => {
       <NavLink style={{ display: 'block', width: '241px', height: '376px', position: 'absolute' }} to={('/product-page/' + productId)}
       ></NavLink>
       <div className="card_top_wrap" style={{ background: '#EDEAE6', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-        <img onClick={e => navigate('/product-page/' + product?.id)} src={product?.image_cover} alt='Product Image' style={{ zIndex: cardTgl ? 1 : 0, height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
+        <img onClick={e => navigate('/product-page/' + productId)} src={product?.image_cover} alt='Product Image' style={{ zIndex: cardTgl ? 1 : 0, height: cardTgl ? '260px' : "240px", width: cardTgl ? '260px' : "240px", objectFit: 'contain', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }} />
 
         <animated.div
           style={{

@@ -5,6 +5,11 @@
 
   }
 
+  ::placeholder {
+    color: #2f2e2d;
+    opacity: 1; /* Firefox */
+  }
+
   .navbar_search::-webkit-search-decoration,
   .navbar_search::-webkit-search-cancel-button,
   .navbar_search::-webkit-search-results-button,
