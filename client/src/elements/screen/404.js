@@ -7,13 +7,13 @@ export const Error404 = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 'fit-content', padding: '60px', margin: '0 auto' }}>
 
-            <Img404 />
+            <Img404 width="100%" />
             <div style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center',
                 justifyContent: 'center', width: 'fit-content', height: "fit-content", textAlign: 'center'
             }}>
                 <div style={{
-                    fontFamily: "Montserrat", fontSize: '36px', fontWeight: '700', height: "fit-content",
+                    fontFamily: "Montserrat", fontSize: '24px', fontWeight: '700', height: "fit-content",
                     color: '#2f2e2d'
                 }}>
                     PAGE NOT FOUND
