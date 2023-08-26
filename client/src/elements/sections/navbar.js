@@ -52,7 +52,7 @@ export const Navbar = ({ userObj }) => {
   const imgUpdt = () => {
     if (loggedIn[0] !== null) {
       if (loggedIn[0] === "true") {
-        return <img style={{ height: '24px', width: '24px', borderRadius: '25px', border: '#ccc solid 0.5px' }} src={userObj?.profile_image !== "" ? userObj?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
+        return <img style={{ height: '24px', width: '24px', borderRadius: '25px', border: '#ebbe7a solid 0.5px' }} src={userObj?.profile_image !== "" ? userObj?.profile_image : "https://ucarecdn.com/3cfda29f-3620-4ce6-b488-7f0757853c6d/"} alt="Profile" />
       } else {
         if (screens[0].screenPath === currScrn) {
           return <i className={screens[0].iconActive} style={ActiveIcon} />
@@ -171,7 +171,7 @@ export const Navbar = ({ userObj }) => {
             ) : (
               <i className="ph-bold ph-book" style={InactiveIcon} />
             )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '800' : '500', color: '#13120f' }}>Orders</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/orders" ? '800' : '500', color: '#13120f' }}>Orders</div>
           </NavLink>
           <NavLink to="/cart" className="navbar_left_page" style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
             <div style={{ display: 'flex' }}>

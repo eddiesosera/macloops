@@ -5,7 +5,10 @@ import { NavLink } from 'react-router-dom'
 export const Error404 = () => {
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 'fit-content', padding: '60px', margin: '0 auto' }}>
+        <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            width: 'fit-content', padding: '60px', margin: '0 auto'
+        }}>
 
             <Img404 width="100%" />
             <div style={{
