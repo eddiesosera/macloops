@@ -147,7 +147,7 @@ export const Navbar = ({ userObj }) => {
             ) : (
               <i className="ph ph-piano-keys" style={InactiveIcon} />
             )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '800' : '500', color: '#13120f' }}>Instruments</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Instruments</div>
           </NavLink>
           <NavLink to="/find-store" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
             {/* <PianoKeys size={32} /> */}
@@ -156,7 +156,7 @@ export const Navbar = ({ userObj }) => {
             ) : (
               <i className="ph ph-map-pin" style={InactiveIcon} />
             )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/find-store" ? '800' : '500', color: '#13120f' }}>Find a Store</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/find-store" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Find a Store</div>
           </NavLink>
           <div className="navbar_middle-search_wrap">
             <Search query={getQuery} />
@@ -171,7 +171,7 @@ export const Navbar = ({ userObj }) => {
             ) : (
               <i className="ph-bold ph-book" style={InactiveIcon} />
             )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/orders" ? '800' : '500', color: '#13120f' }}>Orders</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/orders" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Orders</div>
           </NavLink>
           <NavLink to="/cart" className="navbar_left_page" style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
             <div style={{ display: 'flex' }}>
@@ -180,17 +180,20 @@ export const Navbar = ({ userObj }) => {
               ) : (
                 <i className="ph-bold ph-shopping-cart-simple" style={InactiveIcon} />
               )}
-              <div className="cart_itms_no" style={{ display: userObj?.cart_items?.length !== 0 ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
+              {
+
+              }
+              <div className="cart_itms_no" style={{ display: userObj?.cart_items?.length !== undefined ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
                 {userObj?.cart_items?.length}
               </div>
             </div>
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/cart" ? '800' : '500', color: '#13120f' }}>Cart</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/cart" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Cart</div>
           </NavLink>
           <NavLink to="/account" style={{ display: "flex", gap: '10px', alignItems: 'center' }} >
             {
               imgUpdt()
             }
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/account" ? '800' : '500', color: '#13120f' }}>{username}</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/account" ? '700' : '700', color: '#13120f', fontSize: '15px' }}>{username}</div>
           </NavLink>
         </div>
       </div>

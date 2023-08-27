@@ -58,10 +58,10 @@ export const DropDown = ({ options, placeholder, selectedValue, selectedOptionLa
             <button className='add_btn' style={{
                 display: 'flex', border: dropDownTgl ? '1px solid #594825' : ' 0.75px solid #e9dac3', padding: '0 15px', width: '100%',
                 height: '40px', background: 'none', color: '#594825', alignItems: 'center', justifyContent: 'space-between', gap: '10px',
-                zIndex: '1'
+                zIndex: '1',
             }} onClick={e => setDropDownTgl(!dropDownTgl)}>
-                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600', color: '#594825', fontSize: '14px' }}>{selectedOptionLabel === undefined ? selectedOptionLbl : selectedOptionLabel}</div>
-                <i className={dropDownTgl ? 'ph-bold ph-caret-up' : 'ph-bold ph-caret-down'} style={{ fontSize: '14px', }} />
+                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '700', color: selectedOptionLabel === undefined ? '#A19989' : '#594825', fontSize: '15px' }}>{selectedOptionLabel === undefined ? selectedOptionLbl : selectedOptionLabel}</div>
+                <i className={dropDownTgl ? 'ph-bold ph-caret-up' : 'ph-bold ph-caret-down'} style={{ fontSize: '14px', color: selectedOptionLabel === undefined ? '#A19989' : '#594825' }} />
             </button>
             <div className='options_wrap' style={{
                 background: '#FFFBF6', borderLeft: dropDownTgl ? '0.5px solid #594825' : '', borderRight: dropDownTgl ? '0.5px solid #594825' : '',
@@ -88,7 +88,7 @@ export const DropDown = ({ options, placeholder, selectedValue, selectedOptionLa
                                 <div className='option_itm_element' style={{ color: optn?.option_state ? '#3a7c91' : '#3a7c91', display: optn?.option_element === "" ? 'none' : 'block' }}>{optn?.option_element}</div>
                                 <div className='option_itm_text' style={{
                                     fontFamily: 'Nunito Sans',
-                                    fontWeight: selectedOption === optn?.option_value ? '800' : '500', fontSize: '13px',
+                                    fontWeight: selectedOption === optn?.option_value ? '900' : '700', fontSize: '16px',
                                     color: returnOptionColor(optn)
                                 }}>
                                     {optn?.option_text}

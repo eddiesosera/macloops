@@ -21,7 +21,7 @@ export const Search = ({ query }) => {
   );
 
   return (
-    <div className="search_wrap" style={{ border: "1px solid #13120f", display: "flex", alignItems: 'center', padding: '10px', gap: '5px', background: 'none', width: 'fit-content', height: '20px' }}>
+    <div className="search_wrap" style={{ border: "1px solid #CFB895", display: "flex", alignItems: 'center', padding: '10px', gap: '8px', background: '#FFFBF6', width: 'fit-content', height: '20px' }}>
       <i className="ph-bold ph-magnifying-glass" style={{ color: '#13120F' }} />
       <input
         ref={searchDOM}
@@ -30,7 +30,7 @@ export const Search = ({ query }) => {
         placeholder="Search instruments..."
         style={{
           outline: "none", border: "none", background: 'none', color: '#0F1213',
-          fontFamily: 'Montserrat', fontWeight: '500', width: '280px', fontSize: '14px'
+          fontFamily: 'Nunito Sans', fontWeight: '600', width: '280px', fontSize: '15px'
         }}
         value={searchVal}
         onBlur={e => {

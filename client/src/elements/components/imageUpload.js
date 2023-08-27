@@ -13,12 +13,14 @@ export const ImageUpload = ({ listOfIimages, type }) => {
         listOfIimages(imageList)
     };
     const imgUpldBtnStyle = {
-        width: '100%', borderRadius: '0'
+        width: '100%', borderRadius: '0', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        gap: '12px', height: '60px', color: '#A19989', fontWeight: '600'
+
     }
 
 
     return (
-        <div className="imageUpload_wrap" style={{ background: 'none', width: '100%' }}>
+        <div className="imageUpload_wrap" style={{ background: 'none', width: '100%', marginBottom: '20px' }}>
             <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url" acceptType={["jpg", "png", "gif"]}>
                 {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
                     // write your building UI

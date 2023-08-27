@@ -251,7 +251,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
                       <li className="product_category" key={index} onClick={e => setSelectedCategory(category?.category_name)}
                         style={{
                           listStyle: 'none', padding: '12px', cursor: 'pointer', fontFamily: 'Nunito Sans', fontSize: '16px',
-                          fontWeight: selectedCategory === category?.category_name ? "700" : '500', color: selectedCategory === category?.category_name ? '#111' : '#999'
+                          fontWeight: selectedCategory === category?.category_name ? "900" : '700', color: selectedCategory === category?.category_name ? '#111' : '#999'
                         }}
                       >{category?.category_name}</li>
                     )

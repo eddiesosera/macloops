@@ -18,13 +18,14 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
 
     // STYLE
     const inputStyle = {
-        border: '0.75px solid #e2ddd6', padding: '12px', width: '300px', background: 'none', fontFamily: 'Nunito Sans', outline: 'none'
+        border: '0.75px solid #e2ddd6', padding: '12px 16px', width: '100%', background: 'none', fontFamily: 'Nunito Sans', outline: 'none',
+        fontWeight: '600'
     };
 
     const buttonStyle = {
-        display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: '100%', height: '40px',
-        background: '#171819', color: '#C4E4EE', alignItems: 'center', justifyContent: 'center', gap: '10px',
-        marginTop: '20px', marginBottom: '10px', fontSize: '15px', transition: 'all 0.8s cubic-bezier(0.25,0.75,0.5,1) 0s'
+        display: 'flex', padding: '0 18px', width: '100%', height: '50px', fontWeight: '800', fontFamily: 'Nunito Sans',
+        background: '#171819', color: '#effbff', alignItems: 'center', justifyContent: 'center', gap: '10px', border: 'none',
+        marginTop: '20px', marginBottom: '10px', fontSize: '16px', transition: 'all 0.8s cubic-bezier(0.25,0.75,0.5,1) 0s'
     };
 
 
@@ -84,8 +85,8 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
 
     return (
         <div>
-            <div className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '20px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
-                <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', fontSize: '36px' }}>{heading}</div>
+            <div className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: ' 30px 40px', height: 'fit-content', border: '0.75px solid #E9E6E1', minWidth: '265px' }}>
+                <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '800', color: '#2f2e2d', fontSize: '24px', textTransform: 'uppercase' }}>{heading}</div>
                 <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
                     {
                         formFields.map(field => {
