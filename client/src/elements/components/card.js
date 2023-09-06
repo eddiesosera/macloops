@@ -18,11 +18,11 @@ export const Card = ({ product }) => {
   // console.log("PRDCT", product)
   // ANIMATION
   const [state, toggle] = useState(true)
-  const { x } = useSpring({
-    from: { x: 0 },
-    x: state ? 1 : 0,
-    config: { duration: 1000 },
-  })
+  // const { x } = useSpring({
+  //   from: { x: 0 },
+  //   x: state ? 1 : 0,
+  //   config: { duration: 1000 },
+  // })
 
   useEffect(() => {
     setProductId(product?._id)
@@ -101,11 +101,11 @@ export const Card = ({ product }) => {
 
         <animated.div
           style={{
-            opacity: x.to({ range: [0, 1], output: [1, 1] }),
-            scale: x.to({
-              range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-              output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],
-            }), zIndex: '1', position: 'absolute', marginRight: '20px', marginBottom: '20px', height: '36px', width: '36px'
+            // opacity: x.to({ range: [0, 1], outpust: [1, 1] }),
+            // scale: x.to({
+            //   range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+            //   output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],}), 
+            zIndex: '1', position: 'absolute', marginRight: '20px', marginBottom: '20px', height: '36px', width: '36px'
           }} onClick={e => toggle(!state)}>
           <div className="card_top_btn" onClick={e => likeProduct()}
             style={{
@@ -129,11 +129,10 @@ export const Card = ({ product }) => {
           <div onClick={e => toggle(!state)} style={{ zIndex: cardTgl ? 2 : 1 }}>
             <animated.div
               style={{
-                opacity: x.to({ range: [0, 1], output: [1, 1] }),
-                scale: x.to({
-                  range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                  output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],
-                }),
+                // opacity: x.to({ range: [0, 1], output: [1, 1] }),
+                // scale: x.to({
+                //   range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                //   output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],}),
               }} >
               <div onClick={e => { addToCart(); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#f6f0e6', color: addToCartTgl ? '#f9f4eb' : '#6e480f', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
                 <i className={addToCartTgl ? 'ph-fill ph-shopping-cart-simple' : 'ph-bold ph-plus'} />

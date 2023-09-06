@@ -18,7 +18,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
 
     // STYLE
     const inputStyle = {
-        border: '0.75px solid #e2ddd6', padding: '12px 16px', width: '100%', background: 'none', fontFamily: 'Nunito Sans', outline: 'none',
+        border: '0.75px solid #e2ddd6', padding: '12px 16px', width: 'fit-content', background: 'none', fontFamily: 'Nunito Sans', outline: 'none',
         fontWeight: '600'
     };
 

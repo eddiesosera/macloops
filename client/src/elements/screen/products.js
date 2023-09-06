@@ -220,7 +220,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
         <div className="topHeaderAndFilters_wrap" style={{ padding: '20px 0' }}>
           <div style={{ padding: '0 60px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ fontSize: '72px', fontFamily: 'Montserrat', fontWeight: '700', color: '#2f2e2d', textTransform: 'uppercase' }}>All Instruments</div>
+              <div style={{ fontSize: '48px', fontFamily: 'Montserrat', fontWeight: '700', color: '#2f2e2d', textTransform: 'uppercase' }}>All Instruments</div>
               {
                 userObj?.role === "admin" && userMode === "admin" &&
                 <button style={{
@@ -398,19 +398,65 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
       list: [
         {
           option_element: '',
-          option_text: 'CM',
-          option_value: 'cM',
+          option_text: 'cm',
+          option_value: 'cm',
           option_state: true,
           option_valueTooltipText: ''
         },
         {
           option_element: '',
-          option_text: 'MM',
+          option_text: 'mm',
           option_value: 'mm',
           option_state: true,
           option_valueTooltipText: ''
         }
       ]
+    },
+    {
+      name: 'weight_unit',
+      type: 'dropdown',
+      placeholder: 'Weight Unit',
+      list: [
+        {
+          option_element: '',
+          option_text: 'kg',
+          option_value: 'kg',
+          option_state: true,
+          option_valueTooltipText: ''
+        },
+        {
+          option_element: '',
+          option_text: 'g',
+          option_value: 'g',
+          option_state: true,
+          option_valueTooltipText: ''
+        }
+      ]
+    },
+    {
+      name: 'width',
+      type: 'text',
+      placeholder: 'Width',
+    },
+    {
+      name: 'height',
+      type: 'text',
+      placeholder: 'Height',
+    },
+    {
+      name: 'height',
+      type: 'text',
+      placeholder: 'Height',
+    },
+    {
+      name: 'depth',
+      type: 'text',
+      placeholder: 'Depth',
+    },
+    {
+      name: 'depth',
+      type: 'text',
+      placeholder: 'Weight',
     },
   ];
 
@@ -428,7 +474,9 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     }
 
     // alert(formData.username)
-  }
+  };
+
+  // "weight_unit": "kg", "width": 0, "height": 0, "depth": 0, "weight": 0
 
 
   return (
@@ -438,8 +486,6 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
           returnListOfProducts()
           : returnNewStock()
       }
-
-
     </div>
   )
 };

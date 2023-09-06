@@ -6,7 +6,7 @@ import { Fade } from "react-awesome-reveal";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export const PPInfo = ({ productInfo, userObj, userMode }) => {
+export const PPInfo = ({ productInfo, userObj, userMode, pagestate }) => {
     const [infoForm, setInfoForm] = useState({});
     const navigate = useNavigate()
 
@@ -98,7 +98,9 @@ export const PPInfo = ({ productInfo, userObj, userMode }) => {
                             display: 'flex', justifyContent: 'center', alignItems: 'center', color: "#2293B6",
                             background: '#EAF6F9', border: '0.75px solid #C3E1E9', width: 'fit-content', height: "40px",
                             padding: '0 20px', gap: "10px"
-                        }}>
+                        }}
+                            onClick={e => { pagestate("edit") }}
+                        >
                             <i className='ph ph-pencil-simple' style={{ fontSize: '20px', }} />
                             <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Edit Product</div>
                         </button>
