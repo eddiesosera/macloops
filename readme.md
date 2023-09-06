@@ -1,4 +1,4 @@
-# MedLink by Eddie Sosera
+# Macloops by Eddie Sosera
 
 > A MERN ecommerce dashboard designed for musicians.
 
