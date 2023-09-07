@@ -4,7 +4,7 @@
 
 ## Project Background
 
-#### This is a term 3 project where we were tasked to:
+#### The requirements for the project were as follows:
 
 - Create and modify databases using ExpressJs and Mongo,
 - Store and retrieve information in those databases and

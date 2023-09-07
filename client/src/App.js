@@ -32,6 +32,7 @@ export const UsersContext = createContext();
 export const ProductsContext = createContext();
 export const UserModeContext = createContext();
 
+
 function App() {
   // Declaring all variables
   const userStateSession = sessionStorage.getItem('isLoggedIn');
@@ -80,7 +81,7 @@ function App() {
     try {
       const userRes = await axios.get("http://localhost:5000/api/getUsers/");
       setUsers(userRes.data)
-      console.log("Testing User data", userRes.data)
+      // console.log("Testing User data", userRes.data)
     } catch (err) { console.error(err) }
   }
 
@@ -92,7 +93,6 @@ function App() {
 
   // Main Use Effect
   useEffect(() => {
-
 
     // Get All users
     getUsers()
@@ -117,7 +117,7 @@ function App() {
     loggedIn,
     userStateSession,
     currentScreen,
-    product_demo
+    // product_demo
   ])
 
 

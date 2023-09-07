@@ -22,7 +22,7 @@ export const Navbar = ({ userObj }) => {
   const [userMode, setUserMode] = useContext(UserModeContext);
   const logoSVG = require("../../img/LOGO_outline_animated.svg")
 
-  console.log(userMode)
+  // console.log(userMode)
   // Screens Array: Account & Cart
   const screens = [
     {

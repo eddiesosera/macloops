@@ -99,7 +99,7 @@ export const PPInfo = ({ productInfo, userObj, userMode, pagestate }) => {
                             background: '#EAF6F9', border: '0.75px solid #C3E1E9', width: 'fit-content', height: "40px",
                             padding: '0 20px', gap: "10px"
                         }}
-                            onClick={e => { pagestate("edit") }}
+                            onClick={e => { pagestate("edit-product") }}
                         >
                             <i className='ph ph-pencil-simple' style={{ fontSize: '20px', }} />
                             <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Edit Product</div>

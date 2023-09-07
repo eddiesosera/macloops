@@ -20,9 +20,12 @@ export const ProductPage = ({ products, userObj }) => {
     JSON.parse(localStorage.getItem('last_prod_viewed'))
   );
   const [userMode, setUserMode] = useContext(UserModeContext);
-  const [pageState, setPageState] = useState('product');
+  // const [pageState, setPageState] = useState('product');
+  const [pageState, setPageState] = useState('view-product');
   const [formData, setFormData] = useState({})
   const navigateto = useNavigate();
+
+  // console.log(navigate.pathname)
 
 
   useEffect(() => {
@@ -34,14 +37,21 @@ export const ProductPage = ({ products, userObj }) => {
       );
     })
 
-    pageState === undefined && setPageState("product")
+    // pageState === undefined && setPageState("product");
 
     localStorage.setItem('last_prod_viewed', JSON.stringify(product))
-    console.log(product)
+
   }, [productId, url, pageState]);
 
 
-  console.log(navigate.pathname)
+  const editState = (state) => {
+    setPageState(state);
+  };
+
+
+  const getFormEditStockObj = (form) => {
+    setFormData(form)
+  };
 
 
   const returnProductPage = () => {
@@ -105,17 +115,14 @@ export const ProductPage = ({ products, userObj }) => {
     alert("Edit page set")
   };
 
-  const editState = (state) => {
-    setPageState(state);
-    return state;
-  }
 
   const returnEditProduct = () => {
     return (
       <div style={{ width: '-webkit-fill-available', padding: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
         <div className="pp_left_wrap"
-          onClick={e => { alert(pageState); setPageState("product"); alert(pageState + "2"); }}
-          style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '0', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
+          onClick={e => { alert(pageState); setPageState("view-product") }}
+          style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '100px', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
           <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
         <Form formFields={inputFields} heading={'Edit Instrument'} btnAction={editStockAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
@@ -298,15 +305,23 @@ export const ProductPage = ({ products, userObj }) => {
     },
   ];
 
-  const getFormEditStockObj = (form) => {
-    setFormData(form)
-  };
+
+  const renderPage = (state) => {
+    switch (state) {
+      case "view-product":
+        returnProductPage()
+        break;
+      case "edit-product":
+        returnEditProduct()
+        break;
+    }
+  }
 
   return (
     <div className="product_wrap" >
       {
-        pageState === "product" ? returnProductPage()
-          : returnEditProduct()
+        renderPage(pageState)
+        // pageState === "view-product" ? returnProductPage() : returnEditProduct()
       }
     </div>
   )
