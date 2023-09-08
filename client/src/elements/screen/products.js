@@ -104,6 +104,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
   const location = useLocation();
   const [formData, setFormData] = useState({})
 
+
   // 2 page states = instruments
   const [pageState, setPageState] = useState('instruments');
   // const [userObj, setUserObj] = useState(JSON.parse(sessionStorage.getItem('user')));
@@ -190,7 +191,6 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
       option_valueTooltipText: ''
     }
   ];
-
 
 
   // PAGINATE BY URL SECTION

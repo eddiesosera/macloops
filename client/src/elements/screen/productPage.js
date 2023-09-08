@@ -25,7 +25,6 @@ export const ProductPage = ({ products, userObj }) => {
   const [userMode, setUserMode] = useContext(UserModeContext);
   const [pageState, setPageState] = useState('view-product');
   const [formData, setFormData] = useState({})
-  const navigateto = useNavigate();
   const { id } = useParams();
 
 
@@ -72,9 +71,9 @@ export const ProductPage = ({ products, userObj }) => {
   // Delete Product
   const deleteProduct = () => {
     // alert(productInfo?._id)
-    axios.delete('http://localhost:5000/api/product/' + productInfo?._id)
+    axios.delete('http://localhost:5000/api/product/' + product?._id)
       .then((res) => {
-        navigate("/products")
+        navigateTo("/products")
       })
   };
 
@@ -99,11 +98,6 @@ export const ProductPage = ({ products, userObj }) => {
     url,
     // pageState
   ]);
-
-
-  const editState = (state) => {
-    setPageState(state);
-  };
 
 
   const getFormEditStockObj = (form) => {
@@ -233,7 +227,7 @@ export const ProductPage = ({ products, userObj }) => {
           style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '100px', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
           <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
-        <Form formFields={inputFields} preFillValue={product} heading={'Edit Instrument'} btnAction={editStockAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
+        <Form formFields={inputFields} preFillValue={product} heading={'Edit Instrument'} btnAction={editProductAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
       </div>
     )
   };
@@ -426,21 +420,17 @@ export const ProductPage = ({ products, userObj }) => {
   ];
 
 
-  const editStockAction = async () => {
-    // if (formData?.image_cover !== undefined) {
-    //   await axios.post('http://localhost:5000/api/product', formData,
-    //     { headers: { "Content-Type": "application/json" } })
-    //     .then((productRes => {
-    //       console.log(productRes)
-    //       navigate('/');
-    //       // regRes && setRegStatus(true)
-    //     }))
-    // } else {
-    //   alert("Image upload error due to size")
-    // }
+  const editProductAction = async () => {
+    await axios.patch('http://localhost:5000/api/product/' + product?._id, formData,
+      { headers: { "Content-Type": "application/json" } })
+      .then((productRes => {
+        console.log(productRes)
+        setPageState("view-product")
+        // regRes && setRegStatus(true)
+      }))
 
-    // alert(formData.username)
-    alert("Edit page set")
+    alert(formData?.name + " and id: " + product?._id)
+    // alert("Edit page set")
   };
 
 
