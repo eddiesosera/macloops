@@ -25,7 +25,7 @@ router.post("/api/createOrder", verifyToken, async (req, res) => {
 
         // Create a new order with the associated customer (user) data
         const order = new OrderSchema({
-            customer: user, // Use the user data
+            customer: user, // Using the user data
             product: req.body.product,
             quantity: req.body.quantity,
         });
@@ -39,7 +39,7 @@ router.post("/api/createOrder", verifyToken, async (req, res) => {
     }
 });
 
-// Get all orders
+// Get All Orders
 router.get("/api/orders", verifyToken, async (req, res) => {
     try {
         const userId = req.user.userId;
@@ -51,6 +51,50 @@ router.get("/api/orders", verifyToken, async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: "Error fetching orders." });
     }
+});
+
+// Get Single Orders
+router.get("/api/order/:id", verifyToken, async (req, res) => {
+    try {
+        // const userId = req.user.userId;
+
+        // userId to find orders associated with the user
+        const findSingleOrder = await OrderSchema.findById(req.params.id);
+
+        res.json(findSingleOrder);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching orders." });
+    }
+});
+
+//Update Order, Excludes id parameter as it automatically updates
+router.patch("/api/updateOrder/:id", verifyToken, async (req, res) => {
+    const orderId = req.params.id; // Get the order ID from the URL parameters
+
+    try {
+        // Create an object containing the fields to update (excluding _id)
+        const updatedFields = { ...req.body };
+        delete updatedFields._id; // Remove _id if it's present in the request body
+
+        // Update the order document by ID
+        const result = await OrderSchema.updateOne({ _id: orderId }, { $set: updatedFields });
+
+        if (result.nModified === 0) {
+            return res.status(404).json({ error: "Order not found or no changes made." });
+        }
+
+        res.json({ message: "Order updated successfully." });
+    } catch (error) {
+        res.status(500).json({ error: "Error updating the order." });
+    }
+});
+
+//Delete Order
+router.delete("/api/deleteOrder/:id", verifyToken, async (req, res) => {
+    const { id } = req.params.id;
+    await OrderSchema.findByIdAndDelete(req.params.id)
+        .then(response => res.json(response))
+        .catch(error => res.status(500).json(error));
 });
 
 module.exports = router;

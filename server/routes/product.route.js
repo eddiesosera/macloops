@@ -1,10 +1,11 @@
 const express = require("express");
 
 const ProductSchema = require("../models/product.model");
+const verifyToken = require("../middleware/verifyToken");
 
 const router = express();
 
-//Get All
+//Get All Products
 router.get("/api/products/", async (req, res) => {
     const findProduct = await ProductSchema.find();
     res.json(findProduct);
@@ -16,7 +17,7 @@ router.get("/api/product/:id", async (req, res) => {
     res.json(findProduct);
 });
 
-//Update
+//Update Product
 router.patch("/api/product/:id", async (req, res) => {
     const { id } = req.params.id;
     await ProductSchema.updateOne({ id }, req.body)
@@ -24,7 +25,7 @@ router.patch("/api/product/:id", async (req, res) => {
         .catch(error => res.status(500).json(error));
 });
 
-//Create
+//Create Product
 router.post("/api/product", async (req, res) => {
     console.log("Cars");
     const product = new ProductSchema({ ...req.body });
@@ -34,8 +35,8 @@ router.post("/api/product", async (req, res) => {
         .catch(error => res.status(500).json(error));
 });
 
-//Delete
-router.delete("/api/product/:id", async (req, res) => {
+//Delete Product
+router.delete("/api/product/:id", verifyToken, async (req, res) => {
     const { id } = req.params.id;
     await ProductSchema.findByIdAndDelete(req.params.id)
         .then(response => res.json(response))
