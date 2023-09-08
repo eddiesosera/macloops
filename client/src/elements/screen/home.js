@@ -15,7 +15,7 @@ export const Home = ({ allProducts, allUsers }) => {
   })
   return (
     <div style={{ padding: "0px 0px" }}>
-      {/* <Hero /> */}
+      <Hero />
       <Sale sale_products={allProducts} />
     </div>
   );

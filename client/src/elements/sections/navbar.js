@@ -80,7 +80,7 @@ export const Navbar = ({ userObj }) => {
 
   useEffect(() => {
 
-  }, [userMode])
+  }, [userMode, userObj])
 
 
 

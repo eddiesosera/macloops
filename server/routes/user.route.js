@@ -2,12 +2,12 @@ const express = require("express");
 const multer = require("multer");
 const UserSchema = require("../models/user.model");
 const router = express();
-
 const jwt = require("jsonwebtoken");
-
 const upload = multer({ dest: "uploads/" });
 
-const JWT_SECRET_KEY = "dv_200_term_4";
+require('dotenv').config({ path: '../.env' });
+
+const secretKey = process.env.JWT_SECRET_KEY
 
 // Login user and return a JWT token
 router.post("/api/loginUser", async (req, res) => {
@@ -24,7 +24,7 @@ router.post("/api/loginUser", async (req, res) => {
             const { password, ...userWithoutPassword } = findUser._doc;
 
             // Generate a JWT token
-            const token = jwt.sign({ userId: findUser._id }, JWT_SECRET_KEY, { expiresIn: "1h" });
+            const token = jwt.sign({ userId: findUser._id }, secretKey, { expiresIn: "1h" });
             res.json({ user: userWithoutPassword, token });
         } else {
             res.status(401).json({ error: "Invalid credentials." });

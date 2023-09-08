@@ -68,7 +68,7 @@ export const Hero = () => {
               <img src={hero.imgsrc} alt="1" style={{ height: "200px", objectFit: "contain" }} />
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <h1>{hero.heading}</h1>
-                <button style={{ height: "30px", width: "180px" }}>{hero.buttonTitle}</button>
+                <button className="primarybtn" style={{ height: "30px", width: "180px" }}>{hero.buttonTitle}</button>
               </div>
             </SwiperSlide>
           );

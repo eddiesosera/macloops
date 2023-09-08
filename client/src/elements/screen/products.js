@@ -457,10 +457,18 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     },
   ];
 
+
+
   const newStockAction = async () => {
+    const token = sessionStorage.getItem('token')
     if (formData?.image_cover !== undefined) {
       await axios.post('http://localhost:5000/api/product', formData,
-        { headers: { "Content-Type": "application/json" } })
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        })
         .then((productRes => {
           console.log(productRes)
           navigate('/');

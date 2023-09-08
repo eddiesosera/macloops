@@ -6,10 +6,12 @@ const OrderSchema = mongoose.Schema({
         ref: "User",
         required: true
     },
-    product: {
-        type: String,
-        required: true
-    },
+    products: [
+        {
+            type: String,
+            required: true,
+        }
+    ],
     quantity: {
         type: Number,
         required: true

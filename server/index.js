@@ -7,7 +7,7 @@ const userRoute = require("./routes/user.route");
 const orderRoute = require("./routes/order.route")
 const bodyParser = require("body-parser")
 
-require("dotenv/config");
+require('dotenv').config({ path: '.env' });
 
 const app = express();
 
@@ -48,6 +48,7 @@ mongoose
   .catch(err => {
     console.log("No Connection. Error:" + err);
   });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

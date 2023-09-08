@@ -57,6 +57,7 @@ export const Card = ({ product }) => {
   const addToCart = () => {
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
+
   }
 
 
