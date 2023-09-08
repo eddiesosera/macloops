@@ -283,20 +283,22 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
         <Form formFields={inputFields} heading={'New Instrument'} btnAction={newStockAction} btnTitle={'Add Instrument'} formObj={getFormNewStockObj} />
       </div>
     )
-  }
+  };
+
+
   // NEW STOCK FIELDS
   const inputFields = [
     {
       name: 'image_cover',
       type: 'single_image',
-      placeholder: '',
-      // input: (e) => { setFormData({ ...formData, profile_image: profile }) }
+      maxNumber: 1,
+      placeholder: 'Image Cover'
     },
     {
-      name: 'stockImage',
+      name: 'images',
       type: 'multiple_image',
-      placeholder: 'Username or Email',
-      // input: (e) => { setFormData({ ...formData, profile_image: profile }) }
+      maxNumber: 4,
+      placeholder: 'Upload Images'
     },
     {
       name: 'name',
@@ -368,7 +370,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     },
     {
       name: 'price',
-      type: 'text',
+      type: 'number',
       placeholder: 'Price',
     },
     {
@@ -382,13 +384,13 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
       placeholder: 'Manufacturer',
     },
     {
-      name: 'Slogan',
+      name: 'slogan',
       type: 'text',
       placeholder: 'Slogan',
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
       placeholder: 'Description',
     },
     {
@@ -435,27 +437,22 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     },
     {
       name: 'width',
-      type: 'text',
+      type: 'number',
       placeholder: 'Width',
     },
     {
       name: 'height',
-      type: 'text',
-      placeholder: 'Height',
-    },
-    {
-      name: 'height',
-      type: 'text',
+      type: 'number',
       placeholder: 'Height',
     },
     {
       name: 'depth',
-      type: 'text',
+      type: 'number',
       placeholder: 'Depth',
     },
     {
-      name: 'depth',
-      type: 'text',
+      name: 'weight',
+      type: 'number',
       placeholder: 'Weight',
     },
   ];

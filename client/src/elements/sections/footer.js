@@ -1,8 +1,11 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MacloopsLogo } from '../components/svgs'
 
 export const Footer = () => {
+
+    const linkToPage = useNavigate("");
+
     const footer_links_abt = [
         {
             name: 'Legal Information',
@@ -43,7 +46,7 @@ export const Footer = () => {
 
     return (
         <div style={{ background: '#222120', color: '#f4e6d8', display: 'flex', padding: '10px 60px', bottom: '0', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div onClick={e => { linkToPage('/') }} className='footer_left_wrap' style={{ fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <MacloopsLogo height={24} width={'123px'} color={'#ff9932'} />
                 <div style={{ fontSize: '14px' }}>© 2023. Rights Reserved. </div>
             </div>

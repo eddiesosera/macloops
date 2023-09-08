@@ -14,6 +14,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
 
     useEffect(() => {
         formObj(formObjContainer);
+
     }, [formObjContainer])
 
     // STYLE
@@ -80,7 +81,42 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                 reject(new Error("Image load error."));
             };
         });
+    };
+
+
+    function extractAndReplaceParameter(obj, targetPropertyName, replacementPropertyName, parentPath = '') {
+        return Object.keys(obj).reduce((result, key) => {
+            const fullPath = parentPath ? `${parentPath}.${key}` : key;
+
+            if (key === targetPropertyName) {
+                // If the current property matches the target parameter name
+                const replacementValue = obj[replacementPropertyName];
+                result[replacementValue] = obj[key];
+            } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                // If the property is an object, recursively search within it
+                const nestedResult = extractAndReplaceParameter(obj[key], targetPropertyName, replacementPropertyName, fullPath);
+                if (Object.keys(nestedResult).length > 0) {
+                    result = { ...result, ...nestedResult };
+                }
+            }
+
+            return result;
+        }, {});
+    };
+    function findParameterValue(objects, parameterName, targetValue) {
+        for (const obj of objects) {
+            if (obj[parameterName] === targetValue) {
+                return obj[parameterName];
+            }
+        }
+        return null; // Return null if no match is found
     }
+
+
+    useEffect(() => {
+        console.log("PREFILL", extractAndReplaceParameter(formFields, 'value', 'name'))
+        setFormObjContainer(extractAndReplaceParameter(formFields, 'value', 'name'));
+    }, [])
 
 
     return (
@@ -92,7 +128,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                         formFields.map(field => {
                             if (field?.type === "single_image") {
                                 return (
-                                    <ImageUpload listOfIimages={
+                                    <ImageUpload maxNumber={field?.maxNumber} value={formObjContainer[field?.name]} imageLabel={field?.placeholder} listOfIimages={
                                         // getImgs;
                                         (img) => {
 
@@ -111,9 +147,49 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                                         }
                                     } />
                                 )
+                            } if (field?.type === "multiple_image") {
+                                return (
+                                    <ImageUpload maxNumber={field?.maxNumber} imageLabel={field?.placeholder} listOfIimages={
+                                        // getImgs;
+                                        (img) => {
+
+                                            compressImageTo100KB(img[0]?.data_url)
+                                                .then(compressedImage => {
+                                                    setFormObjContainer({ ...formObjContainer, [field?.name]: compressedImage });
+                                                    console.log("Compressed image:", compressedImage);
+                                                    setCompressedImg(compressedImg)
+                                                    // setFormObjContainer({ ...formObjContainer, [field?.name]: img[0]?.data_url });
+
+                                                })
+                                                .catch(error => {
+                                                    console.error("Error:", error.message);
+                                                });
+
+                                        }
+                                    } />
+                                )
+                            }
+                            else if (field?.type === "textarea") {
+                                return (
+                                    <textarea type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
+                                        // onChange={e => field.input(e)} />
+                                        onChange={e => {
+                                            setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });
+                                        }
+                                        } />
+                                )
                             } else if (field?.type === "text" || field?.type === "email") {
                                 return (
-                                    <input type={field?.type} placeholder={field?.placeholder} style={inputStyle}
+                                    <input type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
+                                        // onChange={e => field.input(e)} />
+                                        onChange={e => {
+                                            setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });
+                                        }
+                                        } />
+                                )
+                            } else if (field?.type === "number") {
+                                return (
+                                    <input type="number" value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
                                         // onChange={e => field.input(e)} />
                                         onChange={e => {
                                             setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });
@@ -128,7 +204,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                                 )
                             } else if (field?.type === "password") {
                                 return (
-                                    <input type={field?.type} placeholder={field?.placeholder} style={inputStyle}
+                                    <input type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
                                         // onChange={e => field.input(e)} />
                                         onChange={e => {
                                             setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });

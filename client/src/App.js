@@ -152,7 +152,7 @@ function App() {
       element: <PrivateRoute><Products products={product_demo} /></PrivateRoute>
     },
     {
-      path: '/product-page/:id',
+      path: '/product-page/:productId',
       element: <ProductPage products={product_demo} userObj={userObj} />
     },
     {

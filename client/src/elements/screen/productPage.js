@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { PPInfo } from "../components/product_page/pp_info";
 import { PPImageViewer } from "../components/product_page/pp_imagViewer";
 import { PPSpecs } from "../components/product_page/pp_specs";
@@ -8,24 +9,74 @@ import { YouMayAlsoLike } from "../sections/you_may_also_like";
 import { Fade, JackInTheBox } from "react-awesome-reveal";
 import { UserModeContext } from "../../App";
 import { Form } from "../components/form";
+import { DropDown } from "../components/dropDown";
+import { PRating } from "../components/product_page/pp_rating";
+import { ProductQuantity } from "../components/product_page/productQuantity";
+
 
 export const ProductPage = ({ products, userObj }) => {
   // Declaring all variables
-  const navigate = useLocation()
-  const navigateTo = useNavigate()
+  const navigate = useLocation();
+  const navigateTo = useNavigate();
   const url = navigate.pathname;
-  const [queryProductId, setQueryProductId] = useState(url?.split("/"))
-  const [productId, setProductId] = useState(queryProductId[2])
-  const [product, setProduct] = useState(
-    JSON.parse(localStorage.getItem('last_prod_viewed'))
-  );
+  const [queryProductId, setQueryProductId] = useState(url?.split("/"));
+  const [productId, setProductId] = useState(queryProductId[2]);
+  const [product, setProduct] = useState(JSON.parse(localStorage.getItem('last_prod_viewed')));
   const [userMode, setUserMode] = useContext(UserModeContext);
-  // const [pageState, setPageState] = useState('product');
   const [pageState, setPageState] = useState('view-product');
   const [formData, setFormData] = useState({})
   const navigateto = useNavigate();
+  const { id } = useParams();
+
 
   // console.log(navigate.pathname)
+
+
+  // Product Info Section
+  const [infoForm, setInfoForm] = useState({});
+  const colors = {
+    name: 'role',
+    type: 'dropdown',
+    placeholder: 'Select Color',
+    list: [
+      {
+        option_element: <i className='ph-fill ph-circle' style={{ color: 'black' }} />,
+        option_text: 'Black',
+        option_value: 'black',
+        option_state: true,
+        option_valueTooltipText: ''
+      }, {
+        option_element: <i className='ph-fill ph-circle' style={{ color: 'white' }} />,
+        option_text: 'White',
+        option_value: 'white',
+        option_state: true,
+        option_valueTooltipText: ''
+      },
+      {
+        option_element: <i className='ph-fill ph-circle' style={{ color: 'brown' }} />,
+        option_text: 'Wooden Brown',
+        option_value: 'wooden_brown',
+        option_state: true,
+        option_valueTooltipText: ''
+      },
+      {
+        option_element: <i className='ph-fill ph-circle' style={{ color: 'red' }} />,
+        option_text: 'Red',
+        option_value: 'red',
+        option_state: false,
+        option_valueTooltipText: 'Out of Stock'
+      }
+    ],
+  };
+
+  // Delete Product
+  const deleteProduct = () => {
+    // alert(productInfo?._id)
+    axios.delete('http://localhost:5000/api/product/' + productInfo?._id)
+      .then((res) => {
+        navigate("/products")
+      })
+  };
 
 
   useEffect(() => {
@@ -37,11 +88,17 @@ export const ProductPage = ({ products, userObj }) => {
       );
     })
 
-    // pageState === undefined && setPageState("product");
+    pageState === undefined && setPageState("product");
 
     localStorage.setItem('last_prod_viewed', JSON.stringify(product))
 
-  }, [productId, url, pageState]);
+    console.log("PRODUCT", product)
+
+  }, [
+    productId,
+    url,
+    // pageState
+  ]);
 
 
   const editState = (state) => {
@@ -51,6 +108,74 @@ export const ProductPage = ({ products, userObj }) => {
 
   const getFormEditStockObj = (form) => {
     setFormData(form)
+  };
+
+
+  const productInfo = () => {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
+        <Fade cascade damping={0.3}>
+          <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ fontSize: '48px', fontFamily: 'Montserrat', fontWeight: '700', color: '#2f2e2d', textTransform: 'uppercase' }}>{product?.name}</div>
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#6F6D6A', textTransform: 'uppercase' }}>{product?.slogan}</div>
+          </div>
+          <div className='info_group_2' >
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>By {product?.manufacturer}</div>
+            {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
+          </div>
+          <div className='info_group_3'>
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#13120F' }}>R {product?.price}</div>
+            {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
+          </div>
+          <div className='info_group_4'>
+            <PRating p_rating={product?.rating} />
+          </div>
+        </Fade>
+        <div className='info_group_5'>
+          <DropDown placeholder={colors?.placeholder} options={colors?.list} selectedValue={(opt) => { setInfoForm({ ...infoForm, color: opt }) }} />
+        </div>
+        <div className='info_group_6'>
+          <ProductQuantity />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className='info_group_7_interaction' style={{ display: 'flex', gap: '20px' }}>
+
+            <button className='add_btn' style={{ display: 'flex', border: '0.75px solid #E9DCC3', padding: '0 18px', width: 'fit content', height: '40px', background: '#F9F4EA', color: '#875E0C', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+              <i className='ph-fill ph-shopping-cart-simple' style={{ fontSize: '20px' }} />
+              <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Add to Cart</div>
+            </button>
+            <div className='like_btn_wrap' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F7E9EA', border: "solid 0.75px #E9C3C6", color: '#e50e21', height: '40px', width: "40px", cursor: 'pointer' }}><i className='ph-fill ph-heart' style={{ fontSize: '20px' }} /></div>
+          </div>
+          {
+            // Only admins can access this section
+            userObj?.role === "admin" && userMode === "admin" &&
+            <div className='info_group_7_admin' style={{ display: 'flex', gap: '20px' }}>
+              <button style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center', color: "#2293B6",
+                background: '#EAF6F9', border: '0.75px solid #C3E1E9', width: 'fit-content', height: "40px",
+                padding: '0 20px', gap: "10px"
+              }}
+                onClick={e => { setPageState("edit-product") }}
+              >
+                <i className='ph ph-pencil-simple' style={{ fontSize: '20px', }} />
+                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Edit Product</div>
+              </button>
+              <button style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                color: '#2293B6', background: '#EAF6F9', border: '0.75px solid #C3E1E9',
+                width: 'fit-content', height: "40px", padding: '0 20px', gap: '10px'
+              }}
+                onClick={e => deleteProduct()}>
+                <i className='ph ph-trash' style={{ fontSize: '20px', }} />
+                <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>
+                  Delete Product
+                </div>
+              </button>
+            </div>
+          }
+        </div >
+      </div >
+    )
   };
 
 
@@ -66,7 +191,8 @@ export const ProductPage = ({ products, userObj }) => {
               <PPImageViewer productImages={product} />
               {/* <div> */}
               {/* <div className='p_comp_divider' style={{ borderRight: '1px solid #EDEAE6' }}></div> */}
-              <PPInfo productInfo={product} userMode={userMode} userObj={userObj} pagestate={editState()} />
+              {/* <PPInfo productInfo={product} userMode={userMode} userObj={userObj} pagestate={editState()} /> */}
+              {productInfo()}
               {/* </div> */}
             </div>
           </div>
@@ -95,24 +221,6 @@ export const ProductPage = ({ products, userObj }) => {
         </div>
       </div>
     )
-  }
-
-
-  const editStockAction = async () => {
-    // if (formData?.image_cover !== undefined) {
-    //   await axios.post('http://localhost:5000/api/product', formData,
-    //     { headers: { "Content-Type": "application/json" } })
-    //     .then((productRes => {
-    //       console.log(productRes)
-    //       navigate('/');
-    //       // regRes && setRegStatus(true)
-    //     }))
-    // } else {
-    //   alert("Image upload error due to size")
-    // }
-
-    // alert(formData.username)
-    alert("Edit page set")
   };
 
 
@@ -121,32 +229,37 @@ export const ProductPage = ({ products, userObj }) => {
       <div style={{ width: '-webkit-fill-available', padding: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
         <div className="pp_left_wrap"
-          onClick={e => { alert(pageState); setPageState("view-product") }}
+          onClick={e => { setPageState("view-product") }}
           style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '100px', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
           <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
-        <Form formFields={inputFields} heading={'Edit Instrument'} btnAction={editStockAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
+        <Form formFields={inputFields} preFillValue={product} heading={'Edit Instrument'} btnAction={editStockAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
       </div>
     )
   };
+
+
   // NEW STOCK FIELDS
   const inputFields = [
     {
       name: 'image_cover',
       type: 'single_image',
-      placeholder: '',
-      // input: (e) => { setFormData({ ...formData, profile_image: profile }) }
+      maxNumber: 4,
+      placeholder: 'Upload Cover',
+      value: product?.image_cover
     },
     {
-      name: 'stockImage',
+      name: 'images',
       type: 'multiple_image',
-      placeholder: 'Username or Email',
-      // input: (e) => { setFormData({ ...formData, profile_image: profile }) }
+      maxNumber: 4,
+      placeholder: 'Images',
+      value: product?.images
     },
     {
       name: 'name',
       type: 'text',
       placeholder: 'Name of Instrument',
+      value: product?.name
     },
     {
       name: 'category',
@@ -209,32 +322,38 @@ export const ProductPage = ({ products, userObj }) => {
           option_state: true,
           option_valueTooltipText: ''
         }
-      ]
+      ],
+      value: product?.category
     },
     {
       name: 'price',
       type: 'text',
       placeholder: 'Price',
+      value: product?.price
     },
     {
       name: 'type',
       type: 'text',
       placeholder: 'Type of ' + (formData?.category === undefined ? 'Instrument' : formData?.category),
+      value: product?.type
     },
     {
       name: 'manufacturer',
       type: 'text',
       placeholder: 'Manufacturer',
+      value: product?.type
     },
     {
-      name: 'Slogan',
+      name: 'slogan',
       type: 'text',
       placeholder: 'Slogan',
+      value: product?.slogan
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
       placeholder: 'Description',
+      value: product?.description
     },
     {
       name: 'dimensions_unit',
@@ -255,7 +374,8 @@ export const ProductPage = ({ products, userObj }) => {
           option_state: true,
           option_valueTooltipText: ''
         }
-      ]
+      ],
+      value: product?.specifications?.dimensions?.dimensions_unit
     },
     {
       name: 'weight_unit',
@@ -276,53 +396,60 @@ export const ProductPage = ({ products, userObj }) => {
           option_state: true,
           option_valueTooltipText: ''
         }
-      ]
+      ],
+      value: product?.specifications?.dimensions?.weight_unit
     },
     {
       name: 'width',
-      type: 'text',
+      type: 'number',
       placeholder: 'Width',
+      value: product?.specifications?.dimensions?.width
     },
     {
       name: 'height',
-      type: 'text',
+      type: 'number',
       placeholder: 'Height',
-    },
-    {
-      name: 'height',
-      type: 'text',
-      placeholder: 'Height',
+      value: product?.specifications?.dimensions?.height
     },
     {
       name: 'depth',
-      type: 'text',
+      type: 'number',
       placeholder: 'Depth',
+      value: product?.specifications?.dimensions?.depth
     },
     {
-      name: 'depth',
-      type: 'text',
+      name: 'weight',
+      type: 'number',
       placeholder: 'Weight',
+      value: product?.specifications?.dimensions?.weight
     },
   ];
 
 
-  const renderPage = (state) => {
-    switch (state) {
-      case "view-product":
-        returnProductPage()
-        break;
-      case "edit-product":
-        returnEditProduct()
-        break;
-    }
-  }
+  const editStockAction = async () => {
+    // if (formData?.image_cover !== undefined) {
+    //   await axios.post('http://localhost:5000/api/product', formData,
+    //     { headers: { "Content-Type": "application/json" } })
+    //     .then((productRes => {
+    //       console.log(productRes)
+    //       navigate('/');
+    //       // regRes && setRegStatus(true)
+    //     }))
+    // } else {
+    //   alert("Image upload error due to size")
+    // }
+
+    // alert(formData.username)
+    alert("Edit page set")
+  };
+
 
   return (
     <div className="product_wrap" >
       {
-        renderPage(pageState)
-        // pageState === "view-product" ? returnProductPage() : returnEditProduct()
+        pageState === "view-product" ? returnProductPage() : returnEditProduct()
+        // renderPage(pageState)
       }
     </div>
-  )
+  );
 };

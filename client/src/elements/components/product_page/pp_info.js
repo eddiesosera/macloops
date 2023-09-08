@@ -10,6 +10,7 @@ export const PPInfo = ({ productInfo, userObj, userMode, pagestate }) => {
     const [infoForm, setInfoForm] = useState({});
     const navigate = useNavigate()
 
+
     const colors = {
         name: 'role',
         type: 'dropdown',
@@ -90,8 +91,8 @@ export const PPInfo = ({ productInfo, userObj, userMode, pagestate }) => {
                     </button>
                     <div className='like_btn_wrap' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F7E9EA', border: "solid 0.75px #E9C3C6", color: '#e50e21', height: '40px', width: "40px", cursor: 'pointer' }}><i className='ph-fill ph-heart' style={{ fontSize: '20px' }} /></div>
                 </div>
-                {/* Only admins can access this section */}
                 {
+                    // Only admins can access this section
                     userObj?.role === "admin" && userMode === "admin" &&
                     <div className='info_group_7_admin' style={{ display: 'flex', gap: '20px' }}>
                         <button style={{
