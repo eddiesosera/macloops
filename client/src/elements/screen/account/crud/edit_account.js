@@ -10,7 +10,8 @@ export const EditAccount = () => {
     const logOut = () => {
         sessionStorage.setItem('isLoggedIn', 'false')
         setLoggedIn(sessionStorage.getItem('isLoggedIn'))
-        sessionStorage.removeItem("user")
+        sessionStorage.removeItem("user");
+        sessionStorage.removeItem("token")
     }
 
 

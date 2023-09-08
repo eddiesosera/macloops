@@ -79,6 +79,10 @@ export const ProductPage = ({ products, userObj }) => {
 
 
   useEffect(() => {
+
+    // Initialize Status Mode
+    // pageState === "view-product" ? sessionStorage.setItem('product_page_mode', "view-product") : sessionStorage.setItem('product_page_mode', "edit-product")
+
     navigate.pathname?.split("/")[2] !== productId && setProductId(navigate.pathname?.split("/")[2])
     products.map(prdct => {
       JSON.parse(localStorage.getItem('last_prod_viewed')) === "" && JSON.parse(localStorage.setItem('last_prod_viewed', prdct))
@@ -93,10 +97,13 @@ export const ProductPage = ({ products, userObj }) => {
 
     console.log("PRODUCT", product)
 
+    alert(userMode + " pp")
+
   }, [
     productId,
     url,
-    // pageState
+    pageState,
+    userMode
   ]);
 
 
@@ -149,7 +156,7 @@ export const ProductPage = ({ products, userObj }) => {
                 background: '#EAF6F9', border: '0.75px solid #C3E1E9', width: 'fit-content', height: "40px",
                 padding: '0 20px', gap: "10px"
               }}
-                onClick={e => { setPageState("edit-product") }}
+                onClick={e => { setPageState("edit-product"); }}
               >
                 <i className='ph ph-pencil-simple' style={{ fontSize: '20px', }} />
                 <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Edit Product</div>
@@ -218,12 +225,18 @@ export const ProductPage = ({ products, userObj }) => {
   };
 
 
+  const changePageState = () => {
+    sessionStorage.setItem('product_page_mode', "view-product");
+    alert(userMode)
+  }
+
+
   const returnEditProduct = () => {
     return (
       <div style={{ width: '-webkit-fill-available', padding: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
         <div className="pp_left_wrap"
-          onClick={e => { setPageState("view-product") }}
+          onClick={e => { changePageState() }}
           style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '100px', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
           <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
@@ -421,6 +434,7 @@ export const ProductPage = ({ products, userObj }) => {
 
 
   const editProductAction = async () => {
+    console.log(formData)
     await axios.patch('http://localhost:5000/api/product/' + product?._id, formData,
       { headers: { "Content-Type": "application/json" } })
       .then((productRes => {
@@ -437,7 +451,7 @@ export const ProductPage = ({ products, userObj }) => {
   return (
     <div className="product_wrap" >
       {
-        pageState === "view-product" ? returnProductPage() : returnEditProduct()
+        userMode === "user" ? returnProductPage() : returnEditProduct()
         // renderPage(pageState)
       }
     </div>

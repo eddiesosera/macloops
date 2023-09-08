@@ -20,7 +20,12 @@ export const Account = ({ allUsers, allProducts, userObjct }) => {
 
     // Update Logged in user details
     setUserObj(userObj);
-    userModeTgl ? setUserMode("admin") : setUserMode("user")
+    userModeTgl ? setUserMode("admin") : setUserMode("user");
+
+    userModeTgl
+      ? sessionStorage.setItem('product_page_mode', "edit-product")
+      : sessionStorage.setItem('product_page_mode', "view-product")
+
 
   }, [userStateSession, loggedIn, userModeTgl, userMode])
 
@@ -110,6 +115,7 @@ export const Account = ({ allUsers, allProducts, userObjct }) => {
                 {
                   userObj?.role === "admin" && <button onClick={e => {
                     // setUserMode("admin");
+                    userMode === "admin" && sessionStorage.setItem('product_page_mode', "edit-product")
                     setUserModeTgl(!userModeTgl);
                   }} style={buttonStyle} >{userMode === "user" ? 'View as Admin' : 'View as User'}</button>
                 }

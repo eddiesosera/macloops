@@ -27,6 +27,21 @@ const UserSchema = mongoose.Schema({
         required: false,
         default: "customer"
     },
+    adress:
+    {
+        house_number: {
+            type: String
+        },
+        street_name: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        zip_code: {
+            type: String
+        }
+    },
     cart_items: [
         {
             product_id: {

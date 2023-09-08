@@ -21,15 +21,14 @@ export const Login = ({ allUsers }) => {
       { headers: { "Content-Type": "application/json" } })
       .then((loginRes => {
         // const userValidate = JSON.stringify(sessionStorage.getItem('user'))
-        const userStr = JSON.parse(sessionStorage.getItem('user'));
-        const usr = loginRes?.data
-        sessionStorage.setItem("user", JSON.stringify({
-          usr
-        }));
 
-        console.log(userStr)
-        console.log(loginRes)
-        console.log(loginRes.data)
+        const usr = loginRes?.data
+        const user = usr?.user
+        sessionStorage.setItem("user", JSON.stringify(user));
+
+        sessionStorage.setItem("token", usr.token);
+
+        console.log(usr)
         setLoginMsg(loginRes.data)
         loginRes && setLoginStatus(true)
         sessionStorage.setItem('isLoggedIn', 'true')

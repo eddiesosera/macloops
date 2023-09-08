@@ -37,7 +37,7 @@ function App() {
   // Declaring all variables
   const userStateSession = sessionStorage.getItem('isLoggedIn');
   const [userObjRaw, setUserObjRaw] = useState(JSON.parse(sessionStorage?.getItem('user')));
-  let userObj = userObjRaw?.usr
+  let userObj = userObjRaw
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
   const [users, setUsers] = useState([]);
   // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))

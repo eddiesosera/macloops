@@ -75,8 +75,13 @@ export const Navbar = ({ userObj }) => {
       }
       console.log(loggedIn[0])
     },
-    [currScrn, scrn, userObj?.username, loggedIn[0]]
+    [currScrn, scrn, userObj?.username, loggedIn[0], userMode]
   );
+
+  useEffect(() => {
+
+  }, [userMode])
+
 
 
   //   Styling Active and Inactive states of elements and icons
@@ -88,6 +93,12 @@ export const Navbar = ({ userObj }) => {
   };
 
 
+  const changePageState = () => {
+    sessionStorage.setItem('product_page_mode', "view-product");
+    alert(userMode)
+  }
+
+
   // User Mode: Admin is active
   const adminNavbarReturn = () => {
     if (userMode === "admin") {
@@ -97,9 +108,13 @@ export const Navbar = ({ userObj }) => {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center'
         }}>
           <div className="user_mode_text" style={{ color: '#2293B6', fontSize: '14px' }}>You are now in Admin mode. You can edit stock details!</div>
-          <div className="user_mode_close" style={{ color: '#2293B6', cursor: 'pointer' }} onClick={e => setUserMode("user")}>
-            <i class="ph-bold ph-x-circle" style={{ fontSize: '21px' }} />
-          </div>
+
+          {
+            scrn !== "/account" &&
+            <div className="user_mode_close" style={{ color: '#2293B6', cursor: 'pointer' }} onClick={e => { changePageState() }}>
+              <i class="ph-bold ph-x-circle" style={{ fontSize: '21px' }} />
+            </div>
+          }
 
         </div>
       )

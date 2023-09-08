@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { log } = require("console");
 const productRoute = require("./routes/product.route");
 const userRoute = require("./routes/user.route");
+const orderRoute = require("./routes/order.route")
 const bodyParser = require("body-parser")
 
 require("dotenv/config");
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(productRoute);
 app.use(userRoute);
+app.use(orderRoute)
 
 mongoose
   .connect(

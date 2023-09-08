@@ -3,27 +3,34 @@ const multer = require("multer");
 const UserSchema = require("../models/user.model");
 const router = express();
 
+const jwt = require("jsonwebtoken");
+
 const upload = multer({ dest: "uploads/" });
 
-//Login user
-router.post("/api/loginUser", async (req, res) => {
-    const findUser = await UserSchema.findOne({
-        email: req.body.email
-    });
-    const findUsername = await UserSchema.findOne({
-        username: req.body.username
-    });
+const JWT_SECRET_KEY = "dv_200_term_4";
 
-    if (findUsername != null || findUser != null) {
-        if (findUsername?.password == req.body.password || findUser?.password == req.body.password) {
-            // res.send("User logged in!");
-            const usr = findUsername
-            res.send(usr)
+// Login user and return a JWT token
+router.post("/api/loginUser", async (req, res) => {
+
+    try {
+        const findUser = await UserSchema.findOne({
+            username: req.body.username,
+            password: req.body.password
+        });
+
+        if (findUser) {
+
+            // Exclude the 'password' property from the user object
+            const { password, ...userWithoutPassword } = findUser._doc;
+
+            // Generate a JWT token
+            const token = jwt.sign({ userId: findUser._id }, JWT_SECRET_KEY, { expiresIn: "1h" });
+            res.json({ user: userWithoutPassword, token });
         } else {
-            res.send("Email and password does not match!");
+            res.status(401).json({ error: "Invalid credentials." });
         }
-    } else {
-        res.send("User does not exist");
+    } catch (error) {
+        res.status(500).json({ error: "User login failed." });
     }
 });
 
@@ -41,11 +48,17 @@ router.get("/api/getUser/:id", async (req, res) => {
 
 //Create
 router.post("/api/addUser", async (req, res) => {
-    const user = new UserSchema({ ...req.body });
-    await user
-        .save()
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error));
+    try {
+        const user = new UserSchema({ ...req.body });
+        await user.save();
+
+        // Generate a JWT token
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, { expiresIn: "1h" });
+
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ error: "User registration failed." });
+    }
 });
 
 //Update

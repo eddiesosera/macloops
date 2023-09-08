@@ -80,6 +80,10 @@ const InstrumentSchema = mongoose.Schema({
         type: Number,
         default: 0
     }],
+    quantityAvailable: {
+        type: Number,
+        default: 10
+    },
     dateAdded: {
         type: Date,
         default: Date.now
