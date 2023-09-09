@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ImageUpload } from './imageUpload';
 import { DropDown } from './dropDown';
 import './style/form.css';
-// const imageSize = require("image-size"); // Library to get image dimensions
-// const imagemin = require("imagemin"); // Library for image optimization
-// const imageminJpegtran = require("imagemin-jpegtran"); // JPEG optimization plugin
-// const imageminPngquant = require("imagemin-pngquant"); // PNG optimization plugin
+import { v1 as uuidv1 } from 'uuid';
 
 
 export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
@@ -120,7 +117,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                         formFields.map(field => {
                             if (field?.type === "single_image") {
                                 return (
-                                    <ImageUpload maxNumber={field?.maxNumber} value={formObjContainer[field?.name]} imageLabel={field?.placeholder} listOfIimages={
+                                    <ImageUpload key={uuidv1()} maxNumber={field?.maxNumber} value={formObjContainer[field?.name]} imageLabel={field?.placeholder} listOfIimages={
                                         // getImgs;
                                         (img) => {
 
@@ -141,7 +138,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                                 )
                             } if (field?.type === "multiple_image") {
                                 return (
-                                    <ImageUpload maxNumber={field?.maxNumber} imageLabel={field?.placeholder} listOfIimages={
+                                    <ImageUpload key={uuidv1()} maxNumber={field?.maxNumber} imageLabel={field?.placeholder} listOfIimages={
                                         // getImgs;
                                         (img) => {
 
@@ -172,7 +169,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                                 )
                             } else if (field?.type === "text" || field?.type === "email") {
                                 return (
-                                    <input type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
+                                    <input key={uuidv1()} type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
                                         // onChange={e => field.input(e)} />
                                         onChange={e => {
                                             setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });
@@ -181,7 +178,7 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                                 )
                             } else if (field?.type === "number") {
                                 return (
-                                    <input type="number" value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
+                                    <input key={uuidv1()} type="number" value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
                                         // onChange={e => field.input(e)} />
                                         onChange={e => {
                                             setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });
@@ -191,12 +188,12 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
                             } else if (field?.type === "dropdown") {
                                 return (
                                     <div >
-                                        <DropDown placeholder={field?.placeholder} options={field?.list} selectedValue={(opt) => { setFormObjContainer({ ...formObjContainer, [field?.name]: opt }) }} />
+                                        <DropDown key={uuidv1()} placeholder={field?.placeholder} options={field?.list} selectedValue={(opt) => { setFormObjContainer({ ...formObjContainer, [field?.name]: opt }) }} />
                                     </div>
                                 )
                             } else if (field?.type === "password") {
                                 return (
-                                    <input type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
+                                    <input key={uuidv1()} type={field?.type} value={formObjContainer[field?.name]} placeholder={field?.placeholder} style={inputStyle}
                                         // onChange={e => field.input(e)} />
                                         onChange={e => {
                                             setFormObjContainer({ ...formObjContainer, [field?.name]: e.target.value });

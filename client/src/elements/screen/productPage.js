@@ -95,9 +95,7 @@ export const ProductPage = ({ products, userObj }) => {
 
     localStorage.setItem('last_prod_viewed', JSON.stringify(product))
 
-    console.log("PRODUCT", product)
-
-    alert(userMode + " pp")
+    // alert(userMode + " pp")
 
   }, [
     productId,

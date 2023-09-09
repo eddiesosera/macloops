@@ -67,13 +67,14 @@ export const Navbar = ({ userObj }) => {
   // Main Use Layout Effect for re-rendering elements
   useLayoutEffect(
     () => {
+
       setCurrScrn(scrn);
-      console.log(currScrn);
+
       if (loggedIn[0] !== null) {
         loggedIn[0] === "true" ? setUsername(userObj?.fullname) : setUsername("Log in")
         imgUpdt()
       }
-      console.log(loggedIn[0])
+      // console.log(loggedIn[0])
     },
     [currScrn, scrn, userObj?.username, loggedIn[0], userMode]
   );

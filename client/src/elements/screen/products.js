@@ -12,6 +12,7 @@ import GeoSelect99, { GeoSelect33 } from "../components/geoSelection/geoSelect";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Form } from "../components/form";
 import axios from "axios";
+import { v1 as uuidv1 } from 'uuid';
 
 
 function Items({ products }) {
@@ -23,7 +24,7 @@ function Items({ products }) {
       {
         products?.map((product, index) => {
           return (
-            <Card product={product} />
+            <Card key={uuidv1()} product={product} />
           )
         })
       }
@@ -56,18 +57,18 @@ function PaginatedItems({ itemsPerPage }) {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
   const currentItems = products.slice(itemOffset, endOffset);
-  console.log('current itms in items:', currentItems)
+
   const pageCount = Math.ceil(products.length / itemsPerPage);
-  console.log('page count: ', pageCount)
+
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % productss.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
@@ -76,11 +77,11 @@ function PaginatedItems({ itemsPerPage }) {
       <Items products={currentItems} />
       <ReactPaginate
         breakLabel="..."
-        nextLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i class="ph-bold ph-arrow-right" /></div>}
+        nextLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i className="ph-bold ph-arrow-right" /></div>}
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         pageCount={pageCount}
-        previousLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i class="ph-bold ph-arrow-left" /></div>}
+        previousLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i className="ph-bold ph-arrow-left" /></div>}
         renderOnZeroPageCount={null}
 
         pageClassName="li_pagination"
@@ -210,7 +211,6 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
 
   const getFormNewStockObj = obj => {
     setFormData(obj);
-    console.log(obj)
   };
 
   // PAGE INSTRUMENTS
@@ -248,7 +248,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
                 {
                   productCategories.map((category, index) => {
                     return (
-                      <li className="product_category" key={index} onClick={e => setSelectedCategory(category?.category_name)}
+                      <li className="product_category" key={uuidv1()} onClick={e => setSelectedCategory(category?.category_name)}
                         style={{
                           listStyle: 'none', padding: '12px', cursor: 'pointer', fontFamily: 'Nunito Sans', fontSize: '16px',
                           fontWeight: selectedCategory === category?.category_name ? "900" : '700', color: selectedCategory === category?.category_name ? '#111' : '#999'
@@ -278,7 +278,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
     return (
       <div style={{ width: '-webkit-fill-available', padding: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div className="pp_left_wrap" onClick={e => { navigate('/products'); setPageState("instruments") }} style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '0', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
-          <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
+          <i className="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
         <Form formFields={inputFields} heading={'New Instrument'} btnAction={newStockAction} btnTitle={'Add Instrument'} formObj={getFormNewStockObj} />
       </div>
@@ -470,9 +470,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
           }
         })
         .then((productRes => {
-          console.log(productRes)
           navigate('/');
-          // regRes && setRegStatus(true)
         }))
     } else {
       alert("Image upload error due to size")

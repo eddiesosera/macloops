@@ -13,7 +13,7 @@ export const PPImageViewer = ({ productImages }) => {
 
     useEffect(() => {
         setProductImagesArr(productImages?.images.slice(0, 4))
-        console.log(productImagesArr)
+        // console.log(productImagesArr)
     }, [productImages, url])
 
 

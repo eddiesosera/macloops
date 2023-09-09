@@ -9,7 +9,7 @@ import { useSpring, animated } from '@react-spring/web';
 import anime from 'animejs/lib/anime.es.js';
 import axios from "axios";
 
-export const Card = ({ product }) => {
+export const Card = ({ product, user }) => {
   const navigate = useNavigate();
   const [cardTgl, setCardTgl] = useState(false);
   const [likedTgl, setHeartTgl] = useState(false);
@@ -66,7 +66,7 @@ export const Card = ({ product }) => {
     // add to cart axios call
     axios.patch('http://localhost:5000/api/updateUser/64cae654ef62f660cd4b75a9', cartData)
       .then((updatedCart) => {
-        console.log(updatedCart)
+        console.log("UPDATED CARD", updatedCart)
       })
       .catch(err => console.error(err))
 

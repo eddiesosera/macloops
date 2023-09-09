@@ -3,7 +3,9 @@ import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 import { LoginContext, UserModeContext } from "../../App";
 import { YouMayAlsoLike } from "../sections/you_may_also_like";
+import { v1 as uuidv1 } from 'uuid';
 import { JackInTheBox, Slide } from "react-awesome-reveal";
+
 
 export const Account = ({ allUsers, allProducts, userObjct }) => {
   // Declaring all variables
@@ -94,7 +96,7 @@ export const Account = ({ allUsers, allProducts, userObjct }) => {
 
       <ul style={{ display: 'flex', gap: '20px', justifyContent: 'space-between', padding: '0', paddingBottom: '30px', flexDirection: 'column' }}>
 
-        <li className="" style={{ display: 'flex', border: 'solid 1px #E9E6E1', background: '#FFFBF6', padding: '20px', gap: '20px', alignItems: 'flex-start', boxShadow: accNavHov === "account" ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov('account')} onMouseLeave={e => setAccNavHov('')}>
+        <li key={uuidv1()} className="" style={{ display: 'flex', border: 'solid 1px #E9E6E1', background: '#FFFBF6', padding: '20px', gap: '20px', alignItems: 'flex-start', boxShadow: accNavHov === "account" ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov('account')} onMouseLeave={e => setAccNavHov('')}>
           {
             imgUpdt()
           }
@@ -132,7 +134,7 @@ export const Account = ({ allUsers, allProducts, userObjct }) => {
         {
           account_nav.map(acc_nav => {
             return (
-              <li style={{ display: 'flex', border: 'solid 1px #E9E6E1', width: accNavHov === acc_nav.title ? '102%' : '100%', height: '140px', boxShadow: accNavHov === acc_nav.title ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov(acc_nav.title)} onMouseLeave={e => setAccNavHov('')}>
+              <li key={uuidv1()} style={{ display: 'flex', border: 'solid 1px #E9E6E1', width: accNavHov === acc_nav.title ? '102%' : '100%', height: '140px', boxShadow: accNavHov === acc_nav.title ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setAccNavHov(acc_nav.title)} onMouseLeave={e => setAccNavHov('')}>
                 <NavLink to={acc_nav?.url} style={{ padding: '20px', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#FFFBF6' }}>
                   <div className="acc_nav_top wrap" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#3b3119' }}>
                     <i className={acc_nav?.icon} style={{ fontSize: '28px' }} />

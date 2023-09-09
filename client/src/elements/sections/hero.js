@@ -64,7 +64,7 @@ export const Hero = () => {
       >
         {heroContent.map(hero => {
           return (
-            <SwiperSlide className="SlideWrap" style={{ height: "400px", display: "flex", alignItems: "center" }}>
+            <SwiperSlide key={hero?.imgsrc} className="SlideWrap" style={{ height: "400px", display: "flex", alignItems: "center" }}>
               <img src={hero.imgsrc} alt="1" style={{ height: "200px", objectFit: "contain" }} />
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <h1>{hero.heading}</h1>

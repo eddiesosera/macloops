@@ -1,6 +1,8 @@
 import React from "react";
 import { Roll, Slide } from "react-awesome-reveal";
 import { NavLink } from "react-router-dom";
+import { v1 as uuidv1 } from 'uuid';
+
 
 export const Cart = () => {
   const cartItms = [
@@ -24,7 +26,7 @@ export const Cart = () => {
           {
             cartItms.map((cartItm) => {
               return (
-                <li style={{ display: 'flex', border: 'solid 1px #E9E6E1', width: '100%', height: '140px', boxShadow: '0px 8px 16px -5px #6F6D6A', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} >
+                <li key={uuidv1()} style={{ display: 'flex', border: 'solid 1px #E9E6E1', width: '100%', height: '140px', boxShadow: '0px 8px 16px -5px #6F6D6A', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} >
                   <NavLink>
                     <div className="acc_nav_top wrap" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#3b3119' }}>
 

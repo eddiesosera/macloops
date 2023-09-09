@@ -86,7 +86,7 @@ export const Login = ({ allUsers }) => {
       <JackInTheBox cascade damping={0.1}>
         <div className="left_login_container" style={{ width: '100%', overflow: 'hidden' }}>
           <div className="pp_left_wrap" onClick={e => navigate('/')} style={{ position: 'absolute', marginLeft: '20px', marginTop: '20px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
-            <i class="ph-bold ph-house" style={{ fontSize: '20px', color: '' }} />
+            <i className="ph-bold ph-house" style={{ fontSize: '20px', color: '' }} />
           </div>
           <img src="https://ucarecdn.com/7d4871b0-217b-4949-a3d6-daa438d6f6f2/" alt="Login" style={{ width: '100%', height: '100vh ', objectFit: 'cover' }} />
         </div>
