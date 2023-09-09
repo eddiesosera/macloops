@@ -7,13 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useSpring, animated } from '@react-spring/web';
 import anime from 'animejs/lib/anime.es.js';
+import axios from "axios";
 
 export const Card = ({ product }) => {
   const navigate = useNavigate();
   const [cardTgl, setCardTgl] = useState(false);
   const [likedTgl, setHeartTgl] = useState(false);
   const [addToCartTgl, setAddToCartTgl] = useState(false);
-  const [productId, setProductId] = useState(product?._id)
+  const [productId, setProductId] = useState(product?._id);
+  const [cartData, setCartData] = useState({})
 
   // console.log("PRDCT", product)
   // ANIMATION
@@ -26,7 +28,7 @@ export const Card = ({ product }) => {
 
   useEffect(() => {
     setProductId(product?._id)
-  }, [product])
+  }, [product, cartData])
 
 
   const addToCartNotify = () => toast(
@@ -57,6 +59,16 @@ export const Card = ({ product }) => {
   const addToCart = () => {
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
+
+    setCartData({ cart_items: [{ ...cartData, product_id: productId, ...cartData, quantity: 1 }] });
+    console.log(cartData)
+
+    // add to cart axios call
+    axios.patch('http://localhost:5000/api/updateUser/64cae654ef62f660cd4b75a9', cartData)
+      .then((updatedCart) => {
+        console.log(updatedCart)
+      })
+      .catch(err => console.error(err))
 
   }
 

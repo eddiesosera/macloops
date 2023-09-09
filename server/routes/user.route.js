@@ -34,7 +34,7 @@ router.post("/api/loginUser", async (req, res) => {
     }
 });
 
-//Read All
+//Get All User
 router.get("/api/getUsers", async (req, res) => {
     const findUser = await UserSchema.find();
     res.json(findUser);
@@ -46,7 +46,7 @@ router.get("/api/getUser/:id", async (req, res) => {
     res.json(findUser);
 });
 
-//Create
+//Create User
 router.post("/api/addUser", async (req, res) => {
     try {
         const user = new UserSchema({ ...req.body });
@@ -61,15 +61,28 @@ router.post("/api/addUser", async (req, res) => {
     }
 });
 
-//Update
+//Update User
 router.patch("/api/updateUser/:id", async (req, res) => {
-    const { id } = req.params.id;
-    await UserSchema.updateOne({ id }, req.body)
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error));
+    const userId = req.params.id; // Get the user ID from the URL params
+
+    try {
+        const updatedUser = await UserSchema.findByIdAndUpdate(
+            userId,
+            { $set: req.body }, // Use $set to update only the specified fields
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ error: "Error updating the user" });
+    }
 });
 
-//Delete
+//Delete User
 router.delete("/api/deleteUser/:id", async (req, res) => {
     const { id } = req.params.id;
     await UserSchema.findByIdAndDelete(req.params.id)
