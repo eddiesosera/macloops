@@ -1,7 +1,8 @@
-html{
+html {
   margin: 0;
   padding: 0;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -17,16 +18,16 @@ code {
     monospace;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
   color: inherit;
 }
 
-button{
+button {
   cursor: pointer;
 }

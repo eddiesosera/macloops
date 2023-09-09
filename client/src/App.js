@@ -197,7 +197,7 @@ function App() {
     }
   ]
   // Map Routes 
-  const routes = path_and_elements.map((pae, i) => { return <Route path={pae?.path} element={pae?.element} /> })
+  const routes = path_and_elements.map((pae, i) => { return <Route key={pae?.path} path={pae?.path} element={pae?.element} /> })
   // Refresh Routes
   const refreshRoutes = () => {
     path_and_elements.map(pae => {

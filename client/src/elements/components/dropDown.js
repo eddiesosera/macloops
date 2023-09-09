@@ -71,7 +71,7 @@ export const DropDown = ({ options, placeholder, selectedValue, selectedOptionLa
                 {
                     options.map((optn, index) => {
                         return (
-                            <div className='option_itm' style={{
+                            <div key={optn?.option_value} className='option_itm' style={{
                                 display: 'flex', gap: '10px', borderBottom: index !== (options.length - 1) ? '0.5px solid #ebe9e5' : '',
                                 padding: '8px 15px', cursor: optn?.option_state ? 'pointer' : 'not-allowed', alignItems: 'center',
                                 color: optn?.option_state ? '#3a7c91' : '#3a7c91',
