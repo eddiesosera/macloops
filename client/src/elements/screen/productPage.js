@@ -117,12 +117,12 @@ export const ProductPage = ({ products, userObj }) => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
         <Fade cascade damping={0.3}>
           <div className='info_group_1' style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <div style={{ fontSize: '48px', fontFamily: 'Montserrat', fontWeight: '700', color: '#2f2e2d', textTransform: 'uppercase' }}>{product?.name}</div>
+            <div style={{ fontSize: '48px', fontFamily: 'Montserrat', fontWeight: '800', color: '#2f2e2d', textTransform: 'uppercase' }}>{product?.name}</div>
             <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#6F6D6A', textTransform: 'uppercase' }}>{product?.slogan}</div>
           </div>
           <div className='info_group_2' >
-            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>By {product?.manufacturer}</div>
-            {/* <div style={{ fontSize: '24px', fontFamily: 'Nunito Sans' }}>{productInfo?.year}</div> */}
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500' }}>By {product?.manufacturer}</div>
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>{product?.type}</div>
           </div>
           <div className='info_group_3'>
             <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#13120F' }}>R {product?.price}</div>
@@ -440,6 +440,7 @@ export const ProductPage = ({ products, userObj }) => {
       .then((productRes => {
         console.log(productRes)
         setPageState("view-product")
+        setUserMode("user")
         // regRes && setRegStatus(true)
       }))
 

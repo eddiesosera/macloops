@@ -19,10 +19,23 @@ router.get("/api/product/:id", async (req, res) => {
 
 //Update Product
 router.patch("/api/product/:id", async (req, res) => {
-    const { id } = req.params.id;
-    await ProductSchema.updateOne({ id }, req.body)
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error));
+    const productId = req.params.id; // Get the product ID from the URL params
+
+    try {
+        const updatedProduct = await ProductSchema.findByIdAndUpdate(
+            productId,
+            { $set: req.body }, // Use $set to update only the specified fields
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+
+        res.json(updatedProduct);
+    } catch (error) {
+        res.status(500).json({ error: "Error updating the product" });
+    }
 });
 
 //Create Product
