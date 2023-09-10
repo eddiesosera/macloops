@@ -15,7 +15,10 @@ export const Card = ({ product, user }) => {
   const [likedTgl, setHeartTgl] = useState(false);
   const [addToCartTgl, setAddToCartTgl] = useState(false);
   const [productId, setProductId] = useState(product?._id);
-  const [cartData, setCartData] = useState({})
+  const getUser = JSON.parse(sessionStorage.getItem('user'))
+  const getUserId = getUser?._id
+  const getUserCartItems = getUser?.cart_items
+  let cartData = {};
 
 
   // ANIMATION
@@ -29,7 +32,6 @@ export const Card = ({ product, user }) => {
 
   useEffect(() => {
     setProductId(product?._id);
-    console.log("User on Card", user);
 
     // Add to Cart front and back logic
 
@@ -56,7 +58,25 @@ export const Card = ({ product, user }) => {
   );
 
 
-  // Functions
+  // FUNCTIONS
+
+  // 
+  const addAndUpdateCart = (cartItems, newItem) => {
+    // Check if the newItem's product_id already exists in cartItems
+    const existingItemIndex = cartItems.findIndex(item => item.product_id === newItem.product_id);
+
+    if (existingItemIndex !== -1) {
+      // If the product_id exists, update the quantity
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].quantity += newItem.quantity;
+      return updatedCartItems;
+    } else {
+      // If the product_id doesn't exist, add the new item to the cartItems
+      return [...cartItems, newItem];
+    }
+  }
+
+
   // On like product
   const likeProduct = () => {
     setHeartTgl(!likedTgl)
@@ -68,16 +88,18 @@ export const Card = ({ product, user }) => {
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
 
-    setCartData({ cart_items: [{ ...cartData, product_id: productId, ...cartData, quantity: 1 }] });
-    console.log(cartData);
+    cartData = { cart_items: [{ ...cartData, product_id: productId, ...cartData, quantity: 1 }] };
 
-    const getUser = JSON.parse(sessionStorage.getItem('user'))
-    const getUserId = getUser?._id
+    console.log("selected cart data: " + JSON.stringify(cartData));
+    console.log("old cart data: " + JSON.stringify(getUserCartItems));
 
-    console.log(getUserId)
+    const updated_cart = addAndUpdateCart(getUserCartItems, cartData)
+    console.log("Mapped Item", getUserCartItems?.map(cartItm => (cartItm)))
+
+
 
     // add to cart axios call
-    axios.patch('http://localhost:5000/api/updateUser/' + getUserId, cartData)
+    axios.patch('http://localhost:5000/api/updateUser/' + getUserId, updated_cart)
       .then((updatedCart) => {
         const updatedUser = updatedCart?.data
         sessionStorage.setItem("user", JSON.stringify(updatedUser));

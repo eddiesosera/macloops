@@ -180,15 +180,19 @@ export const Navbar = ({ userObj }) => {
           </div>
         </div>
         <div className="navba_end_wrap" style={{ display: "flex", gap: "40px" }}>
-          <NavLink to="/orders" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
-            {/* <PianoKeys size={32} /> */}
-            {currScrn === "/orders" ? (
-              <i className="ph-fill ph-book-open" style={ActiveIcon} />
-            ) : (
-              <i className="ph-bold ph-book" style={InactiveIcon} />
-            )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/orders" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Orders</div>
-          </NavLink>
+          {
+            userMode === "admin" &&
+            <NavLink to="/orders" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
+              {/* <PianoKeys size={32} /> */}
+              {currScrn === "/orders" ? (
+                <i className="ph-fill ph-book-open" style={ActiveIcon} />
+              ) : (
+                <i className="ph-bold ph-book" style={InactiveIcon} />
+              )}
+              <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/orders" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Orders</div>
+            </NavLink>
+
+          }
           <NavLink to="/cart" className="navbar_left_page" style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
             <div style={{ display: 'flex' }}>
               {currScrn === "/cart" ? (
