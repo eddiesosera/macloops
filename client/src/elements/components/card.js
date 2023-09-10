@@ -107,7 +107,7 @@ export const Card = ({ product, user }) => {
         sessionStorage.setItem("user", JSON.stringify(updatedUser));
         console.log("UPDATED CARD", updatedCart)
 
-        // Update button
+        // Update button if the item is not found
         for (let itm = 0; existingCartItems?.length > itm; itm++) {
           if (existingCartItems[itm]?.product_id !== productId) {
             setAddToCartTgl(false)
