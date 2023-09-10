@@ -88,14 +88,14 @@ export const Card = ({ product, user }) => {
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
 
-    cartData = { cart_items: [{ ...cartData, product_id: productId, ...cartData, quantity: 1 }] };
+    cartData = { ...cartData, product_id: productId, ...cartData, quantity: 1 };
 
-    console.log("selected cart data: " + JSON.stringify(cartData));
-    console.log("old cart data: " + JSON.stringify(getUserCartItems));
+    // console.log("selected cart data: " + JSON.stringify(cartData));
+    // console.log("old cart data: " + JSON.stringify(getUserCartItems));
 
-    const updated_cart = addAndUpdateCart(getUserCartItems, cartData)
-    console.log("Mapped Item", getUserCartItems?.map(cartItm => (cartItm)))
+    const updated_cart = { cart_items: addAndUpdateCart(getUserCartItems, cartData) };
 
+    console.log(updated_cart)
 
 
     // add to cart axios call
