@@ -17,8 +17,8 @@ export const Card = ({ product, user }) => {
   const [productId, setProductId] = useState(product?._id);
   const getUser = JSON.parse(sessionStorage.getItem('user'))
   const getUserId = getUser?._id
-  const getUserCartItems = getUser?.cart_items
-  let cartData = {};
+  const existingCartItems = getUser?.cart_items
+  let newcartItems = {};
 
 
   // ANIMATION
@@ -34,10 +34,15 @@ export const Card = ({ product, user }) => {
     setProductId(product?._id);
 
     // Add to Cart front and back logic
+    for (let itm = 0; existingCartItems?.length > itm; itm++) {
+      if (existingCartItems[itm]?.product_id === productId) {
+        setAddToCartTgl(true)
+      }
+    };
 
     // Liked Item front and back logic
 
-  }, [product, cartData])
+  }, [product, newcartItems, existingCartItems, productId])
 
 
   const addToCartNotify = () => toast(
@@ -59,16 +64,15 @@ export const Card = ({ product, user }) => {
 
 
   // FUNCTIONS
-
   // 
   const addAndUpdateCart = (cartItems, newItem) => {
     // Check if the newItem's product_id already exists in cartItems
     const existingItemIndex = cartItems.findIndex(item => item.product_id === newItem.product_id);
 
     if (existingItemIndex !== -1) {
-      // If the product_id exists, update the quantity
+      // If the product_id exists, remove the existing item
       const updatedCartItems = [...cartItems];
-      updatedCartItems[existingItemIndex].quantity += newItem.quantity;
+      updatedCartItems.splice(existingItemIndex, 1);
       return updatedCartItems;
     } else {
       // If the product_id doesn't exist, add the new item to the cartItems
@@ -84,16 +88,14 @@ export const Card = ({ product, user }) => {
 
   // On add to cart
   const addToCart = () => {
-
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
 
-    cartData = { ...cartData, product_id: productId, ...cartData, quantity: 1 };
+    newcartItems = { ...newcartItems, product_id: productId, ...newcartItems, quantity: 1 };
+    const updated_cart = { cart_items: addAndUpdateCart(existingCartItems, newcartItems) };
 
-    // console.log("selected cart data: " + JSON.stringify(cartData));
-    // console.log("old cart data: " + JSON.stringify(getUserCartItems));
-
-    const updated_cart = { cart_items: addAndUpdateCart(getUserCartItems, cartData) };
+    // console.log("selected cart data: " + JSON.stringify(newcartItems));
+    // console.log("old cart data: ", existingCartItems);
 
     console.log(updated_cart)
 
@@ -104,6 +106,13 @@ export const Card = ({ product, user }) => {
         const updatedUser = updatedCart?.data
         sessionStorage.setItem("user", JSON.stringify(updatedUser));
         console.log("UPDATED CARD", updatedCart)
+
+        // Update button
+        for (let itm = 0; existingCartItems?.length > itm; itm++) {
+          if (existingCartItems[itm]?.product_id !== productId) {
+            setAddToCartTgl(false)
+          }
+        };
       })
       .catch(err => console.error(err))
 
@@ -184,7 +193,7 @@ export const Card = ({ product, user }) => {
                 //   range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
                 //   output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],}),
               }} >
-              <div onClick={e => { addToCart(); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#f6f0e6', color: addToCartTgl ? '#f9f4eb' : '#6e480f', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
+              <div onClick={e => { getUser ? addToCart() : alert('Login to add items to Cart'); }} style={{ zIndex: cardTgl ? 2 : 1, height: '36px', width: '36px', borderRadius: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: addToCartTgl ? '#13120F' : '#f6f0e6', color: addToCartTgl ? '#f9f4eb' : '#6e480f', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.25,0.75,0.5,1) 0s' }}>
                 <i className={addToCartTgl ? 'ph-fill ph-shopping-cart-simple' : 'ph-bold ph-plus'} />
               </div>
             </animated.div>
