@@ -17,7 +17,9 @@ export const Cart = () => {
     },
 
 
-  ]
+  ];
+
+
   return (
     <div style={{ padding: '60px' }}>
       <div style={{ fontSize: '48px', fontFamily: 'Montserrat', fontWeight: '800', color: '#2f2e2d', textTransform: 'uppercase' }}>Cart</div>

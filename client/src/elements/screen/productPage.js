@@ -184,7 +184,7 @@ export const ProductPage = ({ products, userObj }) => {
         <div className="productPage_comp" style={{ display: 'flex', flexDirection: 'column', gap: '120px', padding: '30px 60px 120px 60px', background: '#FFFBF6', alignItems: 'center' }}>
           <div style={{ display: 'flex', gap: '40px', paddingBottom: '30px' }}>
             <div className="pp_left_wrap" onClick={e => navigateTo(-1)} style={{ display: 'flex', border: '1px solid #2d2e2f', color: '#2d2e2f', borderRadius: '50px', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
-              <i class="ri-arrow-left-line" />
+              <i className="ri-arrow-left-line" />
             </div>
             <div className="pp_mid_wrap" style={{ display: 'flex', gap: '40px', width: '100%' }}>
               <PPImageViewer productImages={product} />
@@ -236,7 +236,7 @@ export const ProductPage = ({ products, userObj }) => {
         <div className="pp_left_wrap"
           onClick={e => { changePageState() }}
           style={{ position: 'absolute', marginLeft: '60px', left: '0', top: '100px', marginTop: '60px', display: 'flex', border: '1px solid #D9E2E5', borderRadius: '50px', background: '#FFFBF6', padding: '12px', height: 'fit-content', width: 'fit-content', cursor: 'pointer' }}>
-          <i class="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
+          <i className="ph-bold ph-arrow-left" style={{ fontSize: '20px', color: '' }} />
         </div>
         <Form formFields={inputFields} preFillValue={product} heading={'Edit Instrument'} btnAction={editProductAction} btnTitle={'Edit Instrument'} formObj={getFormEditStockObj} />
       </div>

@@ -32,7 +32,7 @@ export const Login = ({ allUsers }) => {
         setLoginMsg(loginRes.data)
         loginRes && setLoginStatus(true)
         sessionStorage.setItem('isLoggedIn', 'true')
-        // setLoggedIn(sessionStorage.setItem("isLoggedIn", "true"))
+
         navigate('/')
 
       }))
@@ -94,22 +94,6 @@ export const Login = ({ allUsers }) => {
 
       <div className="right_login_container" style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center' }}>
 
-        {/* <form className="login_input" style={{ display: 'flex', gap: '30px', flexDirection: 'column', alignItems: 'center', background: '#FFFBF6', padding: '30px', height: 'fit-content', width: '400px', border: '0.75px solid #E9E6E1' }}>
-          <div className="login_Label" style={{ fontFamily: 'Montserrat', fontWeight: '700', color: '#13120F', fontSize: '48px' }}>Login</div>
-          <div className="input_wrap" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
-            {
-              inputFields.map(input => {
-                return (
-                  <input type={input?.type} placeholder={input?.placeholder} style={input.style} onChange={e => input.input(e)} />
-                )
-              })
-            }
-
-            <button type="submit" style={buttonStyle} onClick={e => { loginAction(e) }}>
-              Login
-            </button>
-          </div>
-        </form> */}
         <Fade cascade damping={0.1}>
           <Form formFields={inputFields} heading={'Log in'} btnAction={loginAction} btnTitle={'Login'} formObj={getFormObj} />
         </Fade>

@@ -15,11 +15,6 @@ import axios from "axios";
 import PublicRoute from "./utilities/publicRoute";
 import PrivateRoute from "./utilities/privateRoute";
 
-import img1 from "./img/hero/1.png";
-import img2 from "./img/hero/2.png";
-import img3 from "./img/hero/3.png";
-import img4 from "./img/hero/4.png";
-import img5 from "./img/hero/5.png";
 import { Footer } from "./elements/sections/footer";
 import { EditAccount } from "./elements/screen/account/crud/edit_account";
 import { Error404 } from "./elements/screen/404";
@@ -40,7 +35,6 @@ function App() {
   let userObj = userObjRaw
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
   const [users, setUsers] = useState([]);
-  // const [userLoggedIn, setUserLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'))
   const [products, setProducts] = useState([]);
   const [currentScreen, setCurrentScreen] = useState(useLocation());
   const location = useLocation();
@@ -75,7 +69,7 @@ function App() {
     ]
   );
 
-  // console.log("44", userObj)
+
   // Get All Users Request
   const getUsers = async () => {
     try {
@@ -83,20 +77,25 @@ function App() {
       setUsers(userRes.data)
       // console.log("Testing User data", userRes.data)
     } catch (err) { console.error(err) }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Use 'smooth' for smooth scrolling
+    });
   }
 
 
   // Scroll to top on page change 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToTop()
   }, [currentScreen.pathname])
 
   // Main Use Effect
   useEffect(() => {
 
-    // Get All users
     getUsers()
-    // Get All products
     getProducts()
 
     // Update Logged in status
@@ -105,6 +104,8 @@ function App() {
     // Update Logged in user details
     setUserObjRaw(JSON.parse(sessionStorage.getItem('user')))
     userObj = userObjRaw?.usr
+
+    console.log("App - user", userObj)
 
     // Refresh data
     const interval = setInterval(async () => {
@@ -117,6 +118,8 @@ function App() {
     loggedIn,
     userStateSession,
     currentScreen,
+    // userObj,
+    // userObjRaw
     // product_demo
   ])
 
@@ -132,12 +135,6 @@ function App() {
 
 
   // Routes Array
-  // Nesting product children routes
-  const products_child = [
-    {
-
-    }
-  ]
   const path_and_elements = [
     {
       path: '/',
@@ -149,7 +146,7 @@ function App() {
     },
     {
       path: '/products/admin/:id',
-      element: <PrivateRoute><Products products={product_demo} /></PrivateRoute>
+      element: <PrivateRoute><Products products={product_demo} userObj={userObj} /></PrivateRoute>
     },
     {
       path: '/product-page/:productId',
@@ -195,7 +192,7 @@ function App() {
       path: '*',
       element: <Error404 />
     }
-  ]
+  ];
   // Map Routes 
   const routes = path_and_elements.map((pae, i) => { return <Route key={pae?.path} path={pae?.path} element={pae?.element} /> })
   // Refresh Routes
@@ -203,7 +200,7 @@ function App() {
     path_and_elements.map(pae => {
       currentScreen.pathname === pae.path && window.location.reload()
     })
-  }
+  };
 
 
   // Initialize Session with default Logged status being: False

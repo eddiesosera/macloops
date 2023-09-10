@@ -2,6 +2,8 @@ import React from 'react'
 import { Card } from '../components/card';
 import { JackInTheBox } from 'react-awesome-reveal';
 import Masonry from 'react-responsive-masonry';
+import { v1 as uuidv1 } from 'uuid';
+
 
 export const SimilarPicks = ({ similar_picks }) => {
     // Algorithm
@@ -21,7 +23,7 @@ export const SimilarPicks = ({ similar_picks }) => {
             >
                 {similar_picks.map((sp, index) => {
                     if (index < 5) {
-                        return <li key={sp.imgsrc} style={{ listStyle: 'none' }}><Card product={sp} /></li>;
+                        return <li key={uuidv1()} style={{ listStyle: 'none' }}><Card product={sp} /></li>;
                     }
                 })}
             </Masonry>

@@ -17,7 +17,7 @@ export const Card = ({ product, user }) => {
   const [productId, setProductId] = useState(product?._id);
   const [cartData, setCartData] = useState({})
 
-  // console.log("PRDCT", product)
+
   // ANIMATION
   const [state, toggle] = useState(true)
   // const { x } = useSpring({
@@ -26,8 +26,15 @@ export const Card = ({ product, user }) => {
   //   config: { duration: 1000 },
   // })
 
+
   useEffect(() => {
-    setProductId(product?._id)
+    setProductId(product?._id);
+    console.log("User on Card", user);
+
+    // Add to Cart front and back logic
+
+    // Liked Item front and back logic
+
   }, [product, cartData])
 
 
@@ -57,15 +64,23 @@ export const Card = ({ product, user }) => {
 
   // On add to cart
   const addToCart = () => {
+
     setAddToCartTgl(!addToCartTgl);
     addToCartNotify()
 
     setCartData({ cart_items: [{ ...cartData, product_id: productId, ...cartData, quantity: 1 }] });
-    console.log(cartData)
+    console.log(cartData);
+
+    const getUser = JSON.parse(sessionStorage.getItem('user'))
+    const getUserId = getUser?._id
+
+    console.log(getUserId)
 
     // add to cart axios call
-    axios.patch('http://localhost:5000/api/updateUser/64cae654ef62f660cd4b75a9', cartData)
+    axios.patch('http://localhost:5000/api/updateUser/' + getUserId, cartData)
       .then((updatedCart) => {
+        const updatedUser = updatedCart?.data
+        sessionStorage.setItem("user", JSON.stringify(updatedUser));
         console.log("UPDATED CARD", updatedCart)
       })
       .catch(err => console.error(err))

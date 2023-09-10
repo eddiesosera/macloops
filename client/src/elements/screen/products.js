@@ -15,8 +15,9 @@ import axios from "axios";
 import { v1 as uuidv1 } from 'uuid';
 
 
-function Items({ products }) {
-  // const [productss, setProductss] = useContext(ProductsContext);
+function Items({ products, userObj }) {
+
+  console.log(userObj)
 
   return (
     <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}>
@@ -24,7 +25,7 @@ function Items({ products }) {
       {
         products?.map((product, index) => {
           return (
-            <Card key={uuidv1()} product={product} />
+            <Card key={uuidv1()} product={product} user={userObj} />
           )
         })
       }
@@ -34,23 +35,11 @@ function Items({ products }) {
 };
 
 
-function PaginatedItems({ itemsPerPage }) {
-  const [productss, setProducts] = useContext(ProductsContext);
+function PaginatedItems({ itemsPerPage, userObj }) {
+  const [products, setProducts] = useContext(ProductsContext);
 
-  // Testing data by multiplying size of loop
-  let products = productss
-
-  // const numIterations = 24;
-
-  // for (let i = 0; i < numIterations; i++) {
-  //   const item = products[i];
-  //   products.push(item);
-  // }
-
-  // setProductss(productss.map(prd => { productss.push(prd) }))
 
   // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
   // Simulate fetching items from another resources.
@@ -65,16 +54,18 @@ function PaginatedItems({ itemsPerPage }) {
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % productss.length;
+    const newOffset = (event.selected * itemsPerPage) % products.length;
     // console.log(
     //   `User requested page number ${event.selected}, which is offset ${newOffset}`
     // );
     setItemOffset(newOffset);
   };
 
+  console.log(userObj)
+
   return (
     <>
-      <Items products={currentItems} />
+      <Items products={currentItems} userObj={userObj} />
       <ReactPaginate
         breakLabel="..."
         nextLabel={<div style={{ color: '#2293b6', cursor: 'pointer' }}><i className="ph-bold ph-arrow-right" /></div>}
@@ -95,6 +86,8 @@ function PaginatedItems({ itemsPerPage }) {
 
 
 export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
+
+  console.log(userObj)
 
   const [queryVal, setQueryVal] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -206,7 +199,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
         setPageState("newStock");
       }
     }
-  }, [url, pageState, url_segments])
+  }, [url, pageState, url_segments, userObj])
 
 
   const getFormNewStockObj = obj => {
@@ -267,7 +260,7 @@ export const Products = ({ products, userDB, itemsPerPage, userObj }) => {
           </div>
         </div>
         <div className="products_content_wrap" style={{ padding: '20px 60px' }}>
-          <PaginatedItems itemsPerPage={10} />
+          <PaginatedItems itemsPerPage={10} userObj={userObj} />
         </div>
       </div>
     )

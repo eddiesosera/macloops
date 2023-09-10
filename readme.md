@@ -17,9 +17,7 @@ The dashboard can complete most required functionalities assigned in the brief.T
 
 ## Preview
 
-![Home Page](https://github.com/eddiesosera/DV200_Term2_Dashboard/blob/main/app/img/screenshots/appointments_home.png)
-![Doctors Page Page](app/img/screenshots/doctors.png)
-![Patient's Page](app/img/screenshots/patients.png)
+![Home Page](https://github.com/eddiesosera/)
 
 ## Tech/Framework used
 
