@@ -76,12 +76,12 @@ export const Navbar = ({ userObj }) => {
       }
       // console.log(loggedIn[0])
     },
-    [currScrn, scrn, userObj?.username, loggedIn[0], userMode]
+    [currScrn, scrn, userObj?.username, loggedIn[0], userMode, userObj?.cart_items?.length]
   );
 
   useEffect(() => {
 
-  }, [userMode, userObj])
+  }, [userMode, userObj, userObj?.cart_items?.length])
 
 
 

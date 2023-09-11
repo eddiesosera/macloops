@@ -56,14 +56,18 @@ const UserSchema = mongoose.Schema({
     ],
     bought_items: [
         {
-            type: String,
-            default: ""
+            product_id: {
+                type: String,
+                default: ""
+            },
         }
     ],
     liked_items: [
         {
-            type: String,
-            default: ""
+            product_id: {
+                type: String,
+                default: ""
+            },
         }
     ]
 });

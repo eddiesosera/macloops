@@ -18,6 +18,7 @@ import { v1 as uuidv1 } from 'uuid';
 function Items({ products, userObj }) {
 
   console.log(userObj)
+  useEffect(() => { }, [userObj])
 
   return (
     <Masonry columnsCount={window.screen.width > 770 ? 5 : 1} gutter="30px" style={{ zIndex: '1' }}>
@@ -62,6 +63,7 @@ function PaginatedItems({ itemsPerPage, userObj }) {
   };
 
   console.log(userObj)
+  useEffect(() => { }, [userObj])
 
   return (
     <>

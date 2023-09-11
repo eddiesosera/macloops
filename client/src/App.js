@@ -1,3 +1,4 @@
+import { createContext, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./elements/sections/navbar";
@@ -10,7 +11,6 @@ import { Checkout } from "./elements/screen/account/ecom/checkout";
 import { Register } from "./elements/screen/account/register";
 import { Login } from "./elements/screen/account/login";
 import { ForgotPassword } from "./elements/screen/account/forgotPassword";
-import { createContext, useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import PublicRoute from "./utilities/publicRoute";
 import PrivateRoute from "./utilities/privateRoute";
@@ -31,8 +31,8 @@ export const UserModeContext = createContext();
 function App() {
   // Declaring all variables
   const userStateSession = sessionStorage.getItem('isLoggedIn');
-  const [userObjRaw, setUserObjRaw] = useState(JSON.parse(sessionStorage?.getItem('user')));
-  let userObj = userObjRaw
+  const [userObj, setUserObj] = useState(JSON.parse(sessionStorage?.getItem('user')));
+  const [userString, setUserString] = useState(sessionStorage?.getItem('user'));
   const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem('isLoggedIn'));
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
@@ -79,17 +79,22 @@ function App() {
     } catch (err) { console.error(err) }
   };
 
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Use 'smooth' for smooth scrolling
-    });
-  }
+
+  const memoizedUser = useMemo(() => {
+    // Perform any computations or transformations you need with sessionData here
+    // For example, you can filter or map the data
+    // Update Logged in user details
+    // setUserObj(JSON.parse(sessionStorage.getItem('user')));
+
+    const newUserData = userObj; // Modify newData based on your computations
+    // console.log("updated user")
+    return newUserData;
+
+  }, [userString]);
 
 
   // Scroll to top on page change 
   useEffect(() => {
-    scrollToTop()
   }, [currentScreen.pathname])
 
   // Main Use Effect
@@ -99,27 +104,19 @@ function App() {
     getProducts()
 
     // Update Logged in status
-    setLoggedIn(sessionStorage.getItem('isLoggedIn'))
+    setLoggedIn(sessionStorage.getItem('isLoggedIn'));
 
-    // Update Logged in user details
-    setUserObjRaw(JSON.parse(sessionStorage.getItem('user')))
-    userObj = userObjRaw?.usr
 
-    console.log("App - user", userObj)
-
+    console.log("APP USR OBJ", userObj)
     // Refresh data
-    const interval = setInterval(async () => {
-      // await getUsers()
-      // await getProducts()
-    }, 5000)
-    return () => clearInterval(interval)
-
+    setUserString(sessionStorage?.getItem('user'))
   }, [
     loggedIn,
     userStateSession,
     currentScreen,
-    // userObj,
-    // userObjRaw
+    userString,
+    // userObj
+    memoizedUser
     // product_demo
   ])
 
@@ -174,7 +171,7 @@ function App() {
     },
     {
       path: '/cart',
-      element: <PrivateRoute><Cart /></PrivateRoute>
+      element: <PrivateRoute><Cart userObj={userObj} allProducts={product_demo} /></PrivateRoute>
     },
     {
       path: '/checkout',

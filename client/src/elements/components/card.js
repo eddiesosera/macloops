@@ -17,8 +17,10 @@ export const Card = ({ product, user }) => {
   const [productId, setProductId] = useState(product?._id);
   const getUser = JSON.parse(sessionStorage.getItem('user'))
   const getUserId = getUser?._id
-  const existingCartItems = getUser?.cart_items
+  const existingCartItems = getUser?.cart_items;
+  const existingLikedItems = getUser?.liked_items;
   let newcartItems = {};
+  let newLikedItems = {};
 
 
   // ANIMATION
@@ -41,8 +43,13 @@ export const Card = ({ product, user }) => {
     };
 
     // Liked Item front and back logic
+    for (let lkd = 0; existingLikedItems?.length >= lkd; lkd++) {
+      if (existingLikedItems[lkd]?.product_id === productId) {
+        setHeartTgl(true)
+      }
+    };
 
-  }, [product, newcartItems, existingCartItems, productId])
+  }, [getUser, product, productId, newcartItems, newLikedItems, existingCartItems, existingLikedItems, likedTgl, addToCartTgl])
 
 
   const addToCartNotify = () => toast(
@@ -73,6 +80,7 @@ export const Card = ({ product, user }) => {
       // If the product_id exists, remove the existing item
       const updatedCartItems = [...cartItems];
       updatedCartItems.splice(existingItemIndex, 1);
+      setAddToCartTgl(false)
       return updatedCartItems;
     } else {
       // If the product_id doesn't exist, add the new item to the cartItems
@@ -80,39 +88,68 @@ export const Card = ({ product, user }) => {
     }
   }
 
+  // 
+  const addAndUpdateLikes = (likedItems, newItem) => {
+    // Check if the newItem's product_id already exists in cartItems
+    const existingItemIndex = likedItems.findIndex(item => item.product_id === newItem.product_id);
+
+    if (existingItemIndex !== -1) {
+      // If the product_id exists, remove the existing item
+      const updatedLikedItems = [...likedItems];
+      updatedLikedItems.splice(existingItemIndex, 1);
+      setHeartTgl(false)
+      return updatedLikedItems;
+    } else {
+      // If the product_id doesn't exist, add the new item to the cartItems
+      return [...likedItems, newItem];
+    }
+  }
+
 
   // On like product
   const likeProduct = () => {
-    setHeartTgl(!likedTgl)
+
+    newLikedItems = { ...newLikedItems, product_id: productId };
+    const updated_likes = { liked_items: addAndUpdateLikes(existingLikedItems, newLikedItems) };
+
+    // add to cart axios call
+    axios.patch('http://localhost:5000/api/updateUser/' + getUserId, updated_likes)
+      .then((updatedLikes) => {
+        const updatedUserLike = updatedLikes?.data
+        sessionStorage.setItem("user", JSON.stringify(updatedUserLike));
+
+        // Update button if the item is not found
+        for (let lkd = 0; existingLikedItems?.length >= lkd; lkd++) {
+          if (existingLikedItems[lkd]?.product_id === productId) {
+            setHeartTgl(true);
+          };
+        }
+      })
+      .catch(err => console.error(err))
+
   }
 
   // On add to cart
   const addToCart = () => {
-    setAddToCartTgl(!addToCartTgl);
-    addToCartNotify()
 
     newcartItems = { ...newcartItems, product_id: productId, ...newcartItems, quantity: 1 };
     const updated_cart = { cart_items: addAndUpdateCart(existingCartItems, newcartItems) };
-
-    // console.log("selected cart data: " + JSON.stringify(newcartItems));
-    // console.log("old cart data: ", existingCartItems);
-
-    console.log(updated_cart)
-
 
     // add to cart axios call
     axios.patch('http://localhost:5000/api/updateUser/' + getUserId, updated_cart)
       .then((updatedCart) => {
         const updatedUser = updatedCart?.data
         sessionStorage.setItem("user", JSON.stringify(updatedUser));
-        console.log("UPDATED CARD", updatedCart)
 
         // Update button if the item is not found
         for (let itm = 0; existingCartItems?.length > itm; itm++) {
-          if (existingCartItems[itm]?.product_id !== productId) {
-            setAddToCartTgl(false)
-          }
+          if (existingCartItems[itm]?.product_id === productId) {
+            setAddToCartTgl(true)
+          };
         };
+
+        addToCartNotify()
+
       })
       .catch(err => console.error(err))
 
@@ -141,10 +178,6 @@ export const Card = ({ product, user }) => {
 
   }
 
-  // if (state) {
-
-  // }
-
 
   return (
     <div className="card" style={{ zIndex: cardTgl ? 2 : 0, outline: cardTgl ? '#b8c6ca solid 1px' : '', background: '#FFFBF6', border: 'solid 0.75px #E9E6E1', width: '240px', boxShadow: cardTgl ? '0px 8px 16px -5px #6F6D6A' : '', transition: 'box-shadow 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} onMouseEnter={e => setCardTgl(true)} onMouseLeave={e => setCardTgl(false)}
@@ -166,7 +199,7 @@ export const Card = ({ product, user }) => {
             //   output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1],}), 
             zIndex: '1', position: 'absolute', marginRight: '20px', marginBottom: '20px', height: '36px', width: '36px'
           }} onClick={e => toggle(!state)}>
-          <div className="card_top_btn" onClick={e => likeProduct()}
+          <div className="card_top_btn" onClick={e => { getUser ? likeProduct() : alert('Login to Save Items'); }}
             style={{
               zIndex: '1', height: '36px', width: '36px', background: '#F7E9EA', borderRadius: '36px', display: 'flex',
               opacity: likedActive(false, true), justifyContent: 'center', alignItems: 'center', color: '#E50E21',
@@ -178,7 +211,7 @@ export const Card = ({ product, user }) => {
           </div>
         </animated.div>
 
-      </div>
+      </div >
       <div className="card_btm_wrap" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <div style={{ fontFamily: 'Montserrat', fontSize: '16px', fontWeight: '700' }}>{product?.name}</div>
         <div style={{ color: '#6F6D6A', fontFamily: 'Nunito Sans', fontSize: '14px' }}>{product?.manufacturer}</div>
@@ -200,6 +233,6 @@ export const Card = ({ product, user }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
