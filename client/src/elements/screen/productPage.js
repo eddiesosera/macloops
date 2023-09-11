@@ -110,6 +110,23 @@ export const ProductPage = ({ products, userObj }) => {
   };
 
 
+  const initQtyChecker = () => {
+    if (userObj?.cart_items.length > 0) {
+      for (let i = 0; userObj?.cart_items.length > i; i++) {
+        if (userObj?.cart_items[i].product_id === productId) {
+          return userObj?.cart_items[i].quantity
+        } else {
+          return 1
+        }
+      }
+    }
+  }
+
+  const getQtyValue = (val) => {
+    return val
+  }
+
+
   const productInfo = () => {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '480px' }}>
@@ -134,7 +151,7 @@ export const ProductPage = ({ products, userObj }) => {
           <DropDown placeholder={colors?.placeholder} options={colors?.list} selectedValue={(opt) => { setInfoForm({ ...infoForm, color: opt }) }} />
         </div>
         <div className='info_group_6'>
-          <ProductQuantity />
+          <ProductQuantity initValue={initQtyChecker()} sendValue={getQtyValue()} />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div className='info_group_7_interaction' style={{ display: 'flex', gap: '20px' }}>

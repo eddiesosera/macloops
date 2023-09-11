@@ -21,13 +21,15 @@ router.post("/api/createOrder", verifyToken, async (req, res) => {
 
         if (!user) {
             return res.status(404).json({ error: "User not found." });
-        }
+        };
+
+        // Extract the order items from the request body
+        const orderItems = req.body.items;
 
         // Create a new order with the associated customer (user) data
         const order = new OrderSchema({
             customer: user, // Using the user data
-            product: req.body.product,
-            quantity: req.body.quantity,
+            items: orderItems
         });
 
         // Save the order to the database
