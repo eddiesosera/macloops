@@ -151,7 +151,7 @@ export const ProductPage = ({ products, userObj }) => {
           <DropDown placeholder={colors?.placeholder} options={colors?.list} selectedValue={(opt) => { setInfoForm({ ...infoForm, color: opt }) }} />
         </div>
         <div className='info_group_6'>
-          <ProductQuantity initValue={initQtyChecker()} sendValue={getQtyValue()} />
+          {/* <ProductQuantity initValue={initQtyChecker()} sendValue={getQtyValue()} /> */}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div className='info_group_7_interaction' style={{ display: 'flex', gap: '20px' }}>

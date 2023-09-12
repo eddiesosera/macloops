@@ -203,7 +203,7 @@ export const Navbar = ({ userObj }) => {
               {
 
               }
-              <div className="cart_itms_no" style={{ display: userObj?.cart_items?.length !== undefined ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', minWidth: '14px', minHeight: '14px', padding: '2px', borderRadius: '18px', fontSize: '10px', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
+              <div className="cart_itms_no" style={{ display: userObj?.cart_items?.length !== undefined ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', background: 'black', color: 'white', height: 'fit-content', width: 'fit-content', width: '16px', height: '16px', padding: '2px', borderRadius: '18px', fontSize: '6px', fontWeight: '600', marginLeft: '-12px', marginTop: '-6px', border: '2.5px solid #FFCF86' }}>
                 {userObj?.cart_items?.length}
               </div>
             </div>

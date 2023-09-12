@@ -60,9 +60,9 @@ export const Card = ({ product, user }) => {
           You've {addToCartTgl ? 'removed' : 'added'} <b>{product?.name}</b>  {addToCartTgl ? 'from' : 'to'} your cart!
         </div>
         {
-          addToCartTgl ? '' : (<button onClick={e => navigate('/checkout')} className='add_btn' style={{ display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: 'fit content', maxWidth: '150px', height: '40px', background: '#EAF6F9', color: '#2293B6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+          addToCartTgl ? '' : (<button onClick={e => navigate('/cart')} className='add_btn' style={{ display: 'flex', border: ' 0.75px solid #C3E1E9', padding: '0 18px', width: 'fit content', maxWidth: '150px', height: '40px', background: '#EAF6F9', color: '#2293B6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
             <i className='ph-fill ph-shopping-cart-simple' style={{ fontSize: '20px' }} />
-            <div style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#2293B6' }}>Checkout</div>
+            <div style={{ fontFamily: 'Montserrat', fontWeight: '600', color: '#2293B6' }}>View Cart</div>
           </button>)
         }
       </div>
