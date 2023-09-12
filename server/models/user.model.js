@@ -13,6 +13,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        default: 78951336
+    },
     profile_image: {
         type: String,
         required: false,
@@ -30,16 +34,20 @@ const UserSchema = mongoose.Schema({
     address:
     {
         house_number: {
-            type: String
+            type: String,
+            default: 12
         },
         street_name: {
-            type: String
+            type: String,
+            default: "KwaMbudzi Road"
         },
         city: {
-            type: String
+            type: String,
+            default: "Johannesburg"
         },
         zip_code: {
-            type: String
+            type: String,
+            default: 1738
         }
     },
     cart_items: [
