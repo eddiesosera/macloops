@@ -4,12 +4,6 @@ const UserSchema = require("../models/user.model");
 const router = express();
 const verifyToken = require("../middleware/verifyToken")
 
-//Get All
-router.get("/api/orders/", async (req, res) => {
-    const findOrder = await OrderSchema.find();
-    res.json(findOrder);
-});
-
 //Create
 router.post("/api/createOrder", verifyToken, async (req, res) => {
     try {
@@ -45,11 +39,17 @@ router.post("/api/createOrder", verifyToken, async (req, res) => {
 router.get("/api/orders", verifyToken, async (req, res) => {
     try {
         const userId = req.user.userId;
+        const userRole = req.user.role; // Assuming the user's role is available in the JWT payload
 
-        // userId to find orders associated with the user
-        const findOrder = await OrderSchema.find({ customer: userId });
-
-        res.json(findOrder);
+        if (userRole === "admin") {
+            // User has an "admin" role, so they can access all orders
+            const allOrders = await OrderSchema.find();
+            res.json(allOrders);
+        } else {
+            // User is not an admin, so only fetch orders associated with their user ID
+            const findOrder = await OrderSchema.find({ customer: userId });
+            res.json(findOrder);
+        }
     } catch (error) {
         res.status(500).json({ error: "Error fetching orders." });
     }

@@ -17,7 +17,7 @@ function verifyToken(req, res, next) {
     try {
         const decoded = jwt.verify(token, secretKey); // Verify and decode the token
         req.user = decoded; // Store the user information in the request object
-        console.log(req.user);
+        // console.log(req.user);
         next();
     } catch (error) {
         return res.status(401).json({ error: "Invalid token." });

@@ -24,7 +24,7 @@ router.post("/api/loginUser", async (req, res) => {
             const { password, ...userWithoutPassword } = findUser._doc;
 
             // Generate a JWT token
-            const token = jwt.sign({ userId: findUser._id }, secretKey, { expiresIn: "1h" });
+            const token = jwt.sign({ userId: findUser?._id, role: findUser?.role }, secretKey, { expiresIn: "1h" });
             res.json({ user: userWithoutPassword, token });
         } else {
             res.status(401).json({ error: "Invalid credentials." });
@@ -53,7 +53,7 @@ router.post("/api/addUser", async (req, res) => {
         await user.save();
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign({ userId: user?._id, role: findUser?.role }, JWT_SECRET_KEY, { expiresIn: "1h" });
 
         res.json({ token });
     } catch (error) {

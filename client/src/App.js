@@ -179,7 +179,7 @@ function App() {
     },
     {
       path: '/orders',
-      element: <PrivateRoute><Orders /></PrivateRoute>
+      element: <PrivateRoute><Orders userObj={userObj} allProducts={product_demo} /></PrivateRoute>
     },
     {
       path: '/order/:id',

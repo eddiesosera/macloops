@@ -113,7 +113,7 @@ export const Navbar = ({ userObj }) => {
           {
             scrn !== "/account" &&
             <div className="user_mode_close" style={{ color: '#2293B6', cursor: 'pointer' }} onClick={e => { changePageState() }}>
-              <i class="ph-bold ph-x-circle" style={{ fontSize: '21px' }} />
+              <i className="ph-bold ph-x-circle" style={{ fontSize: '21px' }} />
             </div>
           }
 
