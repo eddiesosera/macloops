@@ -107,20 +107,23 @@ export const Orders = ({ userObj, allProducts }) => {
                         return (
                             <li key={uuidv1()} style={{ display: 'flex', padding: '40px 40px', alignItems: 'flex-end', justifyContent: 'space-between', background: '#FFFBF6', color: '#13120F', border: 'solid 1px #E9E6E1', width: '100%', maxWidth: '1100px', height: '100%', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} >
                                 <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397' }}>#{index + 1}</div>
-                                <ul style={{ display: 'flex' }}>
+                                <ul style={{ display: 'flex', flexDirection: "row" }}>
                                     {
                                         cartItm?.order?.items?.map((itemInOrder, i) => {
                                             console.log(itemInOrder?.product_id)
                                             return (
                                                 <li style={{ display: 'flex', padding: '20px 40px', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', gap: '20px', width: '100%', cursor: 'context-menu', }}>
                                                     <div className="cart_item_section_00_leftWrap" style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
-                                                        <img src={''} className="cart_item_section_1_image" style={{ height: '80px', width: '80px', objectFit: 'cover', border: '1px solid #E8E1D7', cursor: 'pointer' }}
+                                                        <div src={''} className="cart_item_section_1_image"
+                                                            style={{ width: '100%', objectFit: 'cover', fontSize: '10px', fontWeight: '800', border: '1px solid #E8E1D7', cursor: 'pointer' }}
                                                             onClick={e => {
                                                                 navigate('/product-page/' + cartItm?._id)
                                                                 localStorage.setItem('last_prod_viewed', JSON.stringify(cartItm));
                                                                 localStorage.getItem('last_prod_id') === "" && localStorage.setItem('last_prod_id', cartItm?._id);
                                                             }}
-                                                        />
+                                                        >
+                                                            {itemInOrder?.product_id}
+                                                        </div>
                                                     </div>
                                                     <div className="cart_item_section_2_name" style={{ fontSize: '15px', fontWeight: '600', textTransform: 'uppercase' }}>{cartItm?.name}</div>
                                                     <div className="cart_item_section_3_price" style={{ fontSize: '15px', fontWeight: '700', }}>{
