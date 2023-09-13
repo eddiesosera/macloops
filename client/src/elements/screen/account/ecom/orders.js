@@ -8,10 +8,11 @@ import { Search } from '../../../components/search';
 import jsPDF from 'jspdf';
 
 export const Orders = ({ userObj, allProducts }) => {
-    const [selectedState, setSelectedState] = useState("Pending");
+    const [selectedState, setSelectedState] = useState("All");
     const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("")
+    const [allOrders, setAllOrders] = useState([]);
+    const [searchQuery1, setSearchQuery1] = useState("")
 
     const findOrderItems = (products, orders) => {
         const productMap = new Map();
@@ -39,19 +40,34 @@ export const Orders = ({ userObj, allProducts }) => {
     };
     const orderItems = findOrderItems(allProducts, orders);
 
-    const findProduct = (id) => {
+    function filterOrdersByStatus(ordrs, filter) {
+        return ordrs.filter(order => order?.orderStatus === filter);
+    };
 
-        if (orderItems?.products?.length > 0) {
+    function filterItemsBySearchQuery(items, searchQuery) {
+        const escapedQuery = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regexPattern = new RegExp(escapedQuery, 'i');
 
-            for (let i = 0; orderItems?.length > i; i++) {
-                if (orderItems?.products[i]?._id === id) {
-                    return orderItems?.products[i]
+        function searchObject(obj) {
+            for (const key in obj) {
+                if (Object.hasOwnProperty.call(obj, key)) {
+                    const value = obj[key];
+                    if (typeof value === 'string' && regexPattern.test(value)) {
+                        return true;
+                    } else if (typeof value === 'object' && !Array.isArray(value)) {
+                        if (searchObject(value)) {
+                            return true;
+                        }
+                    }
                 }
             }
+            return false;
         }
-    }
 
-    const getOrders = () => {
+        return items.filter(item => searchObject(item));
+    };
+
+    const getOrders = (filter, search) => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
@@ -64,9 +80,24 @@ export const Orders = ({ userObj, allProducts }) => {
         axios.request(config)
             .then((response) => {
 
-                setOrders(response.data);
-                // console.log(orders)
-                // console.log(response)
+                setAllOrders(response.data)
+
+                if (selectedState === "All") {
+                    if (searchQuery1 !== "") {
+                        setOrders(filterItemsBySearchQuery(response.data, searchQuery1))
+                    } else {
+                        setOrders(allOrders);
+                    }
+                } else if (searchQuery1 !== "") {
+                    setOrders(filterItemsBySearchQuery(response.data, searchQuery1))
+                } else {
+                    if (Array.isArray(response.data)) {
+                        setOrders(filterOrdersByStatus(response.data, filter))
+                    } else {
+                        console.error("orders is not an array.");
+                    }
+                }
+
 
                 sessionStorage.setItem('order-length', response.data.length);
                 let order_length = response.data.length;
@@ -78,26 +109,21 @@ export const Orders = ({ userObj, allProducts }) => {
             });
     };
 
-    const currencyFormat = (amount) => {
-        return (amount.toLocaleString('en-ZA', {
-            style: 'currency',
-            currency: 'ZAR',
-            minimumFractionDigits: 2, // Optional: specify the number of decimal places
-        })
-        ).replace(/,/g, '.')
-    };
-
     const productStates = [
+        {
+            state_id: 'all',
+            state_name: 'All'
+        },
         {
             state_id: 'pending',
             state_name: 'Pending'
         },
         {
-            state_id: 'pending',
+            state_id: 'proccessed',
             state_name: 'Proccessed'
         },
         {
-            state_id: 'pending',
+            state_id: 'delivered',
             state_name: 'Delivered'
         },
         {
@@ -114,7 +140,6 @@ export const Orders = ({ userObj, allProducts }) => {
 
         return formattedDate
     };
-
     const returnTime = (originalDate) => {
         const date = new Date(originalDate);
 
@@ -127,7 +152,6 @@ export const Orders = ({ userObj, allProducts }) => {
 
         return formattedTime
     };
-
     const returnMobileNumber = (originalNumber) => {
 
         // Remove the leading '+' character
@@ -140,9 +164,11 @@ export const Orders = ({ userObj, allProducts }) => {
 
     };
 
+
     const getSearchQuery = (val) => {
-        setSearchQuery(val)
+        setSearchQuery1(val)
     }
+
 
     const orderActions = [
         {
@@ -158,7 +184,7 @@ export const Orders = ({ userObj, allProducts }) => {
                         'Content-Type': 'application/json'
                     },
                     data: {
-                        "orderStatus": "Processed"
+                        "orderStatus": "Proccessed"
                     }
                 };
 
@@ -225,13 +251,17 @@ export const Orders = ({ userObj, allProducts }) => {
         }
     ];
 
+
     useEffect(() => {
-        getOrders();
-        // console.log(orders);
-        // console.log(allProducts);
-        // console.log('order-items-found', orderItems)
-        // console.log("orderitms: ", orderItems)
-    }, [searchQuery]);
+
+        getOrders(selectedState);
+        if (searchQuery1 !== "") {
+            setOrders(filterItemsBySearchQuery(orders, searchQuery1))
+        }
+
+
+    }, [searchQuery1, selectedState, orders]);
+
 
     return (
         <div style={{ padding: '60px' }}>
@@ -247,7 +277,7 @@ export const Orders = ({ userObj, allProducts }) => {
                         {
                             productStates.map((state, index) => {
                                 return (
-                                    <li className="product_state" key={uuidv1()} onClick={e => setSelectedState(state?.state_name)}
+                                    <li className="product_state" key={uuidv1()} onClick={e => { setSelectedState(state?.state_name); getOrders(state?.state_name) }}
                                         style={{
                                             listStyle: 'none', padding: '12px', cursor: 'pointer', fontFamily: 'Nunito Sans', fontSize: '16px',
                                             fontWeight: selectedState === state?.state_name ? "900" : '700', color: selectedState === state?.state_name ? '#111' : '#999'
@@ -259,7 +289,7 @@ export const Orders = ({ userObj, allProducts }) => {
                     </ul>
                 </div>
                 <Search query={getSearchQuery} />
-                {searchQuery}
+                {searchQuery1}
             </div>
             <ul style={{ display: 'flex', gap: '20px', justifyContent: 'space-between', flexDirection: 'column', padding: 0 }}>
                 {/* <Slide cascade damping={0.01}> */}
@@ -268,7 +298,7 @@ export const Orders = ({ userObj, allProducts }) => {
                         return (
                             <li key={uuidv1()} style={{ display: 'flex', flexDirection: 'column', padding: '40px 40px', gap: '20px', background: '#FFFBF6', color: '#13120F', border: 'solid 1px #E9E6E1', width: '100%', maxWidth: '1300px', height: '100%', transition: 'all 0.48s cubic-bezier(0.25,0.75,0.5,1) 0s' }} >
                                 <div style={{ display: 'flex', gap: '40px' }}>
-                                    <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Order No: <div style={{ color: '#40372c' }}>#{index + 1}</div></div>
+                                    <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Order No: <div style={{ color: '#40372c' }}>#{orderItm?.order?._id}</div></div>
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Status: <div style={{ color: '#40372c' }}>{orderItm?.order?.orderStatus}</div></div>
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Delivery Date: <div style={{ color: '#40372c' }}>{returnDate(orderItm?.order?.deliveryDate)}</div></div>
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Delivery Time: <div style={{ color: '#40372c' }}>{returnTime(orderItm?.order?.deliveryDate)}</div></div>
