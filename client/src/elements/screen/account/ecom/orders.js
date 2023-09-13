@@ -148,17 +148,80 @@ export const Orders = ({ userObj, allProducts }) => {
         {
             label: 'Process',
             icon: 'ph-bold ph-spinner-gap',
-            action: () => { }
+            action: (id) => {
+                let config = {
+                    method: 'patch',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:5000/api/updateOrder/${id}`,
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        "orderStatus": "Processed"
+                    }
+                };
+
+                axios.request(config)
+                    .then((response) => {
+                        alert("Proccessed");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         },
         {
             label: 'Deliver',
             icon: 'ph-bold ph-truck',
-            action: () => { }
+            action: (id) => {
+                let config = {
+                    method: 'patch',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:5000/api/updateOrder/${id}`,
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        "orderStatus": "Delivered"
+                    }
+                };
+
+                axios.request(config)
+                    .then((response) => {
+                        alert("Delivered");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         },
         {
             label: 'Cancel',
             icon: 'ph-bold ph-trash',
-            action: () => { }
+            action: (id) => {
+                let config = {
+                    method: 'patch',
+                    maxBodyLength: Infinity,
+                    url: `http://localhost:5000/api/updateOrder/${id}`,
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        "orderStatus": "Cancelled"
+                    }
+                };
+
+                axios.request(config)
+                    .then((response) => {
+                        alert("): Cancelled");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         }
     ];
 
@@ -359,9 +422,10 @@ export const Orders = ({ userObj, allProducts }) => {
                                 <div style={{ height: '0.3px', borderTop: '0.25px solid #E5DDD3', width: '-webkit-fill-available' }} ></div>
                                 <ul style={{ display: 'flex', gap: '20px', padding: 0 }}>
                                     {
-                                        orderActions?.map(action => {
+                                        orderActions?.map((action, ind) => {
                                             return (
-                                                <li className='add_btn' style={{ display: 'flex', border: '0.75px solid #c3e1e9', padding: '0 18px', width: 'fit content', height: '40px', background: '#eaf6f9', color: '#2293b6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                                <li key={ind} className='add_btn' onClick={e => { action.action(orderItm?.order?._id); console.log(orderItm?.order?._id) }}
+                                                    style={{ display: 'flex', border: '0.75px solid #c3e1e9', padding: '0 18px', width: 'fit content', height: '40px', background: '#eaf6f9', color: '#2293b6', alignItems: 'center', justifyContent: 'center', gap: '10px', cursor: 'pointer' }}>
                                                     <i className={action?.icon} style={{ fontSize: '20px' }} />
                                                     <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>{action?.label}</div>
                                                 </li>
