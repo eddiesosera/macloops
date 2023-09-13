@@ -85,24 +85,35 @@ export const Form = ({ formObj, formFields, btnAction, heading, btnTitle }) => {
 
 
     function extractAndReplaceParameter(obj, targetPropertyName, replacementPropertyName, parentPath = '') {
-        return Object.keys(obj).reduce((result, key) => {
-            const fullPath = parentPath ? `${parentPath}.${key}` : key;
+        const visitedObjects = new WeakSet();
 
-            if (key === targetPropertyName) {
-                // If the current property matches the target parameter name
-                const replacementValue = obj[replacementPropertyName];
-                result[replacementValue] = obj[key];
-            } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-                // If the property is an object, recursively search within it
-                const nestedResult = extractAndReplaceParameter(obj[key], targetPropertyName, replacementPropertyName, fullPath);
-                if (Object.keys(nestedResult).length > 0) {
-                    result = { ...result, ...nestedResult };
-                }
+        function processObject(obj, fullPath) {
+            if (visitedObjects.has(obj)) {
+                return {};
             }
 
-            return result;
-        }, {});
-    };
+            visitedObjects.add(obj);
+
+            return Object.keys(obj).reduce((result, key) => {
+                const nestedFullPath = fullPath ? `${fullPath}.${key}` : key;
+
+                if (key === targetPropertyName) {
+                    const replacementValue = obj[replacementPropertyName];
+                    result[replacementValue] = obj[key];
+                } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                    const nestedResult = processObject(obj[key], nestedFullPath);
+                    if (Object.keys(nestedResult).length > 0) {
+                        result = { ...result, ...nestedResult };
+                    }
+                }
+
+                return result;
+            }, {});
+        }
+
+        return processObject(obj, parentPath);
+    }
+
 
 
     useEffect(() => {
