@@ -225,90 +225,6 @@ export const Orders = ({ userObj, allProducts }) => {
         }
     ];
 
-    // const generatePDF = () => {
-    //     const doc = new jsPDF();
-
-    //     // Define customer information
-    //     const customer = {
-    //         name: "John Doe",
-    //         address: "123 Main Street, City, Country",
-    //         email: "johndoe@example.com",
-    //         phone: "+123 456 7890",
-    //     };
-
-    //     // Define order items
-    //     const orderItems = [
-    //         { product_id: "Product A", description: "Widget", quantity: 2, unitPrice: 20 },
-    //         { product_id: "Product B", description: "Gadget", quantity: 3, unitPrice: 30 },
-    //         { product_id: "Product C", description: "Tool", quantity: 1, unitPrice: 40 },
-    //     ];
-
-    //     // Document title and header
-    //     doc.setFont("helvetica", "bold");
-    //     doc.setFontSize(18);
-    //     doc.text("Order Invoice", 105, 20, null, null, "center");
-
-    //     // Create an HTML image element
-    //     const img = new Image();
-    //     img.src = "https://ucarecdn.com/8e342c31-5f10-410e-bfa9-dc6edb495b55/LOGO.png"; // logo URL
-    //     img.onload = function () {
-    //         const logoWidth = 40;
-    //         const logoHeight = (img.height * logoWidth) / img.width;
-
-    //         // Add the image with object-fit: contain
-    //         doc.addImage(this, "JPEG", 10, 10, logoWidth, logoHeight);
-
-    //         // Customer section
-    //         doc.setFont("helvetica", "normal");
-    //         doc.setFontSize(12);
-    //         doc.text("Customer Information:", 10, 60);
-    //         doc.text(`Name: ${customer.name}`, 10, 70);
-    //         doc.text(`Address: ${customer.address}`, 10, 80);
-    //         doc.text(`Email: ${customer.email}`, 10, 90);
-    //         doc.text(`Phone: ${customer.phone}`, 10, 100);
-
-    //         // Table header
-    //         doc.setFont("helvetica", "bold");
-    //         doc.setFontSize(14);
-    //         doc.text("Product ID", 10, 120);
-    //         doc.text("Description", 50, 120);
-    //         doc.text("Quantity", 100, 120);
-    //         doc.text("Unit Price ($)", 150, 120);
-    //         doc.text("Total ($)", 190, 120);
-
-    //         // Table rows
-    //         let yPosition = 130;
-    //         let totalAmount = 0;
-
-    //         for (const item of orderItems) {
-    //             doc.setFont("helvetica", "normal");
-    //             doc.setFontSize(12);
-    //             doc.text(item.product_id, 10, yPosition);
-    //             doc.text(item.description, 50, yPosition);
-    //             doc.text(item.quantity.toString(), 100, yPosition);
-    //             doc.text(item.unitPrice.toString(), 150, yPosition);
-    //             const total = item.quantity * item.unitPrice;
-    //             doc.text(total.toFixed(2), 190, yPosition);
-
-    //             // Add faint lines
-    //             doc.setLineWidth(0.2);
-    //             doc.line(10, yPosition + 5, 200, yPosition + 5);
-
-    //             totalAmount += total;
-    //             yPosition += 10;
-    //         }
-
-    //         // Total amount
-    //         doc.setFont("helvetica", "bold");
-    //         doc.setFontSize(14);
-    //         doc.text("Total Amount ($):", 135, yPosition + 10);
-    //         doc.text(totalAmount.toFixed(2), 190, yPosition + 10);
-
-    //         // Save or download the PDF
-    //         doc.save("order_invoice.pdf");
-    //     }
-    // };
-
     useEffect(() => {
         getOrders();
         // console.log(orders);
@@ -356,11 +272,6 @@ export const Orders = ({ userObj, allProducts }) => {
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Status: <div style={{ color: '#40372c' }}>{orderItm?.order?.orderStatus}</div></div>
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Delivery Date: <div style={{ color: '#40372c' }}>{returnDate(orderItm?.order?.deliveryDate)}</div></div>
                                     <div className="cart_item_section_0_index" style={{ fontSize: '13px', fontWeight: '500', color: '#ABA397', display: 'flex', gap: '5px' }}>Delivery Time: <div style={{ color: '#40372c' }}>{returnTime(orderItm?.order?.deliveryDate)}</div></div>
-                                    {/* <button className='add_btn' onClick={generatePDF}
-                                        style={{ display: 'flex', border: '0.75px solid #c3e1e9', padding: '0 18px', width: 'fit content', height: '40px', background: '#eaf6f9', color: '#2293b6', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                        <i className="" style={{ fontSize: '20px' }} />
-                                        <div style={{ fontFamily: 'Nunito Sans', fontWeight: '600' }}>Save PDF</div>
-                                    </button> */}
                                 </div>
                                 <div style={{ height: '0.3px', borderTop: '0.25px solid #E5DDD3', width: '-webkit-fill-available' }} ></div>
                                 <ul style={{ display: 'flex', flexDirection: "row", flexWrap: 'wrap', padding: 0, gap: '10px' }}>
