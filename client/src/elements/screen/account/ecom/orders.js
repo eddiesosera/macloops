@@ -260,7 +260,7 @@ export const Orders = ({ userObj, allProducts }) => {
         }
 
 
-    }, [searchQuery1, selectedState, orders]);
+    }, [searchQuery1, selectedState]);
 
 
     return (
