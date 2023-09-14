@@ -138,13 +138,13 @@ function App() {
       element: <Home allProducts={product_demo} />
     },
     {
-      path: '/products',
+      path: '/products/:category',
       element: <Products products={product_demo} userObj={userObj} />
     },
-    {
-      path: '/products/admin/:id',
-      element: <PrivateRoute><Products products={product_demo} userObj={userObj} /></PrivateRoute>
-    },
+    // {
+    //   path: '/products/admin/:id',
+    //   element: <PrivateRoute><Products products={product_demo} userObj={userObj} /></PrivateRoute>
+    // },
     {
       path: '/product-page/:productId',
       element: <ProductPage products={product_demo} userObj={userObj} />
