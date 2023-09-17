@@ -1,6 +1,6 @@
 # Macloops by Eddie Sosera
 
-![Banner](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/macloops_header.jpg)
+![Banner](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/macloops_header1.jpg)
 
 > A MERN ecommerce dashboard designed for musicians.
 
