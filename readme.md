@@ -29,7 +29,7 @@ _Register Page_
 _Home Page: Hero_
 
 ![Home Page: On Sale](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/home_sale.png)
-_LHome Page: On Sale_
+_Home Page: On Sale_
 
 ![Products](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/products.png)
 _Products_
