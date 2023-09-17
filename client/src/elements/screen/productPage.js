@@ -137,7 +137,7 @@ export const ProductPage = ({ products, userObj }) => {
           </div>
           <div className='info_group_2' >
             <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500' }}>By {product?.manufacturer}</div>
-            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>{product?.type}</div>
+            <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '500', color: '#6F6D6A', }}>{product?.category}</div>
           </div>
           <div className='info_group_3'>
             <div style={{ fontSize: '16px', fontFamily: 'Nunito Sans', fontWeight: '800', color: '#13120F' }}>R {product?.price}</div>

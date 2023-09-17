@@ -156,14 +156,14 @@ export const Navbar = ({ userObj }) => {
             <LogoAnime height="24px" style={{ display: animeLogoTgl ? "block" : "none" }} />
             {/* <MacloopsLogoAnimated height={24} width={'123px'} color={'#13120f'} /> */}
           </NavLink>
-          <NavLink to="/products" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
+          <NavLink to="/products/all" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
             {/* <PianoKeys size={32} /> */}
-            {currScrn === "/products" ? (
+            {currScrn === "/products/all" ? (
               <i className="ph-fill ph-piano-keys" style={ActiveIcon} />
             ) : (
               <i className="ph ph-piano-keys" style={InactiveIcon} />
             )}
-            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Instruments</div>
+            <div style={{ fontFamily: 'Nunito Sans', fontWeight: currScrn === "/products/all" ? '900' : '700', color: '#13120f', fontSize: '15px' }}>Instruments</div>
           </NavLink>
           <NavLink to="/find-store" className="navbar_left_page" style={{ display: "flex", alignItems: 'center', gap: '10px', color: 'inherit !important' }}>
             {/* <PianoKeys size={32} /> */}
