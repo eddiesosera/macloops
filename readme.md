@@ -28,7 +28,7 @@
     <a href="https://github.com/eddiesosera/macloops/blob/main/"><strong>Explore the docs</strong></a>
     <br />
     <br />
-    <a href="add The demo Video Link here">View Demo</a>
+    <a href="./client//src//assets//readme//demo.mp4">View Demo</a>
     ·
     <a href="https://github.com/eddiesosera/macloops/issues">Report Bug</a>
     ·
@@ -165,12 +165,12 @@ This is a central page for pages not found. This is intended to help with a good
 
 #### Technical Funtionality
 
-- `CRUD funtionality` on instrumentss, Answers, Replies(additional) and Users.
-- `Upvote and Downvote` instrumentss.
-- `Search and Filter` instrumentss being displayed.
+- `CRUD funtionality` on instruments, Answers, Replies(additional) and Users.
+- `CRUD functionality` on cart items.
+- `Search and Filter` instruments being displayed.
 - `Authentication` using password encryption library.
 - `Authorization` using tokens (JWTs).
-- `Reliability score` system based on interaction.
+- `Approved orders` only by admin.
 
 <br/>
 
@@ -213,11 +213,11 @@ The `Development Process` the technical implementations and functionality done f
 
 #### Highlights
 
-The setup of the project was overal fun for me as I got the opportunity explore complex task like creating dynamic functions that work as a state store without using any library.
+thoroughly enjoyed the project's structure, as it provided me with the chance to delve into intricate tasks, such making my own API and connecting it to the client side. I thought that was fun.
 
 #### Challenges
 
-Generally the project was not challenging as we did a similar project in our previous term, however the backend was a bit challenging as I had to familiarize myself again with `Vanailla Javascript.`
+Overall the project was relatively easy to understand but really time consuming. I found state management to daunting for this task and I could have made use of libraries such as redux.
 
 <br/>
 <br/>
@@ -225,7 +225,7 @@ Generally the project was not challenging as we did a similar project in our pre
 
 ## Final Outcomes
 
-[View Demonstration](https://www.youtube.com/watch?v=K2TSUsroUAA)
+![View Demonstration][demo]
 
 <!-- CONCLUSION -->
 
@@ -349,6 +349,7 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 
 <!-- Screens and Headers-->
 
+[demo]: client/src/assets/readme/demo.mp4
 [banner]: client/src/assets/readme/banner.png
 [header]: client/src/assets/readme/header.png
 [home]: client/src/assets/readme/features/macloops_feature_home.png
