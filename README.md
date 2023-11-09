@@ -151,15 +151,11 @@ The admin’s view gives the admin special permission to delete ant user’s que
 <br/>
 <br/>
 
-#### ERD
-
-![Entity Relationship Diagram][erd]
-
 ## Tech/Framework used
 
-| Styling | Front-End Functionality | Backend    | Database |
+<!-- | Styling | Front-End Functionality | Backend    | Database |
 | ------- | :---------------------- | ---------- | :------: |
-| CSS     | React                   | Express.js | MongoDB  |
+| CSS     | React                   | Express.js | MongoDB  | -->
 
 <br/>
 <br/>
@@ -350,7 +346,7 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 <!-- Process-->
 
 [usecase]: client/src/assets/readme/process/useCase.png
-[flowdiagram]: client/src/assets/readme/process/useCase.png
+[flowdiagram]: client/src/assets/readme/process/flowDiagram.png
 
 <!-- Wireframes-->
 
