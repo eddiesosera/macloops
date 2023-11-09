@@ -105,48 +105,51 @@ Macloops is a musician-focused e-commerce dashboard designed as a dynamic hub. I
 <!-- ### Homescreen -->
 
 ![Homescreen][home]
-The homescreen displays all the questions which you can filter by upvotes and time (by default it shows the latest). You can answer other people’s questions by clicking on `Answer(0)`.
+The home screen allows users to engage with the carousel at the top to gain more info about the project.
+The home screen shows all discounted products on sale.
 
 <br />
-<!-- ### Question Page -->
+<!-- ### Instruments Page -->
 
-![Question][question]
-The question page allows users to give an answer to the question and they can browse through other answers for help.
-Users can also reply to answers.
-
-<br />
-<!-- ### Create Question -->
-
-![Create Question][createquestion]
-The Create Question page allows users to create questions by filling in the form they can also add images with a size limit of 500kb.
+![instruments][instruments]
+The Instruments page displays all instruments in the database that are available, and you can paginate through the Instruments page.
 
 <br />
-<!-- ### Search Bar -->
+<!-- ### Product Page -->
 
-![Search Bar][searchbar]
-The search allows users to search anything from questions, users and topics. The most relevant results will be at the top. The orange button takes you to the question results page.
-
-<br />
-<!-- ### Search Results -->
-
-![Search Results][searchresults]
-The question results displays more than 5 results as seen in the question bar. Additionally the user can filter the type of results.
+![Product Page][productpage]
+The product page has all the information about the instrument, information such as the specifications, descriptions and similar instruments.
 
 <br />
-<!-- ### User Profile -->
+<!-- ### Account -->
 
-![User Profile][userprofile]
-The User Profile is a summary of the user’s information such reliability score, bio, questions asked, replies and answers.
+![Account][account]
+The user has their account page and they can login, sign up or edit their account details.
+The “View as Admin” is only visible for admin accounts.
 
-The reliability score is generated based on the user’s number of questions and the number of votes each question has.
+<br />
+<!-- ### Cart -->
 
-They have the option to edit their profile.
+![Cart][cart]
+The Cart page is a list of all the instruments the user wishes to buy. The user can add, remove and update the quantity of each item in the cart.
+
+<br />
+<!-- ### Onboarding -->
+
+![Onboarding][onboarding]
+Users can register or login into the system.
 
 <br />
 <!-- ### Admin -->
 
-![Admin][admin]
-The admin’s view gives the admin special permission to delete ant user’s question.
+![Orders][orders]
+The admin’s view gives the admin special permission to delete ant user’s instruments.
+
+<br />
+<!-- ### Admin -->
+
+![404 Error page][404error]
+This is a central page for pages not found. This is intended to help with a good user flow.
 
 <br/>
 <br/>
@@ -162,9 +165,9 @@ The admin’s view gives the admin special permission to delete ant user’s que
 
 #### Technical Funtionality
 
-- `CRUD funtionality` on Questions, Answers, Replies(additional) and Users.
-- `Upvote and Downvote` questions.
-- `Search and Filter` Questions being displayed.
+- `CRUD funtionality` on instrumentss, Answers, Replies(additional) and Users.
+- `Upvote and Downvote` instrumentss.
+- `Search and Filter` instrumentss being displayed.
 - `Authentication` using password encryption library.
 - `Authorization` using tokens (JWTs).
 - `Reliability score` system based on interaction.
@@ -349,12 +352,13 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 [banner]: client/src/assets/readme/banner.png
 [header]: client/src/assets/readme/header.png
 [home]: client/src/assets/readme/features/macloops_feature_home.png
-[question]: client/src/assets/readme/features/macloops_feature_question.png
-[createquestion]: client/src/assets/readme/features/macloops_feature_createQuestion.png
-[searchbar]: client/src/assets/readme/features/macloops_feature_searchbar.png
-[searchresults]: client/src/assets/readme/features/macloops_feature_searchResults.png
-[userprofile]: client/src/assets/readme/features/macloops_feature_userProfile.png
-[admin]: client/src/assets/readme/features/macloops_feature_admin.png
+[instruments]: client/src/assets/readme/features/macloops_feature_instruments.png
+[productpage]: client/src/assets/readme/features/macloops_feature_productPage.png
+[account]: client/src/assets/readme/features/macloops_feature_account.png
+[cart]: client/src/assets/readme/features/macloops_feature_cart.png
+[onboarding]: client/src/assets/readme/features/macloops_feature_onboarding.png
+[orders]: client/src/assets/readme/features/macloops_feature_orders.png
+[404error]: client/src/assets/readme/features/macloops_feature_404error.png
 
 <!-- Process-->
 
