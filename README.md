@@ -28,7 +28,7 @@
     <a href="https://github.com/eddiesosera/macloops/blob/main/"><strong>Explore the docs</strong></a>
     <br />
     <br />
-    <a href="./client//src//assets//readme//demo.mp4">View Demo</a>
+    <a href="https://drive.google.com/file/d/1xJGy-j4TskFiKSpnWFAl9HrnYCG_uiMS/view?usp=sharing">View Demo</a>
     ·
     <a href="https://github.com/eddiesosera/macloops/issues">Report Bug</a>
     ·
@@ -225,7 +225,7 @@ Overall the project was relatively easy to understand but really time consuming.
 
 ## Final Outcomes
 
-![View Demonstration][demo]
+[View Demonstration](https://drive.google.com/file/d/1xJGy-j4TskFiKSpnWFAl9HrnYCG_uiMS/view?usp=sharing)
 
 <!-- CONCLUSION -->
 
