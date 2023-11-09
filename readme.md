@@ -1,23 +1,56 @@
-# Macloops by Eddie Sosera
+<br />
 
-![Banner](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/macloops_header1.jpg)
+![GitHub repo size](https://img.shields.io/github/repo-size/eddiesosera/macloops?color=%23FF4C54)
+![GitHub watchers](https://img.shields.io/github/watchers/eddiesosera/macloops?color=%23FFA191)
+![GitHub language count](https://img.shields.io/github/languages/count/eddiesosera/macloops?color=%231EBBBA)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/eddiesosera/macloops?color=%234E54AD)
 
-> A MERN ecommerce dashboard designed for musicians.
+<a name="readme-top"></a>
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks]][forks-url]
+[![Starsgazers][stars]][stars-url]
 
-## Project Background
+#
 
-#### The requirements for the project were as follows:
+![Header][header]
 
-- Create and modify databases using ExpressJs and Mongo,
-- Store and retrieve information in those databases and
-- Generate web pages from the retrieved data.
-- Set up a local development environment, and use it to administer code and data
+<div align="center">
 
-## Build Status
+  <h3 align="center">macloops </h3>
 
-The dashboard can complete most required functionalities assigned in the brief.There are minor user experience issues not attended to, however the dashboard completes most features.
+  <p align="center">
+    Macloops: A MERN Stack E-Commerce Dashboard for Musicians
+    <br />
+    <br />
+    Eddie Sosera
+    <br />
+    <br />
+    <a href="https://github.com/eddiesosera/macloops/blob/main/"><strong>Explore the docs</strong></a>
+    <br />
+    <br />
+    <a href="add The demo Video Link here">View Demo</a>
+    ·
+    <a href="https://github.com/eddiesosera/macloops/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/eddiesosera/macloops/issues">Request Feature</a>
+  </p>
+  <br />
+</div>
 
-## Preview
+## About this Project
+
+![Banner][banner]
+
+Macloops is a musician-focused e-commerce dashboard designed as a dynamic hub. It provides user-friendly features for easy inventory navigation, sales tracking, and order management.
+
+<br />
+<br />
+
+<!-- ## Build Status
+
+The dashboard can complete most required functionalities assigned in the brief.There are minor user experience issues not attended to, however the dashboard completes most features. -->
+
+## Features
 
 ![Login](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/login.png)
 _Login Page_
@@ -55,11 +88,23 @@ _404 Not Found_
 | ------- | :---------------------- | ---------- | :------: |
 | CSS     | React                   | Express.js | MongoDB  |
 
-## Features
+<br/>
+<br/>
 
-- CRUD Functionality for an Admin and a User
-- Login and Register capability
-- Add Images
+#### Technical Funtionality
+
+- `CRUD funtionality` on Questions, Answers, Replies(additional) and Users.
+- `Upvote and Downvote` questions.
+- `Search and Filter` Questions being displayed.
+- `Authentication` using password encryption library.
+- `Authorization` using tokens (JWTs).
+- `Reliability score` system based on interaction.
+
+<br/>
+
+#### ERD
+
+![Entity Relationship Diagram][erd]
 
 <br />
 <br />
@@ -104,7 +149,7 @@ Generally the project was not challenging as we did a similar project in our pre
 
    - Clone the repository to your local machine using the following command:
      ```
-     git clone https://github.com/eddiesosera/codegenius.git
+     git clone https://github.com/eddiesosera/macloops.git
      ```
 
 3. **Create a branch:**
@@ -147,7 +192,7 @@ Generally the project was not challenging as we did a similar project in our pre
 
 ### Reporting Isssues
 
-If you encounter any issues or have suggestions, please [open an issue](https://github.com/eddiesosera/codegenius/issues) on GitHub.
+If you encounter any issues or have suggestions, please [open an issue](https://github.com/eddiesosera/macloops/issues) on GitHub.
 
 <br/>
 <!-- AUTHORS -->
@@ -183,15 +228,45 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- RESOURCES USED LINK -->
 
-[banner]: client/src/components/assets/readme/banner.png
-[header]: client/src/components/assets/readme/header.png
-[home]: client/src/components/assets/readme/features/codegenius_feature_home.png
-[question]: client/src/components/assets/readme/features/codegenius_feature_question.png
-[createquestion]: client/src/components/assets/readme/features/codegenius_feature_createQuestion.png
-[searchbar]: client/src/components/assets/readme/features/codegenius_feature_searchbar.png
-[searchresults]: client/src/components/assets/readme/features/codegenius_feature_searchResults.png
-[userprofile]: client/src/components/assets/readme/features/codegenius_feature_userProfile.png
-[admin]: client/src/components/assets/readme/features/codegenius_feature_admin.png
-[erd]: client/src/components/assets/readme/process/erd.png
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/
+[express.js]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[express-url]: https://expressjs.com/
+[mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[mongodb-url]: https://www.mongodb.com/
+[jwt]: https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens
+[jwt-url]: https://jwt.io/
+[bootstrap]: https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white
+[bootstrap-url]: https://getbootstrap.com/
+[nodemon]: https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD
+[nodemon-url]: https://nodemon.io/
+[contributors-shield]: https://img.shields.io/github/contributors/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
+[contributors-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/graphs/contributors
+[forks]: https://img.shields.io/github/forks/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
+[forks-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/forks
+[stars]: https://img.shields.io/github/stars/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
+[stars-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/stargazers
+[eddie-img]: https://github.com/eddiesosera.png
+
+<!-- Screens and Headers-->
+
+[banner]: client/src/assets/readme/banner.png
+[header]: client/src/assets/readme/header.png
+[home]: client/src/assets/readme/features/macloops_feature_home.png
+[question]: client/src/assets/readme/features/macloops_feature_question.png
+[createquestion]: client/src/assets/readme/features/macloops_feature_createQuestion.png
+[searchbar]: client/src/assets/readme/features/macloops_feature_searchbar.png
+[searchresults]: client/src/assets/readme/features/macloops_feature_searchResults.png
+[userprofile]: client/src/assets/readme/features/macloops_feature_userProfile.png
+[admin]: client/src/assets/readme/features/macloops_feature_admin.png
+
+<!-- Process-->
+
+[usecase]: client/src/assets/readme/process/useCase.png
+[flowdiagram]: client/src/assets/readme/process/useCase.png
+
+<!-- Wireframes-->
+
+[wf-home]: client/src/assets/readme/wireframes/home.png
