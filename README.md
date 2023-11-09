@@ -248,7 +248,7 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 [forks-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/forks
 [stars]: https://img.shields.io/github/stars/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
 [stars-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/stargazers
-[eddie-img]: https://github.com/eddiesosera.png
+[eddie-img]: https://github.com/eddiesosera.png*-
 
 <!-- Screens and Headers-->
 
