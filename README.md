@@ -16,7 +16,7 @@
 
 <div align="center">
 
-  <h3 align="center">macloops </h3>
+  <h3 align="center">mMcloops </h3>
 
   <p align="center">
     Macloops: A MERN Stack E-Commerce Dashboard for Musicians
@@ -242,12 +242,12 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 [bootstrap-url]: https://getbootstrap.com/
 [nodemon]: https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD
 [nodemon-url]: https://nodemon.io/
-[contributors-shield]: https://img.shields.io/github/contributors/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
-[contributors-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/graphs/contributors
-[forks]: https://img.shields.io/github/forks/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
-[forks-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/forks
-[stars]: https://img.shields.io/github/stars/CSWilder02/Term-4-Group-2---Project.svg?style=for-the-badge
-[stars-url]: https://github.com/CSWilder02/Term-4-Group-2---Project/stargazers
+[contributors-shield]: https://img.shields.io/github/contributors/eddiesosera/macloops.svg?style=for-the-badge
+[contributors-url]: https://github.com/eddiesosera/macloops/graphs/contributors
+[forks]: https://img.shields.io/github/forks/eddiesosera/macloops.svg?style=for-the-badge
+[forks-url]: https://github.com/eddiesosera/macloops/forks
+[stars]: https://img.shields.io/github/stars/eddiesosera/macloops.svg?style=for-the-badge
+[stars-url]: https://github.com/eddiesosera/macloops/stargazers
 [eddie-img]: https://github.com/eddiesosera.png*-
 
 <!-- Screens and Headers-->
