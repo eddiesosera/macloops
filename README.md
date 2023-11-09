@@ -16,7 +16,7 @@
 
 <div align="center">
 
-  <h3 align="center">mMcloops </h3>
+  <h3 align="center">Mcloops </h3>
 
   <p align="center">
     Macloops: A MERN Stack E-Commerce Dashboard for Musicians
@@ -46,41 +46,114 @@ Macloops is a musician-focused e-commerce dashboard designed as a dynamic hub. I
 <br />
 <br />
 
-<!-- ## Build Status
+# Table of Contents
 
-The dashboard can complete most required functionalities assigned in the brief.There are minor user experience issues not attended to, however the dashboard completes most features. -->
+- [Built With](#built-with)
+- [Installation](#installation)
+- [Features](#features)
+- [Technical Functionality](#technical-functionality)
+- [Development Process](#development-process)
+- [Final Outcomes](#final-outcomes)
+- [Reporting Issues](#reporting-issues)
+- [Authors](#authors)
+- [Licenses](#licenses)
+- [Contact](#contact)
+
+<br />
+<br />
+
+## Built With
+
+- [![React][react.js]][react-url]
+- [![Express][express.js]][express-url]
+- [![Mongodb][mongodb]][mongodb-url]
+- [![jwt][jwt]][jwt-url]
+- [![bootstrap][bootstrap]][bootstrap-url]
+- [![nodemon][nodemon]][nodemon-url]
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- INSTALLATION -->
+
+## Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/eddiesosera/macloops.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Start the client server in `client/term4-group2-qna`
+   ```sh
+   npm start
+   ```
+4. Start the backend server in `server` file
+   ```sh
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br />
+<br />
+
+<!-- FEATURES -->
 
 ## Features
 
-![Login](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/login.png)
-_Login Page_
+<!-- ### Homescreen -->
 
-![Register](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/register.png)
-_Register Page_
+![Homescreen][home]
+The homescreen displays all the questions which you can filter by upvotes and time (by default it shows the latest). You can answer other people’s questions by clicking on `Answer(0)`.
 
-![Home Page: Hero](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/homehero.png)
-_Home Page: Hero_
+<br />
+<!-- ### Question Page -->
 
-![Home Page: On Sale](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/home_sale.png)
-_Home Page: On Sale_
+![Question][question]
+The question page allows users to give an answer to the question and they can browse through other answers for help.
+Users can also reply to answers.
 
-![Products](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/products.png)
-_Products_
+<br />
+<!-- ### Create Question -->
 
-![Product Page: Top Section](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/product_page_top.png)
-_Product Page: Top Section_
+![Create Question][createquestion]
+The Create Question page allows users to create questions by filling in the form they can also add images with a size limit of 500kb.
 
-![Account](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/account.png)
-_Account Page_
+<br />
+<!-- ### Search Bar -->
 
-![Cart Page: Customer(User)](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/cart.png)
-_Cart: Customer(User)_
+![Search Bar][searchbar]
+The search allows users to search anything from questions, users and topics. The most relevant results will be at the top. The orange button takes you to the question results page.
 
-![Orders Page: Admin](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/orders.png)
-_Orders Page: Admin_
+<br />
+<!-- ### Search Results -->
 
-![404 Not Found](https://github.com/eddiesosera/dv200-term3-mern-app/blob/main/client/src/img/screenshot/pageNotFound.png)
-_404 Not Found_
+![Search Results][searchresults]
+The question results displays more than 5 results as seen in the question bar. Additionally the user can filter the type of results.
+
+<br />
+<!-- ### User Profile -->
+
+![User Profile][userprofile]
+The User Profile is a summary of the user’s information such reliability score, bio, questions asked, replies and answers.
+
+The reliability score is generated based on the user’s number of questions and the number of votes each question has.
+
+They have the option to edit their profile.
+
+<br />
+<!-- ### Admin -->
+
+![Admin][admin]
+The admin’s view gives the admin special permission to delete ant user’s question.
+
+<br/>
+<br/>
+
+#### ERD
+
+![Entity Relationship Diagram][erd]
 
 ## Tech/Framework used
 
@@ -102,9 +175,21 @@ _404 Not Found_
 
 <br/>
 
-#### ERD
+#### Flow Diagram
 
-![Entity Relationship Diagram][erd]
+![Flow Diagram][flowdiagram]
+
+<br />
+
+#### Use Case
+
+![Use Case Diagram][usecase]
+
+<br />
+
+#### Wireframes
+
+![Homescreen wireframe][wf-home]
 
 <br />
 <br />
