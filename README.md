@@ -151,9 +151,9 @@ The admin’s view gives the admin special permission to delete ant user’s que
 <br/>
 <br/>
 
-## Tech/Framework used
+<!-- ## Tech/Framework used
 
-<!-- | Styling | Front-End Functionality | Backend    | Database |
+| Styling | Front-End Functionality | Backend    | Database |
 | ------- | :---------------------- | ---------- | :------: |
 | CSS     | React                   | Express.js | MongoDB  | -->
 
@@ -186,6 +186,19 @@ The admin’s view gives the admin special permission to delete ant user’s que
 #### Wireframes
 
 ![Homescreen wireframe][wf-home]
+_Home screen wireframe_
+<br />
+
+![Cart wireframe][wf-cart]
+_Cart wireframe_
+<br />
+
+![Login wireframe][wf-login]
+_Login wireframe_
+<br />
+
+![Register wireframe][wf-register]
+_Register wireframe_
 
 <br />
 <br />
@@ -351,3 +364,6 @@ Distributed under the MIT License. See [License](https://opensource.org/license/
 <!-- Wireframes-->
 
 [wf-home]: client/src/assets/readme/wireframes/home.png
+[wf-cart]: client/src/assets/readme/wireframes/cart.png
+[wf-login]: client/src/assets/readme/wireframes/login.png
+[wf-register]: client/src/assets/readme/wireframes/register.png
