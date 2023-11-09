@@ -5,7 +5,7 @@ const router = express();
 const jwt = require("jsonwebtoken");
 const upload = multer({ dest: "uploads/" });
 
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '.env' });
 
 const secretKey = process.env.JWT_SECRET_KEY
 

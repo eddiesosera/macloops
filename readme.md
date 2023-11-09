@@ -60,3 +60,34 @@ _404 Not Found_
 - CRUD Functionality for an Admin and a User
 - Login and Register capability
 - Add Images
+
+<br/>
+<!-- LICENSE -->
+
+### License
+
+Distributed under the MIT License. See [License](https://opensource.org/license/mit/) for more information.
+
+<br/>
+
+### Contact
+
+**LinkedIn** - [@eddiesosera](https://www.linkedin.com/in/eddiesosera/), or
+[Visit website](https://engineeredimagination.co.za).
+
+<br/>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[banner]: client/src/components/assets/readme/banner.png
+[header]: client/src/components/assets/readme/header.png
+[home]: client/src/components/assets/readme/features/codegenius_feature_home.png
+[question]: client/src/components/assets/readme/features/codegenius_feature_question.png
+[createquestion]: client/src/components/assets/readme/features/codegenius_feature_createQuestion.png
+[searchbar]: client/src/components/assets/readme/features/codegenius_feature_searchbar.png
+[searchresults]: client/src/components/assets/readme/features/codegenius_feature_searchResults.png
+[userprofile]: client/src/components/assets/readme/features/codegenius_feature_userProfile.png
+[admin]: client/src/components/assets/readme/features/codegenius_feature_admin.png
+[erd]: client/src/components/assets/readme/process/erd.png
