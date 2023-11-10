@@ -151,9 +151,6 @@ The admin’s view gives the admin special permission to delete ant user’s ins
 ![404 Error page][404error]
 This is a central page for pages not found. This is intended to help with a good user flow.
 
-<br/>
-<br/>
-
 <!-- ## Tech/Framework used
 
 | Styling | Front-End Functionality | Backend    | Database |
