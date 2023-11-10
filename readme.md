@@ -12,11 +12,11 @@
 
 #
 
-![Header][header]
+![Banner][banner]
 
 <div align="center">
 
-  <h3 align="center">Mcloops </h3>
+  <h3 align="center">Macloops </h3>
 
   <p align="center">
     Macloops: A MERN Stack E-Commerce Dashboard for Musicians
@@ -39,7 +39,7 @@
 
 ## About this Project
 
-![Banner][banner]
+![Header][header]
 
 Macloops is a musician-focused e-commerce dashboard designed as a dynamic hub. It provides user-friendly features for easy inventory navigation, sales tracking, and order management.
 
